@@ -1,5 +1,5 @@
 title: Abdullah Al-Nafisah
-description: R&D Engineer
+description: R&D Engineer specializing in IoT systems and embedded development
 url: "https://abdullahalnafisah.github.io"
 baseurl: ""
 
@@ -9,6 +9,7 @@ theme: minima
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+  - jekyll-seo-tag
 
 # Personal info
 author:
@@ -23,10 +24,17 @@ header_pages:
   - projects.md
   - blog.md
 
-
-# Show excerpts on home page
+# Home page settings
 show_excerpts: true
 
-# Pagination (optional)
-paginate: 5
-paginate_path: "/blog/page:num/"
+# SEO and social
+twitter:
+  username: # Add if you have Twitter
+linkedin:
+  username: abdullah-al-nafisah
+# Optional: Google Analytics
+# google_analytics: UA-XXXXXXXX-X
+
+# Optional: Disqus comments
+# disqus:
+#   shortname: your-disqus-shortname

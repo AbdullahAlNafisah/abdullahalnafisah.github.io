@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- seo -%}
+  <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
+  {%- feed_meta -%}
+  <style>
+    body { background-color: #1a1a1a !important; color: #e0e0e0 !important; }
+    .site-header { background-color: #2d2d2d !important; border-bottom: 1px solid #404040 !important; }
+    .site-title, .site-nav .page-link { color: #e0e0e0 !important; }
+    .site-nav .page-link:hover, .site-title:hover { color: #90caf9 !important; }
+    a { color: #64b5f6 !important; }
+    a:hover { color: #90caf9 !important; }
+    .post-list-heading, .post-meta, .post-link, h1, h2, h3, h4, h5, h6, p { color: #e0e0e0 !important; }
+    .post-link:hover { color: #90caf9 !important; }
+    pre, code { background-color: #2d2d2d !important; color: #e0e0e0 !important; border: 1px solid #404040 !important; }
+    .site-footer { background-color: #2d2d2d !important; border-top: 1px solid #404040 !important; }
+    .footer-heading, .contact-list li, .social-media-list li a { color: #e0e0e0 !important; }
+  </style>
+</head>
+<body>
+  {%- include header.html -%}
+  <main class="page-content" aria-label="Content">
+    <div class="wrapper">{{ content }}</div>
+  </main>
+  {%- include footer.html -%}
+</body>
+</html>
