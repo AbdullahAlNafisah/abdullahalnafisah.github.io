@@ -1,0 +1,114 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- seo -%}
+  <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
+  {%- feed_meta -%}
+  {%- if jekyll.environment == 'production' and site.google_analytics -%}
+    {%- include google-analytics.html -%}
+  {%- endif -%}
+  
+  <!-- Dark Theme Styles -->
+  <style>
+    /* Dark theme for minima */
+    body {
+      background-color: #1a1a1a !important;
+      color: #e0e0e0 !important;
+    }
+    
+    .site-header {
+      background-color: #2d2d2d !important;
+      border-bottom: 1px solid #404040 !important;
+    }
+    
+    .site-title, 
+    .site-nav .page-link {
+      color: #e0e0e0 !important;
+    }
+    
+    .site-nav .page-link:hover {
+      color: #90caf9 !important;
+    }
+    
+    .site-title:hover {
+      color: #90caf9 !important;
+    }
+    
+    /* Links */
+    a {
+      color: #64b5f6 !important;
+    }
+    
+    a:hover {
+      color: #90caf9 !important;
+    }
+    
+    /* Post styling */
+    .post-list-heading,
+    .post-meta,
+    .post-link {
+      color: #e0e0e0 !important;
+    }
+    
+    .post-link:hover {
+      color: #90caf9 !important;
+    }
+    
+    .post-content h1,
+    .post-content h2,
+    .post-content h3,
+    .post-content h4,
+    .post-content h5,
+    .post-content h6 {
+      color: #e0e0e0 !important;
+    }
+    
+    /* Code blocks */
+    pre, 
+    code {
+      background-color: #2d2d2d !important;
+      color: #e0e0e0 !important;
+      border: 1px solid #404040 !important;
+    }
+    
+    /* Footer */
+    .site-footer {
+      background-color: #2d2d2d !important;
+      border-top: 1px solid #404040 !important;
+    }
+    
+    .footer-heading,
+    .contact-list li,
+    .social-media-list li a {
+      color: #e0e0e0 !important;
+    }
+    
+    /* Tables */
+    table {
+      background-color: #1a1a1a !important;
+      color: #e0e0e0 !important;
+    }
+    
+    th, td {
+      border: 1px solid #404040 !important;
+      background-color: #2d2d2d !important;
+    }
+    
+    /* Blockquotes */
+    blockquote {
+      color: #b0b0b0 !important;
+      border-left: 4px solid #404040 !important;
+    }
+    
+    /* Home page content */
+    .home h1 {
+      color: #e0e0e0 !important;
+    }
+    
+    /* Navigation active state */
+    .site-nav .page-link.current {
+      color: #90caf9 !important;
+    }
+  </style>
+</head>
