@@ -8,23 +8,69 @@
   <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
   {%- feed_meta -%}
   <style>
-    body { background-color: #1a1a1a !important; color: #e0e0e0 !important; }
-    .site-header { background-color: #2d2d2d !important; border-bottom: 1px solid #404040 !important; }
-    .site-title, .site-nav .page-link { color: #e0e0e0 !important; }
-    .site-nav .page-link:hover, .site-title:hover { color: #90caf9 !important; }
+    /* Dark theme styles */
+    body { 
+      background-color: #1a1a1a !important; 
+      color: #e0e0e0 !important; 
+    }
+    
+    /* Header styling */
+    .site-header { 
+      background-color: #2d2d2d !important; 
+      border-bottom: 1px solid #404040 !important; 
+    }
+    
+    /* Navigation */
+    .site-title, .site-nav .page-link { 
+      color: #e0e0e0 !important; 
+    }
+    .site-nav .page-link:hover, .site-title:hover { 
+      color: #90caf9 !important; 
+    }
+    
+    /* Links */
     a { color: #64b5f6 !important; }
     a:hover { color: #90caf9 !important; }
-    .post-list-heading, .post-meta, .post-link, h1, h2, h3, h4, h5, h6, p { color: #e0e0e0 !important; }
+    
+    /* Text elements */
+    .post-list-heading, .post-meta, .post-link, 
+    h1, h2, h3, h4, h5, h6, p, li { 
+      color: #e0e0e0 !important; 
+    }
     .post-link:hover { color: #90caf9 !important; }
-    pre, code { background-color: #2d2d2d !important; color: #e0e0e0 !important; border: 1px solid #404040 !important; }
-    .site-footer { background-color: #2d2d2d !important; border-top: 1px solid #404040 !important; }
-    .footer-heading, .contact-list li, .social-media-list li a { color: #e0e0e0 !important; }
+    
+    /* Code blocks */
+    pre, code { 
+      background-color: #2d2d2d !important; 
+      color: #e0e0e0 !important; 
+      border: 1px solid #404040 !important; 
+    }
+    
+    /* Footer */
+    .site-footer { 
+      background-color: #2d2d2d !important; 
+      border-top: 1px solid #404040 !important; 
+    }
+    .footer-heading, .contact-list li, .social-media-list li a { 
+      color: #e0e0e0 !important; 
+    }
+    
+    /* Content wrapper */
+    .wrapper {
+      max-width: calc(800px - (30px * 2));
+      margin-right: auto;
+      margin-left: auto;
+      padding-right: 30px;
+      padding-left: 30px;
+    }
   </style>
 </head>
 <body>
   {%- include header.html -%}
   <main class="page-content" aria-label="Content">
-    <div class="wrapper">{{ content }}</div>
+    <div class="wrapper">
+      {{ content }}
+    </div>
   </main>
   {%- include footer.html -%}
 </body>
