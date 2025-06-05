@@ -1,20 +1,10 @@
 ---
-layout: home
+layout: default
 title: Home
 ---
 
-# Welcome to My Portfolio
+# Welcome!
 
-I'm Abdullah Al-Nafisah, an R&D Engineer passionate about IoT systems, embedded development, and innovative engineering solutions. I work on projects involving sensor networks, microcontroller programming, and system integration.
+Hi, I'm **Abdullah Al-Nafisah**, an electrical engineer and researcher with a passion for embedded systems, signal processing, and scientific computing. 
 
-## What I Do
-
-I specialize in developing practical engineering solutions that bridge hardware and software. From building distributed sensor networks to creating embedded systems, I enjoy tackling complex technical challenges and turning ideas into working prototypes.
-
-## Recent Highlights
-
-- **IoT Sensor Networks**: Designed and implemented distributed environmental monitoring systems
-- **Embedded Systems**: Developed microcontroller-based solutions using ESP32 and Arduino platforms
-- **System Integration**: Created end-to-end solutions combining hardware, firmware, and data analysis
-
-<!-- Recent blog posts will automatically appear below -->
+This site showcases my work, projects, blog posts, and background. Feel free to browse around and reach out if you'd like to connect!

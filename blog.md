@@ -1,20 +1,16 @@
 ---
-layout: home
+layout: default
 title: Blog
-permalink: /blog/
 ---
 
-# Engineering Blog
+## Blog
 
-Welcome to my technical blog where I share insights, project updates, and lessons learned from my engineering work. Here you'll find detailed walkthroughs of projects, technical tutorials, and thoughts on emerging technologies in the IoT and embedded systems space.
+Welcome to my blog! I write about things I learn, technical deep dives, research, and occasional thoughts.
 
-## What You'll Find Here
+Here are my latest posts:
 
-- **Project Deep Dives:** Detailed explanations of how I approach and solve engineering challenges
-- **Technical Tutorials:** Step-by-step guides for common engineering tasks and setups
-- **Industry Insights:** My thoughts on trends and developments in IoT, embedded systems, and R&D
-- **Lessons Learned:** Honest reflections on what works, what doesn't, and why
-
-## Recent Posts
-
-<!-- Posts will automatically appear below this content -->
+<ul>
+  {% for post in site.posts %}
+    <li><a href="{{ post.url }}">{{ post.title }}</a> <small>({{ post.date | date: "%B %d, %Y" }})</small></li>
+  {% endfor %}
+</ul>

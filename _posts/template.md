@@ -1,28 +1,17 @@
 ---
-layout: post
-title: "Your Post Title Here"
-date: YYYY-MM-DD HH:MM:SS -0000
-categories: [daily, engineering, thoughts]
-tags: [relevant, tags, here]
-excerpt: "A brief summary of what this post covers"
+layout: default
+title: "Your Blog Title Here"
+date: 2025-06-05
 ---
 
-## Today's Focus
+## Title: Your Blog Title Here
 
-Write about what you worked on or learned today...
+Write your introduction here.
 
-## Technical Insights
+### Section 1
+Describe your experience, thoughts, or findings.
 
-Share any engineering concepts, problems solved, or interesting discoveries...
+### Section 2
+Continue building your narrative.
 
-## Reflections
-
-Your thoughts on the day, challenges faced, or lessons learned...
-
-## Tomorrow's Goals
-
-What you plan to focus on next...
-
----
-
-*Daily writing practice - Day #X*
+*Happy writing!*

@@ -1,40 +1,10 @@
 title: Abdullah Al-Nafisah
-description: R&D Engineer specializing in IoT systems and embedded development
-url: "https://abdullahalnafisah.github.io"
+email: abdullah.y.alnafisah@gmail.com
+description: >-
+  Personal website and blog of Abdullah Al-Nafisah — Electrical Engineer, Researcher, Developer.
 baseurl: ""
-
-# Build settings
-markdown: kramdown
+url: "https://abdullahalnafisah.github.io"
 theme: minima
-plugins:
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-seo-tag
-
-# Personal info
-author:
-  name: Abdullah Al-Nafisah
-  email: abdullah.y.alnafisah@gmail.com
-  linkedin: abdullah-al-nafisah
-  github: AbdullahAlNafisah
-
-# Navigation
-header_pages:
-  - about.md
-  - projects.md
-  - blog.md
-
-# Home page settings
-show_excerpts: true
-
-# SEO and social
-twitter:
-  username: # Add if you have Twitter
-linkedin:
-  username: abdullah-al-nafisah
-# Optional: Google Analytics
-# google_analytics: UA-XXXXXXXX-X
-
-# Optional: Disqus comments
-# disqus:
-#   shortname: your-disqus-shortname
+minima:
+  skin: dark
+markdown: kramdown
