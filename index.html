@@ -1,35 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abdullah Al-Nafisah</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: #1e1e1e;
-      color: #eaeaea;
-      font-family: sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      text-align: center;
-    }
-    img {
-      width: 150px;
-      border-radius: 50%;
-      margin-bottom: 1em;
-    }
-    h1 {
-      margin: 0;
-      font-size: 1.5em;
-    }
-  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Abdullah - Home</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <img src="files/profile.jpg" alt="Profile Picture">
-  <h1>Abdullah Al-Nafisah</h1>
+  <aside class="sidebar">
+    <img src="photo.jpg" class="profile" alt="Profile Photo" />
+
+    <!-- Social Media Icons -->
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/abdullah-al-nafisah" target="_blank" aria-label="LinkedIn"><i
+          class="fab fa-linkedin"></i></a>
+      <a href="https://www.facebook.com/abdullah.alnafisah0/" target="_blank" aria-label="Facebook"><i
+          class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/abdullah.alnafisah0/" target="_blank" aria-label="Instagram"><i
+          class="fab fa-instagram"></i></a>
+      <a href="https://x.com/abdullahn94568" target="_blank" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+    </div>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="publications.html">Publications</a>
+    </nav>
+  </aside>
+
+
+  <main class="content">
+    <header>
+      <h1>Abdullah Al-Nafisah</h1>
+    </header>
+    <section class="contact">
+      <p>Email:
+        <a href="mailto:abdullah.y.alnafisah@gmail.com">abdullah.y.alnafisah@gmail.com</a>
+      </p>
+    </section>
+
+
+    <section class="education">
+      <div class="education-section">
+
+        <div class="edu-card">
+          <h3>M.Sc. in Electrical and Computer Engineering</h3>
+          <p><strong>Institution:</strong> <a href="https://www.kaust.edu.sa/en/">King Abdullah University of Science
+              and Technology (KAUST)</a></p>
+          <p><strong>Thesis:</strong> <a href="http://hdl.handle.net/10754/698372">Turbo-Equalized FTN-Inspired
+              Modulations</a></p>
+          <p><strong>GPA:</strong> 3.83/4.0 </p>
+          <p><strong>Date:</strong> June 20, 2024</p>
+        </div>
+
+        <div class="edu-card">
+          <h3>B.Sc. (Double Major) in Electrical Engineering and Physics</h3>
+          <p><strong>Institution:</strong> <a href="https://kfupm.edu.sa/"> King Fahd University of Petroleum and
+              Minerals (KFUPM)</a></p>
+          <p><strong>Capstone Project:</strong> Low-cost Wireless Seismic
+            Data Acquisition System </p>
+          <p><strong>GPA:</strong> 3.759/4.0 (1st Honors)</p>
+          <p><strong>Date:</strong> May 2, 2019</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
 </body>
+
 </html>
