@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Abdullah - Tunabe Comb Filter</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <aside class="sidebar">
+        <!-- Profile Photo -->
+        <img src="assets/images/profile/photo.jpg" class="profile" alt="Profile Photo" />
+
+        <!-- Social Media Icons -->
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/yourusername" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://www.facebook.com/yourusername" target="_blank" aria-label="Facebook">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://www.instagram.com/yourusername" target="_blank" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://x.com/yourusername" target="_blank" aria-label="Twitter">
+                <i class="fab fa-x-twitter"></i>
+            </a>
+        </div>
+
+        <!-- Sidebar Navigation -->
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="publications.html">Publications</a>
+            <div class="dropdown">
+                <a>Projects</a>
+                <div class="dropdown-content">
+                    <a href="tunable_comb_filter.html">Tunable Comb Filter</a>
+                    <!-- Add more project links here -->
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+
+    <main class="content">
+        <section>
+            <div class="project-content">
+                <h1>Tunable Comb Filter</h1>
+                <p>
+                    <strong>Publication:</strong>
+                    <a href="https://www.oldcitypublishing.com/journals/japed-home/japed-issue-contents/japed-volume-15-number-1-2-2020/japed-15-1-2-p-1-8/"
+                        target="_blank">
+                        A New CFOA-Based Shadow Analog Comb Filter (JAPED, 2020)
+                    </a>
+                </p>
+            </div>
+
+
+            <h2>Overview</h2>
+            <p>
+                This project introduces a novel <a
+                    href="https://en.wikipedia.org/wiki/Current-feedback_operational_amplifier">CFOA</a>-based
+                shadow comb filter. The filter cascades multiple shadow notch filters. Each notch’s
+                bandwidth is controlled via the gain of
+                an amplifier using a grounded variable resistor.
+                The design enables independent electronic tuning of each notch’s bandwidth without affecting the center
+                frequency or overall gain. Four notch filters were implemented targeting 1 kHz, 10 kHz, 100 kHz, and 1
+                MHz.
+                Component values were carefully chosen to ensure tuning range and performance.
+            </p>
+            <section class="project-section">
+                <figure>
+                    <img src="assets/images/tunable_comb_filter/block_diagram.png" alt="Notch Filter Schematic" />
+                </figure>
+            </section>
+
+            <h2>Features</h2>
+            <ul>
+                <li> Uses commercially available <a
+                        href="https://www.analog.com/en/products/ad844.html#:~:text=The%20AD844%20is%20a%20high%20speed%20monolithic%20operational,fast%20large%20signal%20response%20with%20excellent%20dc%20performance.">AD844</a>
+                    ICs</li>
+                <li> Independently tunable notch bandwidths</li>
+                <li> Constant notch frequency and gain during bandwidth tuning</li>
+                <li> Low output impedance — easy to cascade</li>
+                <li> Minimal component count</li>
+            </ul>
+
+            <h2>Notch Filter Design</h2>
+            <p>
+                Core equations governing the design:
+            </p>
+            <ul>
+                <li><strong>Center frequency:</strong> ω<sub>0</sub> = 1 / √(R₁R₃C₁C₂)</li>
+                <li><strong>Bandwidth:</strong> B = (1 / C₂R₂) + (G / C₂R₁), where G = -Rb / Ra</li>
+                <li><strong>Gain:</strong> 1.0 (flat gain through tuning)</li>
+            </ul>
+            <section class="project-section">
+                <figure>
+                    <img src="assets/images/tunable_comb_filter/notch_filter.png" alt="Notch Filter Schematic" />
+                </figure>
+            </section>
+
+            <h2>Experimental Results</h2>
+
+            <p>
+                Experiments validated smooth electronic bandwidth tuning without affecting the notch frequency, as
+                shown in the figure below. By simultaneously varying the resistances R2 and Rb using a single variable
+                resistor—where one increases while the other decreases, and their combined value is constant—the
+                bandwidth can be adjusted effectively. The achieved notch depths at four different frequencies are
+                listed below:
+            </p>
+            <ul>
+                <li>1 kHz → -56 dB</li>
+                <li>10 kHz → -55 dB</li>
+                <li>100 kHz → -46 dB</li>
+                <li>1 MHz → -36 dB</li>
+            </ul>
+
+            <section class="project-section">
+                <figure>
+                    <img src="assets/images/tunable_comb_filter/experimental_results.png"
+                        alt="Notch Filter Schematic" />
+                </figure>
+            </section>
+
+        </section>
+
+    </main>
+</body>
+
+</html>
