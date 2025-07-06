@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Abdullah - Chaotic Oscillators</title>
+
+    <!-- Responsive viewport for all devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <!-- Base website styles -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- MathJax for rendering LaTeX -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Page-specific styles -->
+    <style>
+        figure figcaption {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-top: 6px;
+            text-align: center;
+        }
+
+        .content p .math {
+            background-color: #1e1e1e;
+            padding: 6px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar navigation -->
+    <aside class="sidebar">
+        <img src="assets/profile/photo.jpg" class="profile" alt="Profile Photo" />
+
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/abdullah-al-nafisah" target="_blank"><i
+                    class="fab fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/abdullah.alnafisah0" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/abdullah.alnafisah0" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/abdullahn94568" target="_blank"><i class="fab fa-x-twitter"></i></a>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="publications.html">Publications</a>
+            <div class="dropdown">
+                <a>Projects</a>
+                <div class="dropdown-content">
+                    <a href="chaotic_oscillators.html">Chaotic Oscillators</a>
+                    <a href="tunable_comb_filter.html">Tunable Comb Filter</a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main content area -->
+    <main class="content">
+        <section>
+            <div class="project-content">
+                <h1>Chaotic Oscillators for Secure Communication</h1>
+                <p><strong>Publications:</strong></p>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li><a href="https://ieeexplore.ieee.org/document/9859376" target="_blank">Synchronization of Two
+                            Transistor-Based Chaotic Oscillators (IEEE MWSCAS, 2022)</a></li>
+                    <li><a href="https://www.oldcitypublishing.com/journals/japed-home/japed-issue-contents/japed-volume-15-number-1-2-2020/japed-15-1-2-p-21-28/"
+                            target="_blank">Synchronization of Memristor-Based Chaotic Oscillator (JAPED, 2020)</a></li>
+                    <li><a href="https://ijeecs.iaescore.com/index.php/IJEECS/article/view/16847" target="_blank">A
+                            Memristor-based Chaotic-Masking (IJEECS, 2019)</a></li>
+                </ul>
+            </div>
+
+            <h2>Overview</h2>
+            <p>
+                Chaotic oscillators, based on <a href="https://en.wikipedia.org/wiki/Chaos_theory">chaos theory</a>,
+                are characterized by non-periodic oscillations and sensitive dependence on initial conditions,
+                often exemplified by circuits like <a href="https://en.wikipedia.org/wiki/Chua's_circuit">Chua's
+                    circuit</a>.
+                Their extreme sensitivity to initial conditions makes them ideal for secure analog communication
+                systems. This
+                project explores experimental implementations of chaotic oscillators using transistors and memristors,
+                and how
+                synchronization enables signal masking and recovery.
+            </p>
+
+            <h2>Features</h2>
+            <ul>
+                <li>Aperiodic but deterministic</li>
+                <li>Sensitive to initial conditions</li>
+                <li>Broad frequency spectrum (natural spread spectrum)</li>
+                <li>Can be synchronized via capacitive coupling</li>
+            </ul>
+
+            <h2>Memristor-Based Wien-Bridge Oscillator</h2>
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/chaotic_oscillators/memristor_circuit.png"
+                        alt="Memristor Wien-Bridge Oscillator" style="width: 300px;" />
+                    <figcaption>Figure: Memristor-based chaotic oscillator used for scrambling</figcaption>
+                </figure>
+            </section>
+            <p>
+                This circuit modifies a Wien-bridge oscillator by replacing a resistor with a <a
+                    href="https://en.wikipedia.org/wiki/Memristor">memristor</a> emulator to induce chaotic behavior.
+                Manually-tuned values of the components demonstrated a proof-of-concept for chaotic oscillations.
+
+                The following equations define the frequency and condition of oscillation for this
+                oscillator.
+            </p>
+
+            <!-- Frequency of oscillation -->
+            <p>
+                \[
+                \omega_0^2 = \frac{1}{R_1 R_2 C_1 C_2} - \varepsilon^2
+                \]
+            </p>
+
+            <!-- Epsilon term -->
+            <p>
+                \[
+                \varepsilon = \frac{(C_1 R_1 + C_2 R_2) R_M(t) - C_1 R_2 R_3}{2 R_1 R_2 C_1 C_2 R_M(t)}
+                \]
+            </p>
+
+            <!-- Condition for sustained oscillation -->
+            <p>
+                \[
+                R_2 R_3 C_1 > (R_2 C_2 + C_1 R_1) R_M(t)
+                \]
+            </p>
+            <p>
+                \( R_M(t) \) represents the time-varying resistance of the memristor that will introduce the
+                nonlinearity which is essential for the chaotic behavior.
+            </p>
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/chaotic_oscillators/chaotic_phase_space.png"
+                        alt="Chaotic Oscillator Phase Space" style="width: 400px;" />
+                    <figcaption>Figure: Phase-space diagram showing the oscillator’s chaotic attractor</figcaption>
+                </figure>
+            </section>
+
+            <h2>Chaotic Oscillator Based on Two-Transistors</h2>
+            <p>
+                This circuit uses two NPN transistors
+                <a href="https://components101.com/transistors/2n4401-pinout-features-equivalent-datasheet#:~:text=2N4401%20is%20a%20NPN%20transistor%20hence%20the%20collector,value%20determines%20the%20amplification%20capacity%20of%20the%20transistor."
+                    target="_blank">2N4401</a>
+                (Q1 and Q2), along with RC components, to generate chaotic oscillations without requiring any inductors.
+            </p>
+
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/chaotic_oscillators/transistor_chaotic_circuit.png"
+                        alt="Transistor-Based Chaotic Oscillator Circuit" style="width: 300px;" />
+                    <figcaption>Figure: Chaotic oscillator circuit based on two-transistor RC phase shift oscillator.
+                    </figcaption>
+                </figure>
+            </section>
+            <p>
+                Transistor Q1 operates in a common-emitter configuration. To match the output resistance with the RC
+                ladder's
+                input, resistor R1 is chosen to be half the value of R, effectively creating a balanced load. The
+                transistor is
+                biased using a dedicated subcircuit that introduces a new equilibrium state, enabling sustained
+                oscillations.
+                During the chaotic phase of operation, the variable resistor R4 is tuned to control the base frequency
+                of oscillation.
+            </p>
+            <p><strong>Dynamical equations (simplified model):</strong></p>
+            <p>
+                A reduced-order model of the two-transistor chaotic oscillator assumes negligible base currents
+                \((i_{B1}, i_{B2} \approx 0)\), and simplifies the nonlinear dynamics to four coupled first-order
+                differential equations.
+                These equations describe the evolution of voltages \(v_1\), \(v_2\), \(v_{BE1}\), and \(v_{BE2}\) across
+                key components:
+            </p>
+
+            <p>
+                \[
+                RC \frac{dv_1}{dt} = -v_1\left(1 + \frac{R}{2R_1}\right) + v_2 + V_p \frac{R}{2R_1} - i_{C1} \frac{R}{2}
+                \]
+            </p>
+
+            <p>
+                \[
+                RC \frac{dv_2}{dt} = -2v_2 + v_1 + v_{BE1} - i_{C2}R
+                \]
+            </p>
+
+            <p>
+                \[
+                RC \frac{dv_{BE1}}{dt} = -v_{BE1} + v_2
+                \]
+            </p>
+
+            <p>
+                \[
+                R_3 C_2 \frac{dv_{BE2}}{dt} = -v_{BE2}\left(1 + \frac{R_3}{R_4}\right) + \frac{v_1}{2} + \frac{V_p}{2} -
+                i_{C1} \frac{R_1}{2}
+                \]
+            </p>
+
+            <p>
+                These equations capture the oscillator's behavior when operated in the chaotic regime. The circuit's
+                nonlinear feedback and RC dynamics result in complex, aperiodic waveforms.
+            </p>
+
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/chaotic_oscillators/transistor_chaotic_phase_space.png"
+                        alt="Transistor-Based Chaotic Oscillator Phase Space" style="width: 400px;" />
+                    <figcaption>Figure: Double scroll" attractor pattern of the transistor-based chaotic oscillator
+                        circuit</figcaption>
+                </figure>
+            </section>
+
+            <h2>Analog Scrambling with Synchronization Results</h2>
+            <p>
+                To ensure that both chaotic oscillators follow identical dynamics, the transmitter (master) and receiver
+                (slave) are coupled via a capacitor \( C_{\text{Syn}} \). The synchronization
+                occurs by injecting the terminal voltage \( V_{M2} \) from the master oscillator into \( V_{S2} \) of
+                the slave oscillator. The oscilloscope plots below demonstrate successful synchronization in time,
+                frequency, and phase domains.
+            </p>
+
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/chaotic_oscillators/block_diagram.png"
+                        alt="Chaotic Oscillator Block Diagram" style="width: 800px;" />
+                    <figcaption>Figure: System block diagram for synchronized chaotic communication</figcaption>
+                </figure>
+            </section>
+
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/chaotic_oscillators/chaos_sync_results_time.png"
+                        alt="Synchronization of Chaotic Oscillators" style="width: 500px;" />
+                    <figcaption>Figure: Oscilloscope capture of synchronized chaotic signals (time domain)</figcaption>
+                </figure>
+            </section>
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/chaotic_oscillators/chaos_sync_results_frequency.png"
+                        alt="Synchronization of Chaotic Oscillators" style="width: 500px;" />
+                    <figcaption>Figure: Oscilloscope capture of synchronized chaotic signals (frequency domain)
+                    </figcaption>
+                </figure>
+            </section>
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/chaotic_oscillators/chaos_sync_results_phase.png"
+                        alt="Synchronization of Chaotic Oscillators" style="width: 300px;" />
+                    <figcaption>Figure: Oscilloscope capture of synchronized chaotic signals (phase domain)</figcaption>
+                </figure>
+            </section>
+
+            <h2>Sound Track Masking & Recovery</h2>
+            <p>
+                In this experiment, an analog audio signal \( V_{\text{IN}} \) is masked by the chaotic output of the
+                master oscillator using a summing amplifier. This results in a composite signal \( V_{\text{SUM}} \),
+                expressed as:
+            </p>
+            <p>
+                \[
+                V_{\text{SUM}} = -\frac{R_{F1}}{R_1}(V_{\text{CM}} + V_{\text{IN}})
+                \]
+            </p>
+            <p>
+                At the receiver side, the slave oscillator produces a synchronized chaotic signal \( V_{S1} \), which is
+                subtracted from the received \( V_{\text{SUM}} \) using a subtractor circuit:
+            </p>
+            <p>
+                \[
+                V_{\text{SUB}} = -\frac{R_{F2}}{R_2}(V_{\text{SUM}} + V_{S1})
+                \]
+            </p>
+            <p>
+                By substituting the expression for \( V_{\text{SUM}} \), we get the simplified result:
+            </p>
+            <p>
+                \[
+                V_{\text{SUB}} = \left( \frac{R_{F1} R_{F2}}{R_1 R_2} \right) V_{\text{IN}}
+                \]
+            </p>
+            <p>
+                This means the input signal is effectively recovered if synchronization is maintained and gains are
+                properly tuned. The oscilloscope plots below show the masking and recovery process.
+            </p>
+
+            <!-- Time-Domain Masking -->
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/chaotic_oscillators/audio_time_masked.png"
+                        alt="Audio signal masked by chaos in time domain" style="width: 500px;" />
+                    <figcaption>Figure: Time-domain view of audio signal masked by chaotic carrier</figcaption>
+                </figure>
+            </section>
+
+            <!-- Frequency-Domain View -->
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/chaotic_oscillators/audio_frequency_masked.png"
+                        alt="Frequency domain of chaotic masking" style="width: 500px;" />
+                    <figcaption>Figure: Frequency-domain spectrum showing chaotic signal masking over the audio band
+                    </figcaption>
+                </figure>
+            </section>
+
+            <!-- Time-Domain Recovery -->
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/chaotic_oscillators/audio_time_recovery.png"
+                        alt="Recovered audio signal after synchronization" style="width: 500px;" />
+                    <figcaption>Figure: Time-domain capture of the recovered audio signal at the synchronized receiver
+                    </figcaption>
+                </figure>
+            </section>
+
+
+
+
+        </section>
+    </main>
+</body>
+
+</html>

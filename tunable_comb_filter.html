@@ -3,48 +3,64 @@
 
 <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <title>Abdullah - Tunable Comb Filter</title>
+
+    <!-- Responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Abdullah - Tunabe Comb Filter</title>
+
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <!-- Common site-wide styles -->
     <link rel="stylesheet" href="css/style.css" />
+
+    <!-- MathJax support for LaTeX -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- 🔽 Page-specific styles -->
+    <style>
+        /* Caption styling for all figures */
+        figure figcaption {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-top: 6px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
-    <aside class="sidebar">
-        <!-- Profile Photo -->
-        <img src="assets/images/profile/photo.jpg" class="profile" alt="Profile Photo" />
 
-        <!-- Social Media Icons -->
+    <!-- Sidebar section -->
+    <aside class="sidebar">
+        <!-- Profile photo -->
+        <img src="assets/profile/photo.jpg" class="profile" alt="Profile Photo" />
+
+        <!-- Social links -->
         <div class="social-icons">
-            <a href="https://www.linkedin.com/in/yourusername" target="_blank" aria-label="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="https://www.facebook.com/yourusername" target="_blank" aria-label="Facebook">
-                <i class="fab fa-facebook"></i>
-            </a>
-            <a href="https://www.instagram.com/yourusername" target="_blank" aria-label="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://x.com/yourusername" target="_blank" aria-label="Twitter">
-                <i class="fab fa-x-twitter"></i>
-            </a>
+            <a href="https://www.linkedin.com/in/abdullah-al-nafisah" target="_blank"><i
+                    class="fab fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/abdullah.alnafisah0" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/abdullah.alnafisah0" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/abdullahn94568" target="_blank"><i class="fab fa-x-twitter"></i></a>
         </div>
 
-        <!-- Sidebar Navigation -->
+        <!-- Navigation -->
         <nav>
             <a href="index.html">Home</a>
             <a href="publications.html">Publications</a>
             <div class="dropdown">
                 <a>Projects</a>
                 <div class="dropdown-content">
+                    <a href="chaotic_oscillators.html">Chaotic Oscillators</a>
                     <a href="tunable_comb_filter.html">Tunable Comb Filter</a>
-                    <!-- Add more project links here -->
                 </div>
             </div>
         </nav>
     </aside>
 
-
+    <!-- Main content area -->
     <main class="content">
         <section>
             <div class="project-content">
@@ -58,30 +74,29 @@
                 </p>
             </div>
 
-
             <h2>Overview</h2>
             <p>
                 This project introduces a novel <a
                     href="https://en.wikipedia.org/wiki/Current-feedback_operational_amplifier">CFOA</a>-based
-                shadow comb filter. The filter cascades multiple shadow notch filters. Each notch’s
-                bandwidth is controlled via the gain of
-                an amplifier using a grounded variable resistor.
-                The design enables independent electronic tuning of each notch’s bandwidth without affecting the center
-                frequency or overall gain. Four notch filters were implemented targeting 1 kHz, 10 kHz, 100 kHz, and 1
-                MHz.
-                Component values were carefully chosen to ensure tuning range and performance.
+                shadow comb filter. The filter cascades multiple shadow notch filters. Each notch’s bandwidth is
+                controlled via the gain of an amplifier using a grounded variable resistor. The design enables
+                independent electronic tuning of each notch’s bandwidth without affecting the center frequency or
+                overall gain. Four notch filters were implemented targeting 1 kHz, 10 kHz, 100 kHz, and 1 MHz.
             </p>
+
+            <!-- Block Diagram -->
             <section class="project-section">
                 <figure>
-                    <img src="assets/images/tunable_comb_filter/block_diagram.png" alt="Notch Filter Schematic" />
+                    <img src="assets/projects/tunable_comb_filter/block_diagram.png" alt="Notch Filter Block Diagram"
+                        style="width: 580px;" />
+                    <figcaption>Figure: Block diagram showing cascaded notch filter architecture</figcaption>
                 </figure>
             </section>
 
             <h2>Features</h2>
             <ul>
-                <li> Uses commercially available <a
-                        href="https://www.analog.com/en/products/ad844.html#:~:text=The%20AD844%20is%20a%20high%20speed%20monolithic%20operational,fast%20large%20signal%20response%20with%20excellent%20dc%20performance.">AD844</a>
-                    ICs</li>
+                <li> Uses commercially available <a href="https://www.analog.com/en/products/ad844.html"
+                        target="_blank">AD844</a> ICs</li>
                 <li> Independently tunable notch bandwidths</li>
                 <li> Constant notch frequency and gain during bandwidth tuning</li>
                 <li> Low output impedance — easy to cascade</li>
@@ -89,28 +104,31 @@
             </ul>
 
             <h2>Notch Filter Design</h2>
-            <p>
-                Core equations governing the design:
-            </p>
+            <p>Core equations governing the design:</p>
             <ul>
-                <li><strong>Center frequency:</strong> ω<sub>0</sub> = 1 / √(R₁R₃C₁C₂)</li>
-                <li><strong>Bandwidth:</strong> B = (1 / C₂R₂) + (G / C₂R₁), where G = -Rb / Ra</li>
-                <li><strong>Gain:</strong> 1.0 (flat gain through tuning)</li>
+                <li><strong>Center frequency:</strong></li>
+                <p>\[ f₀ = \frac{1}{2\pi\sqrt{R_1 R_3 C_1 C_2}} \]</p>
+                <li><strong>Bandwidth:</strong> (when \( R_a = R_1 = R \)) </li>
+                <p>\[
+                    BW = \frac{1}{C_2 R_2} - \frac{R_b}{R_a C_2 R_1}
+                    = \frac{1}{R C_2} \left(\frac{R}{R_2} - \frac{R_b}{R}\right)
+                    \]</p>
             </ul>
+
+            <!-- Notch Filter Schematic -->
             <section class="project-section">
                 <figure>
-                    <img src="assets/images/tunable_comb_filter/notch_filter.png" alt="Notch Filter Schematic" />
+                    <img src="assets/projects/tunable_comb_filter/notch_filter.png" alt="Notch Filter Circuit"
+                        style="width: 500px;" />
+                    <figcaption>Figure: Schematic of a single tunable notch filter stage</figcaption>
                 </figure>
             </section>
 
             <h2>Experimental Results</h2>
-
             <p>
-                Experiments validated smooth electronic bandwidth tuning without affecting the notch frequency, as
-                shown in the figure below. By simultaneously varying the resistances R2 and Rb using a single variable
-                resistor—where one increases while the other decreases, and their combined value is constant—the
-                bandwidth can be adjusted effectively. The achieved notch depths at four different frequencies are
-                listed below:
+                Experiments validated smooth electronic bandwidth tuning without affecting the notch frequency. As shown
+                below, adjusting a single variable resistor (with inverse control over R2 and Rb) effectively modifies
+                the bandwidth. The measured notch depths at different frequencies were:
             </p>
             <ul>
                 <li>1 kHz → -56 dB</li>
@@ -119,15 +137,17 @@
                 <li>1 MHz → -36 dB</li>
             </ul>
 
+            <!-- Experimental Results Graph -->
             <section class="project-section">
                 <figure>
-                    <img src="assets/images/tunable_comb_filter/experimental_results.png"
-                        alt="Notch Filter Schematic" />
+                    <img src="assets/projects/tunable_comb_filter/experimental_results.png" alt="Experimental Results"
+                        style="width: 620px;" />
+                    <figcaption>Figure: Frequency response showing tuned bandwidths at multiple notch targets
+                    </figcaption>
                 </figure>
             </section>
 
         </section>
-
     </main>
 </body>
 
