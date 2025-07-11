@@ -41,7 +41,7 @@ body {
 
 /* Optional: icon styling */
 .sidebar .social-icons a {
-  color: #b0b0b0;
+  color: #ffffff;
   font-size: 1.2em;
   text-decoration: none;
 }
@@ -49,7 +49,6 @@ body {
 .sidebar .social-icons a:hover {
   color: #fff;
 }
-
 
 
 
@@ -122,27 +121,86 @@ a {
 }
 
 
+
+
+
+
+
+
+
+
+
+/* About Me */
+.about {
+  margin: 32px 0 16px 0;
+}
+
+.about h2 {
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.about p {
+  font-size: 0.95rem;
+  color: #ffffff;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+
+
+
+
+
+
+
+
+
 /* Education Cards */
 .education-section {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 16px;
-  margin-top: 10px;
+  margin-top: 16px;
 }
 
 .edu-card {
-  background-color: #f9f9f9;
-  color: #333;
+  background-color: #ffffff;
+  color: #222;
   border-radius: 10px;
-  padding: 16px;
-  flex: 1 1 300px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 14px 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-left: 3px solid #4e73df;
+}
+
+.edu-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.edu-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.05rem;
+  color: #333;
 }
 
 .edu-card p {
+  margin: 4px 0;
+  font-size: 0.88rem;
   color: #555;
-  margin: 6px 0;
 }
+
+.edu-card a {
+  color: #4e73df;
+  text-decoration: none;
+}
+
+.edu-card a:hover {
+  text-decoration: underline;
+}
+
 
 
 
