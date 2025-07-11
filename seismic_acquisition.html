@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Abdullah - Seismic Acquisition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        figure figcaption {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-top: 6px;
+            text-align: center;
+        }
+
+        .content p .math {
+            background-color: #1e1e1e;
+            padding: 6px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <img src="assets/profile/photo.jpg" class="profile" alt="Profile Photo" />
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/abdullah-al-nafisah" target="_blank"><i
+                    class="fab fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/abdullah.alnafisah0" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/abdullah.alnafisah0" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/abdullahn94568" target="_blank"><i class="fab fa-x-twitter"></i></a>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="publications.html">Publications</a>
+            <div class="dropdown">
+                <a>Projects</a>
+                <div class="dropdown-content">
+                    <a href="seismic_acquisition.html">Seismic Acquisition</a>
+                    <a href="chaotic_oscillators.html">Chaotic Oscillators</a>
+                    <a href="seismic_acquisition.html">Wireless Seismic Acquisition</a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <section>
+            <div class="project-content">
+                <h1>Wireless Seismic Data Acquisition System</h1>
+                <p><strong>Best Senior Project Award, Senior Expo Day, KFUPM, 2019</strong></p>
+            </div>
+
+            <h2>Overview</h2>
+            <p>
+                This project presents a wireless seismic data acquisition system designed for geophysical
+                surveys. Traditional surveys use thousands of cabled sensors, which are costly and cumbersome.
+                This demo replaces these with wireless nodes using coil-based <a
+                    href="https://en.wikipedia.org/wiki/Geophone">geophone</a> sensors.
+            </p>
+
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/seismic_acquisition/seismic_survey.png" alt="Seismic Survey"
+                        style="width: 500px;" />
+                    <figcaption>Figure: Schematic of a typical seismic survey showing sensor grid layout</figcaption>
+                </figure>
+            </section>
+
+            <h2>Features</h2>
+            <ul>
+                <li>Coil-based seismic sensors</li>
+                <li>Signal conditioning circuit (gain control, anti-aliasing filter)</li>
+                <li>Delta-Sigma ADC (24-bit, 2 ms sampling)</li>
+                <li>Microcontroller (ATmega328P via Arduino Nano)</li>
+                <li>Zigbee-based wireless transmission (XBee S2C)</li>
+            </ul>
+
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/seismic_acquisition/system_block_diagram.png" alt="System Block Diagram"
+                        style="width: 800px;" />
+                    <figcaption>Figure: Block diagram of the seismic acquisition system</figcaption>
+                </figure>
+            </section>
+
+            <h2>Sensor Model</h2>
+            <p>
+                The analog front-end uses a geophone sensor to
+                capture seismic vibrations where a permanent magnet remains stationary while a coil moves in response to
+                ground motion. By <a href="https://en.wikipedia.org/wiki/Faraday%27s_law_of_induction">Faraday's Law of
+                    induction</a>, the induced voltage in the coil is proportional to the relative
+                velocity between the coil and the magnet:
+            </p>
+            <p>
+                \[
+                v_g(t) \propto \frac{dx(t)}{dt}
+                \]
+            </p>
+            <p>
+                The mechanical system can be modeled as a damped harmonic oscillator. Let \( x(t) \) be the displacement
+                of the coil relative to the magnet,
+                and \( u(t) \) be the ground displacement. The governing differential equation is:
+            </p>
+            <p>
+                \[
+                \frac{d^2x}{dt^2} + 2\lambda \omega_0 \frac{dx}{dt} + \omega_0^2 x = \frac{d^2u}{dt^2}
+                \]
+            </p>
+            <p>
+                Taking the Laplace transform and solving for the transfer functions yields:
+            </p>
+            <p>
+                \[
+                H_{\text{displacement}}(s) = A \cdot \frac{s^3}{s^2 + 2\lambda \omega_0 s + \omega_0^2}
+                \]
+                \[
+                H_{\text{velocity}}(s) = A \cdot \frac{s^2}{s^2 + 2\lambda \omega_0 s + \omega_0^2}
+                \]
+                \[
+                H_{\text{acceleration}}(s) = A \cdot \frac{s}{s^2 + 2\lambda \omega_0 s + \omega_0^2}
+                \]
+            </p>
+            <p>
+                Because the velocity transfer function has the same order in both numerator and denominator, it gives a
+                flat frequency response at high frequencies, meaning the output voltage remains proportional to the
+                input velocity. This characteristic allows the sensor to reliably act as a velocity transducer in
+                seismic applications.
+            </p>
+
+            <h2>Signal Conditioning ADC (24-Bit Sigma-Delta)</h2>
+            <p>
+                The analog signal was digitized using the <a
+                    href="https://www.analog.com/en/products/ad7714.html">AD7714</a> from Analog Devices, a 24-bit Σ-Δ
+                ADC optimized for precision measurement. It was chosen for its high resolution, low power consumption
+                (~15 μW in standby), built-in programmable gain amplifier (PGA), and integrated digital filtering. The
+                chip supports fully differential inputs and is configured through an SPI interface. Arduino Nano was
+                used to program the ADC registers and handle serial communication after extensive testing to establish a
+                working SPI protocol.
+            </p>
+            <p>
+                The AD7714 was set up with a fully differential input (AIN1–AIN6), 2 ms sampling interval (500 Hz), and
+                self-calibration on startup. Internally, it includes a Σ-Δ modulator, PGA (gain 1–128), digital filter,
+                and register bank. These features makes it highly suitable for
+                low-frequency, high-accuracy applications like seismic signal acquisition.
+            </p>
+
+
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/seismic_acquisition/ad7714_pinout.png" alt="AD7714 Pinout"
+                        style="width: 200px;" />
+                    <figcaption>Figure: AD7714 pin configuration diagram</figcaption>
+                </figure>
+                <figure>
+                    <img src="assets/projects/seismic_acquisition/ad7714_block.png" alt="AD7714 Functional Block"
+                        style="width: 500px;" />
+                    <figcaption>Figure: AD7714 functional block diagram</figcaption>
+                </figure>
+                <figure>
+                    <img src="assets/projects/seismic_acquisition/ad7714_circuit.png" alt="AD7714 Circuit"
+                        style="width: 400px;" />
+                    <figcaption>Figure: Implemented AD7714 circuit with external voltage reference (AD780)</figcaption>
+                </figure>
+            </section>
+
+
+            <h2>Verification Results</h2>
+            <p>
+                A hammer impulse was applied and captured by both this prototype and a benchmark system. The received
+                signals show successful acquisition and transmission up to 50 meters.
+            </p>
+
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/seismic_acquisition/impulse_response_benchmark.png" alt="Impulse Response"
+                        style="width: 500px;" />
+                    <figcaption>Figure: Impulse response of the benchmark system.</figcaption>
+                </figure>
+            </section>
+
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/seismic_acquisition/impulse_response_geophone.png" alt="Impulse Response"
+                        style="width: 500px;" />
+                    <figcaption>Figure: Impulse response of the wireless seismic data acquisition prototype system.
+                    </figcaption>
+                </figure>
+            </section>
+
+        </section>
+    </main>
+</body>
+
+</html>
