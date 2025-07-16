@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Abdullah - FPGA Graphics Control</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        figure figcaption {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-top: 6px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <img src="assets/profile/photo.jpg" class="profile" alt="Profile Photo" />
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/abdullah-al-nafisah" target="_blank"><i
+                    class="fab fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/abdullah.alnafisah0" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/abdullah.alnafisah0" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/abdullahn94568" target="_blank"><i class="fab fa-x-twitter"></i></a>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="publications.html">Publications</a>
+            <div class="dropdown">
+                <a>Projects</a>
+                <div class="dropdown-content">
+                    <a href="fpga_graphics_control.html">FPGA Graphics Control</a>
+                    <a href="seismic_acquisition.html">Seismic Acquisition</a>
+                    <a href="chaotic_oscillators.html">Chaotic Oscillators</a>
+                    <a href="tunable_comb_filter.html">Tunable Comb Filter</a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <section>
+            <div class="project-content">
+                <h1>FPGA Graphics Control</h1>
+                <p>Low-level Control System using Display, Keyboard & Audio</p>
+                </p>
+            </div>
+
+            <h2>Overview</h2>
+            <p>
+                This project presents a graphics control system built from scratch using Verilog on the
+                <a href="https://digilent.com/reference/programmable-logic/nexys-a7/start">Nexys A7 FPGA</a>. It
+                integrates real-time <a href="https://en.wikipedia.org/wiki/Video_Graphics_Array">Video Graphics Array
+                    (VGA)</a> output, <a href="https://www.burtonsys.com/ps2_chapweske.htm">PS2</a> keyboard input
+                decoding,
+                and audio generation using <a href="https://en.wikipedia.org/wiki/Pulse-width_modulation">PWM</a>
+                signals.
+                The interactive demo is designed as a music-based arcade game, but the primary focus is on the
+                real-time control of digital graphics, hardware-based keyboard processing, and embedded audio synthesis.
+                All of the blocks are implemented with proper considerations in terms of precise clock control and <a
+                    href="https://en.wikipedia.org/wiki/Finite-state_machine">FSM</a>-based logic.
+            </p>
+
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_graphics_control/play_page.png" alt="Game Play Page"
+                        style="width: 800px;" />
+                    <figcaption>Figure: Frame output from the Play state with sprites generated from ROM blocks
+                    </figcaption>
+                </figure>
+            </section>
+
+            <h2>Features</h2>
+            <ul>
+                <li><strong>VGA Driver:</strong> Custom resolution controller with horizontal/vertical sync and porch
+                    timing</li>
+                <li><strong>PS2 Protocol Decoder:</strong> Keyboard-driven interaction using decoded PS2 using full
+                    11-bit frame handler with make/break detection</li>
+                <li><strong>PWM Audio:</strong> Real-time audio output via duty-cycle mapped PWM sound signals with an
+                    analog LPF</li>
+                <li><strong>Sprite Engine:</strong> Efficient ROM-based sprite mapping using Python & MATLAB scripts for
+                    animations and UI</li>
+                <li><strong>FSM Controller:</strong> Controls layered sprite priority handling, hardware-based
+                    collisions, screen states, input handling, and event triggers</li>
+            </ul>
+
+
+
+            <h2>VGA Protocol</h2>
+            <p>
+                Video Graphics Array (VGA) is an analog video standard that uses two main synchronization signals —
+                <strong>Horizontal Sync (HS)</strong> and <strong>Vertical Sync (VS)</strong> — to refresh and control
+                the position of every pixel on the display. The pixel color is created using analog combinations of red,
+                green, and blue intensity signals. Updaing the pixels happens one by one across the screen. Once the
+                horizontal line ends, the HS pulse
+                resets to the next row. After completing all rows, the VS pulse restarts the display from the top.
+            </p>
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_graphics_control/vga_connector.png" alt="VGA Connector"
+                        style="width:300px;" />
+                    <figcaption>Figure: VGA connector and RGB wiring</figcaption>
+                </figure>
+            </section>
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_graphics_control/vga_matrix.png" alt="Display Matrix"
+                        style="width: 400px;" />
+                    <figcaption>Figure: VGA raster scan from top-left (0,0) to bottom-right</figcaption>
+                </figure>
+            </section>
+
+            <h2>Horizontal Retrace & Addressable Pixels</h2>
+            <p>
+                Horizontal and vertical sync signals generate idle intervals called the <em>front porch</em> and
+                <em>back porch</em>. These intervals prevent visible flicker and allow proper retrace of the electron
+                beam in analog displays.
+            </p>
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_graphics_control/hs_delay.png" alt="HS Delay"
+                        style="width: 500px;" />
+                    <figcaption>Figure: Delay caused by retrace period in HS signal</figcaption>
+                </figure>
+            </section>
+            <p>
+                The <strong>addressable pixels</strong> are calculated after removing the sync and porch intervals. For
+                a resolution of 1280×800 at 60Hz, the required pixel clock is:
+            </p>
+            <p>
+                \[
+                \text{Pixel Clock} = 60 \, \text{Hz} \times (1280 + 336) \times (800 + 27) \approx 83.33 \, \text{MHz}
+                \]
+            </p>
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_graphics_control/addressable_pixels.png"
+                        alt="Addressable Pixels Timing" style="width: 600px;" />
+                    <figcaption>Figure: Addressable pixel timing diagram for 1280×800 resolution</figcaption>
+                </figure>
+            </section>
+
+
+            <h2>PS2 Protocol</h2>
+            <p>
+                The PS2 keyboard interface transmits data serially using an 11-bit frame: 1 start bit, 8 data bits, 1
+                parity bit, and 1 stop bit. Each keypress sends a unique code which is captured in real time and
+                decoded inside the FPGA. A "make" code represents a keypress; "F0" followed by the same code indicates
+                release.
+            </p>
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_graphics_control/ps2_frame.png" alt="PS2 Frame Format"
+                        style="width: 400px;" />
+                    <figcaption>Figure: PS2 protocol 11-bit transmission frame</figcaption>
+                </figure>
+            </section>
+
+
+            <h2>PWM Output and LPF Circuit</h2>
+            <p>
+                The FPGA produces audio via Pulse Width Modulation (PWM), which varies the duty cycle
+                of a digital signal to emulate analog output. This PWM signal is passed through a low-pass filter to
+                produce audible tones through a speaker.
+            </p>
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_graphics_control/pwm_signal.png" alt="PWM Signal"
+                        style="width: 500px;" />
+                    <figcaption>Figure: PWM signal and corresponding analog voltage output</figcaption>
+                </figure>
+            </section>
+            <p>
+                A 4th-order Sallen-Key Butterworth Low-Pass Filter is used to filters out high-frequency components for
+                a smooth sound output.
+            </p>
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_graphics_control/lpf_circuit.png" alt="LPF Circuit"
+                        style="width: 500px;" />
+                    <figcaption>Figure: 4th-order Butterworth LPF implemented in hardware</figcaption>
+                </figure>
+            </section>
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_graphics_control/lpf_response.png" alt="LPF Frequency Response"
+                        style="width: 500px;" />
+                    <figcaption>Figure: LPF response with -3dB cutoff near 20 kHz</figcaption>
+                </figure>
+            </section>
+
+            <h2>Game Objects</h2>
+            <p>
+                Each on-screen object is defined by a unique pixel code and drawn using sprite ROMs with assigned
+                dimensions. The objects include player characters, coins, bombs, and text labels.
+            </p>
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_graphics_control/game_objects.png" alt="Game Objects"
+                        style="width: 600px;" />
+                    <figcaption>Figure: Game objects</figcaption>
+                    </figcaption>
+                </figure>
+            </section>
+
+
+            <h2>System Flowchart</h2>
+            <p>
+                The system follows a state-machine based architecture that controls transitions between game screens,
+                handles inputs, and generates outputs like video and audio. The flowchart below outlines the overall
+                behavior:
+            </p>
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_graphics_control/flowchart.png" alt="Flowchart Algorithm"
+                        style="width: 450px;" />
+                    <figcaption>Figure: Game state flowchart controlling visual/audio behavior</figcaption>
+                </figure>
+            </section>
+
+
+
+
+
+
+            <h2>Game Logic</h2>
+            <p>
+                The project includes four major display states: 1) Start, 2) Play, 3) Gameover, and 4) Win.
+                Real-time object motion is controlled via X and Y pixel counters, with sprite ROM overlays to animate
+                objects like coins, bombs, and characters. All assets are drawn in sync with pixel refresh logic to
+                ensure smooth visual output without flicker.
+            </p>
+
+
+            <h2>Vivado Block Design</h2>
+            <p>
+                The final design implemnetion includes clock management, controller, position logic, VGA driver, ROMs,
+                and
+                I/O interfaces.
+            </p>
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_graphics_control/block_diagram.png" alt="Vivado Block Design"
+                        style="width: 800px;" />
+                    <figcaption>Figure: Hierarchical block design</figcaption>
+                    </figcaption>
+                </figure>
+            </section>
+
+
+
+            <h2>Test & Verification</h2>
+            <p>
+                Each module was tested using a dedicated Verilog testbench with simulated input waveforms. Modules like
+                VGA counters, PS2 protocol decoder, PWM generator, and FSM controller were validated independently
+                before integration. Tests included:
+            </p>
+            <ul>
+                <li>Clock generation and division</li>
+                <li>Pixel synchronization and address counters</li>
+                <li>Keyboard scancode verification and flag assertion</li>
+                <li>PWM signal validation for multiple duty cycles</li>
+                <li>ROM data output matching expected sprites/audio</li>
+            </ul>
+            <p>
+                Hardware-level verification was conducted using synthesized bitstreams loaded onto the FPGA.
+            </p>
+
+
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_graphics_control/testbench.png" alt="Testbench Simulation"
+                        style="width: 1000px;" />
+                    <figcaption>Figure: HS counter functional verification.</figcaption>
+                </figure>
+            </section>
+
+
+
+
+
+
+
+
+            <h2>Game Playing</h2>
+            <p>
+                The game is divided into four states:
+            </p>
+            <ol>
+                <li><strong>Start Page:</strong> Awaiting user to press <kbd>Enter</kbd> to begin.</li>
+                <li><strong>Play Page:</strong> Main gameplay loop with piano notes, coin/bomb drops, and scoring.</li>
+                <li><strong>Gameover Page:</strong> Triggered if Yoshi hits an exploding bomb.</li>
+                <li><strong>Win Page:</strong> Displayed once all piano notes are completed.</li>
+            </ol>
+
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_graphics_control/start_page.png" alt="Start Page"
+                        style="width: 800px;" />
+                    <figcaption>Figure: Start page prompting user to begin by pressing the Enter key</figcaption>
+                </figure>
+            </section>
+
+            <p>
+                In the Play Page, piano notes mapped to keys <kbd>A</kbd> through <kbd>L</kbd> appear sequentially. When
+                the correct key is pressed:
+            </p>
+            <ul>
+                <li>A coin drops from the matching piano key</li>
+                <li>The corresponding musical note is played using PWM audio</li>
+                <li>Yoshi collects the coin and score is incremented</li>
+            </ul>
+
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_graphics_control/coin_drop.png" alt="Coin Drop Action"
+                        style="width: 800px;" />
+                    <figcaption>Figure: Coin drops from correct key with concurrent audio output</figcaption>
+                </figure>
+            </section>
+
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_graphics_control/score_increment.png" alt="Score Update"
+                        style="width: 300px;" />
+                    <figcaption>Figure: Seven-segment score display increments as coins are collected</figcaption>
+                </figure>
+            </section>
+
+            <p>
+                When an incorrect key is pressed, a bomb is dropped instead of a coin. It goes through the following
+                stages:
+            </p>
+            <ol>
+                <li><strong>Bomb Drop:</strong> Appears below incorrect piano key</li>
+                <li><strong>Red Alert:</strong> Turns red after 1 second</li>
+                <li><strong>Explosion:</strong> Explodes after 2 seconds; triggers Gameover if Yoshi is nearby</li>
+            </ol>
+
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_graphics_control/bomb_drop.png" alt="Bomb Drop Action"
+                        style="width: 800px;" />
+                    <figcaption>Figure: Bomb drops from incorrect key</figcaption>
+                </figure>
+            </section>
+
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_graphics_control/bomb_explode.png" alt="Bomb Exploding"
+                        style="width: 800px;" />
+                    <figcaption>Figure: Bomb explodes if not avoided in time</figcaption>
+                </figure>
+            </section>
+
+            <p>
+                If Yoshi collides with an exploding bomb, the Gameover Page is triggered. Otherwise, once the song
+                finishes (a fixed number of correct notes), the game transitions to the Win Page.
+            </p>
+
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_graphics_control/gameover_page.png" alt="Gameover Screen"
+                        style="width: 800px;" />
+                    <figcaption>Figure: Gameover screen when Yoshi is hit by a bomb</figcaption>
+                </figure>
+            </section>
+
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_graphics_control/win_page.png" alt="Win Page"
+                        style="width: 800px;" />
+                    <figcaption>Figure: Win screen when all piano notes are completed</figcaption>
+                </figure>
+            </section>
+
+            <p>
+                Each of these transitions is handled purely in hardware using FSM logic that ensures real-time response.
+            </p>
+
+
+
+
+
+
+
+
+
+
+
+
+        </section>
+    </main>
+</body>
+
+</html>
