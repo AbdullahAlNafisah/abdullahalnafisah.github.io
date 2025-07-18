@@ -39,31 +39,47 @@
 <body>
 
     <!-- Sidebar navigation -->
-    <aside class="sidebar">
-        <img src="assets/profile/photo.jpg" class="profile" alt="Profile Photo" />
+    <aside class="sidebar" id="sidebar">
+        <button id="toggle-btn">&#9776;</button>
 
-        <div class="social-icons">
-            <a href="https://www.linkedin.com/in/abdullah-al-nafisah" target="_blank"><i
-                    class="fab fa-linkedin"></i></a>
-            <a href="https://www.facebook.com/abdullah.alnafisah0" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com/abdullah.alnafisah0" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://x.com/abdullahn94568" target="_blank"><i class="fab fa-x-twitter"></i></a>
-        </div>
+        <div class="sidebar-content">
+            <!-- Profile Photo -->
+            <img src="assets/profile/photo.jpg" class="profile" alt="Profile Photo" />
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="publications.html">Publications</a>
-            <div class="dropdown">
-                <a>Projects</a>
-                <div class="dropdown-content">
-                    <a href="fpga_graphics_control.html">FPGA Graphics Control</a>
-                    <a href="seismic_acquisition.html">Seismic Acquisition</a>
-                    <a href="chaotic_oscillators.html">Chaotic Oscillators</a>
-                    <a href="tunable_comb_filter.html">Tunable Comb Filter</a>
-                </div>
+            <!-- Social Media Icons -->
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/abdullah-al-nafisah" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.facebook.com/abdullah.alnafisah0" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://www.instagram.com/abdullah.alnafisah0" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://x.com/abdullahn94568" target="_blank" aria-label="Twitter">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
             </div>
-        </nav>
+
+            <!-- Sidebar Navigation -->
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="publications.html">Publications</a>
+                <div class="dropdown">
+                    <a>Projects</a>
+                    <div class="dropdown-content">
+                        <a href="fpga_graphics_control.html">FPGA Graphics Control</a>
+                        <a href="seismic_acquisition.html">Seismic Acquisition</a>
+                        <a href="chaotic_oscillators.html">Chaotic Oscillators</a>
+                        <a href="tunable_comb_filter.html">Tunable Comb Filter</a>
+                        <!-- Add more project links here -->
+                    </div>
+                </div>
+            </nav>
+        </div>
     </aside>
+
 
     <!-- Main content area -->
     <main class="content">
@@ -332,6 +348,9 @@
 
         </section>
     </main>
+
+    <script src="js/sidebar-toggle.js"></script>
+
 </body>
 
 </html>
