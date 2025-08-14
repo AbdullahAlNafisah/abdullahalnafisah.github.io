@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPEP808K2E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-SPEP808K2E');
+    </script>
+    <meta charset="UTF-8" />
+    <title>Abdullah - FPGA Indoor Localization</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        figure figcaption {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-top: 6px;
+            text-align: center;
+        }
+
+        .content p .math {
+            background-color: #1e1e1e;
+            padding: 6px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <button id="toggle-btn">&#9776;</button>
+        <div class="sidebar-content">
+            <img src="assets/profile/photo.jpg" class="profile" alt="Profile Photo" />
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/abdullah-al-nafisah" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="https://www.facebook.com/abdullah.alnafisah0" target="_blank"><i
+                        class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/abdullah.alnafisah0" target="_blank"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://x.com/abdullahn94568" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            </div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="publications.html">Publications</a>
+                <div class="dropdown">
+                    <a>Projects</a>
+                    <div class="dropdown-content">
+                        <a href="fpga_localization.html">FPGA Indoor Localization</a>
+                        <a href="fpga_graphics_control.html">FPGA Graphics Control</a>
+                        <a href="seismic_acquisition.html">Seismic Acquisition</a>
+                        <a href="chaotic_oscillators.html">Chaotic Oscillators</a>
+                        <a href="tunable_comb_filter.html">Tunable Comb Filter</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </aside>
+
+    <main class="content">
+        <section>
+            <div class="project-content">
+                <h1>Real-Time FPGA-Based Indoor Localization</h1>
+                <p>Accurate distance measurement using acoustic pulses and synchronized FPGAs.</p>
+            </div>
+
+            <h2>Overview</h2>
+            <p>
+                Traditional localization methods suffer from poor accuracy or high complexity, especially in indoor
+                settings. Indoor <a href="https://en.wikipedia.org/wiki/Global_Positioning_System">GPS</a> fails due to
+                lack of
+                satellite visibility. Other technologies (UWB, Bluetooth, Wi-Fi, Optical) have
+                trade-offs in cost, size, or range.
+                This FPGA-based solution uses precise <a
+                    href="https://en.wikipedia.org/wiki/Time_of_flight">time-of-flight (ToF)</a> measurements for audio
+                signals and
+                hardware-level processing for accurate low-cost, and real-time localization.
+                The system consists of a master FPGA that periodically synchronizes two slave FPGAs. Audio
+                signals are transmitted and received with a modulated <a
+                    href="https://en.wikipedia.org/wiki/Zadoff%E2%80%93Chu_sequence">Zadoff-Chu (ZC) sequence</a>.
+                The receiver estimates the ToF from the aquired signal from the transmitter using correlation-based
+                detection.
+            </p>
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_localization/system_block_diagram.png" alt="System Block Diagram"
+                        style="width: 500px;" />
+                    <figcaption>Figure: Overview of system components: Master, Transmitter, Receiver modules.
+                    </figcaption>
+                </figure>
+            </section>
+
+
+
+
+
+            <h2>Master FPGA Module</h2>
+            <p>
+                The system ensures continuous synchronization between the acoustic receiver and transmitter FPGAs. Once
+                the master initiates a synchronization signal using the <a
+                    href="https://www.alldatasheet.com/view.jsp?Searchword=nrf24l01%20datasheet&msclkid=98ca6b6e8211139c159303ea24a8b9c4">NRF24L01</a>
+                module, both
+                the acoustic transmitter and receiver are assumed to receive this trigger simultaneously. At this point,
+                the transmitter begins sending the acoustic signal, and the receiver starts its time counter with a
+                resolution of 100 ns (clock frequency = 100 MHz). This precise synchronization is crucial for accurately estimating the
+                Time-of-Flight (ToF) of the acoustic signal, which is then used to compute the distance between the
+                transmitter and receiver.
+
+            </p>
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_localization/master_block.png" alt="Master Block"
+                        style="width: 300px;" />
+                    <figcaption>Figure: Master module controlling synchronization and SPI.</figcaption>
+                </figure>
+            </section>
+
+
+
+
+
+
+            <h2>Acoustic Transmitter FPGA Module</h2>
+
+            <h3>Transmitter Module</h3>
+            <p>Generates and sends ZC sequences to DAC and transducer.</p>
+            <figure>
+                <img src="assets/projects/fpga_localization/transmitter_block.png" alt="Transmitter Block"
+                    style="width: 600px;" />
+                <figcaption>Figure: Transmitter module with DAC and SPI interface.</figcaption>
+            </figure>
+
+
+            <p>
+                A Zadoff-Chu sequence of length \( N = 16 \) and root \( M = 1 \) is used. These sequences are known for
+                their sharp autocorrelation peak. The signal is modulated on a 40 kHz carrier and transmitted
+                through ultrasonic speaker with the following parameters:
+            <ul>
+                <li>Upsampling factor: 256</li>
+                <li>Window size: 4096 samples</li>
+                <li>Sampling frequency: 320 ksps</li>
+            </ul>
+            <section class="project-section">
+                <figure>
+                    <img src="assets/projects/fpga_localization/zc_signal_design.png" alt="ZC Signal"
+                        style="width: 500px;" />
+                    <figcaption>Figure: FPGA transmitter for ZC sequence generation and acoustic modulation.
+                    </figcaption>
+                </figure>
+            </section>
+
+
+
+
+
+
+
+
+
+            <h2>Acoustic FPGA Receiver</h2>
+
+            <h3>Receiver Module</h3>
+            <p>Performs ADC sampling, demodulation, filtering, and correlation.</p>
+            <figure>
+                <img src="assets/projects/fpga_localization/receiver_block.png" alt="Receiver Block"
+                    style="width: 650px;" />
+                <figcaption>Figure: Receiver block with correlation and filtering chain.</figcaption>
+            </figure>
+
+            <h2>Analog Front-End</h2>
+            <p>
+                The analog signal chain includes a band-pass filter (centered at 40.6 kHz, BW = 24 kHz) followed by
+                amplification. This chain is critical to reduce ambient noise and prepare the signal for digitization.
+            </p>
+            <figure>
+                <img src="assets/projects/fpga_localization/analog_filter_amp.png" alt="Analog BPF and Amp"
+                    style="width: 600px;" />
+                <figcaption>Figure: 4th-order Butterworth band-pass filter and amplifier circuit.</figcaption>
+            </figure>
+
+            <h2>Demodulation and Correlation</h2>
+            <p>
+                The receiver demodulates the signal using I/Q separation and passes it through low-pass filters.
+                Cross-correlation is performed with stored ZC sequences to find the peak location, which indicates
+                signal arrival time.
+            </p>
+            <figure>
+                <img src="assets/projects/fpga_localization/correlation_process.png" alt="Demodulation and Correlation"
+                    style="width: 600px;" />
+                <figcaption>Figure: Signal demodulation and peak detection via correlation.</figcaption>
+            </figure>
+
+            <h2>Distance Estimation</h2>
+            <p>
+                The distance \( d \) is estimated using the ToF or signal delay \( \Delta t \) and speed of sound \( v_s
+                \):
+            </p>
+
+            \[ d = v_s \cdot \Delta t \]
+
+            <p>
+                With \( v_s \approx 345 \, \text{m/s} \), a time resolution of 1 µs (minimum delay from the audio ADCs)
+                gives a lower bound on spatial resolution of \(\ge 0.345\)
+                mm.
+            </p>
+
+
+
+
+
+
+
+            <h2>Experimental Setup</h2>
+            <p>
+                Testing used Nexys A7 and Basys3 boards, NRF24L01 for wireless sync, and ultrasonic transducers. The ZC
+                signal was transmitted over air, and delay was captured for different distances.
+            </p>
+            <figure>
+                <img src="assets/projects/fpga_localization/experiment_setup.png" alt="Test Setup"
+                    style="width: 650px;" />
+                <figcaption>Figure: Experimental hardware setup and components used.</figcaption>
+            </figure>
+
+            <h2>Results</h2>
+            <p>
+                The receiver successfully captured signal peaks with synchronization jitter within ±1.2 µs. The system
+                achieved consistent range estimates with Mean Absolute Error (MAE) under 1 cm.
+            </p>
+            <figure>
+                <img src="assets/projects/fpga_localization/results_jitter.png" alt="Timing Results"
+                    style="width: 600px;" />
+                <figcaption>Figure: Receiver signal jitter and peak detection accuracy.</figcaption>
+            </figure>
+
+
+        </section>
+    </main>
+
+    <script src="js/sidebar-toggle.js"></script>
+</body>
+
+</html>

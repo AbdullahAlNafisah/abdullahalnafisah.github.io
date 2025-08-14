@@ -1,268 +1,75 @@
-/* ----------------------------------
-   Base Styles
----------------------------------- */
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #121212;
-  color: #e0e0e0;
+  background: #ffffff;
 }
 
-a {
-  color: #58a6ff;
-  text-decoration: none;
-}
-
-h1,
-h2,
-h3 {
-  margin-top: 0;
-}
-
-
-/* ----------------------------------
-   Sidebar Styles
----------------------------------- */
-.sidebar {
+.profile-panel {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 140px;
-  height: 100%;
-  background-color: #1e1e1e;
-  padding: 20px 10px;
-  text-align: left;
-  /* Keep navigation left-aligned */
+  top: 10px;
+  left: 10px;
+  text-align: center;
 }
 
-/* Collapse width */
-.sidebar.collapsed {
-  width: 50px;
-}
-
-/* Hide inner content when collapsed */
-.sidebar.collapsed .sidebar-content {
-  display: none;
-}
-
-/* Content margin changes */
-.content {
-  margin-left: 160px;
-  transition: margin-left 0.3s ease;
-}
-
-.sidebar.collapsed+.content {
-  margin-left: 60px;
-}
-
-/* Toggle button styles */
-#toggle-btn {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1.5em;
-  cursor: pointer;
-  margin: 0 auto 10px auto;
-  /* Center horizontally and space below */
-  display: block;
-  /* Ensures margin auto works */
-}
-
-
-/* Profile Image */
-.sidebar .profile {
-  display: block;
-  margin: 0 auto 20px auto;
+.profile-panel img.profile {
   width: 100px;
+  height: 100px;
   border-radius: 50%;
 }
 
-/* Social Media Icons */
-.sidebar .social-icons {
+.profile-panel .social-icons {
   display: flex;
-  justify-content: center;
   gap: 10px;
-  margin-bottom: 20px;
-}
-
-.sidebar .social-icons a {
-  color: #ffffff;
+  margin-top: 5px;
+  justify-content: center;
   font-size: 1.2em;
-  text-decoration: none;
 }
 
-.sidebar .social-icons a:hover {
-  color: #fff;
+.profile-panel .social-icons a {
+  color: #000000;
 }
 
 
-/* ----------------------------------
-   Navigation Menu
----------------------------------- */
-.sidebar nav a {
-  display: block;
-  color: #b0b0b0;
-  padding: 10px;
-  text-decoration: none;
+.topbar {
+  margin-top: 100px;
+  margin-left: 150px;
+  margin-right: 150px;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background: #4c4c4c;
 }
 
-.sidebar nav a:hover {
-  color: #fff;
-  background-color: #333;
+.topbar nav {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
-/* Dropdown Container */
-.sidebar .dropdown {
+.topbar nav a {
+  padding: 6px 8px;
+}
+
+/* Dropdown in top nav */
+.dropdown {
   position: relative;
 }
 
-/* Dropdown Content (Initially Hidden) */
-.sidebar .dropdown-content {
+.dropdown-content {
   display: none;
-  flex-direction: column;
-  margin-left: 10px;
-  /* Indent to distinguish sub-items */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #000000;
 }
 
-/* Show Dropdown on Hover */
-.sidebar .dropdown:hover .dropdown-content {
-  display: flex;
-}
-
-/* Sub-navigation Links */
-.sidebar .dropdown-content a {
-  padding-left: 20px;
-  /* Further indent for sub-links */
-  font-size: 0.95em;
-  background-color: transparent;
-}
-
-.sidebar .dropdown-content a:hover {
-  background-color: #444;
-  color: #fff;
-}
-
-
-/* ----------------------------------
-   Main Content Area
----------------------------------- */
-.content {
-  margin-left: 160px;
-  padding: 20px;
-}
-
-
-/* ----------------------------------
-   About Me Section
----------------------------------- */
-.about {
-  margin: 32px 0 16px 0;
-}
-
-.about h2 {
-  font-size: 1.2rem;
-  color: #ffffff;
-  margin-bottom: 10px;
-}
-
-.about p {
-  font-size: 0.95rem;
-  color: #ffffff;
-  line-height: 1.6;
-  margin-bottom: 12px;
-}
-
-
-/* ----------------------------------
-   Education Section
----------------------------------- */
-.education-section {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
-  margin-top: 16px;
-}
-
-.edu-card {
-  background-color: #ffffff;
-  color: #222;
-  border-radius: 10px;
-  padding: 14px 16px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border-left: 3px solid #4e73df;
-}
-
-.edu-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.edu-card h3 {
-  margin: 0 0 8px 0;
-  font-size: 1.05rem;
-  color: #333;
-}
-
-.edu-card p {
-  margin: 4px 0;
-  font-size: 0.88rem;
-  color: #555;
-}
-
-.edu-card a {
-  color: #4e73df;
-  text-decoration: none;
-}
-
-.edu-card a:hover {
-  text-decoration: underline;
-}
-
-
-/* ----------------------------------
-   Projects Section
----------------------------------- */
-
-/* Shared Content Container */
-.project-content,
-.project-section {
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* Override specific margin for section */
-.project-section {
-  margin: 40px auto;
-  /* padding: 20px; Optional override */
-}
-
-/* Project Images */
-.project-content .project-image {
-  max-width: 75%;
-  height: auto;
-  margin: 20px 0;
-}
-
-.project-section img {
-  max-width: 100%;
-  width: 600px;
-  /* Or adjust as needed */
-  height: auto;
+.dropdown:hover .dropdown-content {
   display: block;
-  margin: 0 auto;
-  border-radius: 4px;
-  /* Optional: clean look */
 }
 
-.project-section figure {
-  margin: 20px 0;
-}
-
-.project-section figcaption {
-  margin-top: 10px;
-  font-size: 0.95em;
-  color: #ccc;
+/* Content spacing so text doesn't sit under the bar/panel */
+.content {
+  padding: 20px;
+  margin-top: 50px;
+  margin-left: 80px;
+  margin-right: 80px;
 }
