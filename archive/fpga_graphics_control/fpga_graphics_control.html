@@ -2,24 +2,21 @@
 <html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPEP808K2E"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-SPEP808K2E');
-    </script>
     <meta charset="UTF-8" />
-    <title>Abdullah - FPGA Graphics Control</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="WpzyAhc3YcZBRUftVh0ZAnBCio0hivIyIASDU_4T8wk" />
+    <meta name="description" content="FPGA Graphics Control" />
+    <title>FPGA Graphics Control</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPEP808K2E"></script>
+
+    <!-- MathJax support for LaTeX -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+    <!-- Page-specific styles -->
     <style>
+        /* Caption styling for all figures */
         figure figcaption {
             font-size: 0.9em;
             color: #aaa;
@@ -31,51 +28,7 @@
 </head>
 
 <body>
-
-    <!-- Sidebar navigation -->
-    <aside class="sidebar" id="sidebar">
-        <button id="toggle-btn">&#9776;</button>
-
-        <div class="sidebar-content">
-            <!-- Profile Photo -->
-            <img src="assets/profile/photo.jpg" class="profile" alt="Profile Photo" />
-
-            <!-- Social Media Icons -->
-            <div class="social-icons">
-                <a href="https://www.linkedin.com/in/abdullah-al-nafisah" target="_blank" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://www.facebook.com/abdullah.alnafisah0" target="_blank" aria-label="Facebook">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a href="https://www.instagram.com/abdullah.alnafisah0" target="_blank" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://x.com/abdullahn94568" target="_blank" aria-label="Twitter">
-                    <i class="fab fa-x-twitter"></i>
-                </a>
-            </div>
-
-            <!-- Sidebar Navigation -->
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="publications.html">Publications</a>
-                <div class="dropdown">
-                    <a>Projects</a>
-                    <div class="dropdown-content">
-                        <a href="fpga_localization.html">FPGA Indoor Localization</a>
-                        <a href="fpga_graphics_control.html">FPGA Graphics Control</a>
-                        <a href="seismic_acquisition.html">Seismic Acquisition</a>
-                        <a href="chaotic_oscillators.html">Chaotic Oscillators</a>
-                        <a href="tunable_comb_filter.html">Tunable Comb Filter</a>
-                        <!-- Add more project links here -->
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </aside>
-
-
+    <header id="common-header"></header>
 
     <main class="content">
         <section>
@@ -101,8 +54,7 @@
 
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_graphics_control/play_page.png" alt="Game Play Page"
-                        style="width: 800px;" />
+                    <img src="play_page.png" alt="Game Play Page" style="width: 800px;" />
                     <figcaption>Figure: Frame output from the Play state with sprites generated from ROM blocks
                     </figcaption>
                 </figure>
@@ -135,15 +87,13 @@
             </p>
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_graphics_control/vga_connector.png" alt="VGA Connector"
-                        style="width:300px;" />
+                    <img src="vga_connector.png" alt="VGA Connector" style="width:300px;" />
                     <figcaption>Figure: VGA connector and RGB wiring</figcaption>
                 </figure>
             </section>
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_graphics_control/vga_matrix.png" alt="Display Matrix"
-                        style="width: 400px;" />
+                    <img src="vga_matrix.png" alt="Display Matrix" style="width: 400px;" />
                     <figcaption>Figure: VGA raster scan from top-left (0,0) to bottom-right</figcaption>
                 </figure>
             </section>
@@ -156,8 +106,7 @@
             </p>
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_graphics_control/hs_delay.png" alt="HS Delay"
-                        style="width: 500px;" />
+                    <img src="hs_delay.png" alt="HS Delay" style="width: 500px;" />
                     <figcaption>Figure: Delay caused by retrace period in HS signal</figcaption>
                 </figure>
             </section>
@@ -172,8 +121,7 @@
             </p>
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_graphics_control/addressable_pixels.png"
-                        alt="Addressable Pixels Timing" style="width: 600px;" />
+                    <img src="addressable_pixels.png" alt="Addressable Pixels Timing" style="width: 600px;" />
                     <figcaption>Figure: Addressable pixel timing diagram for 1280×800 resolution</figcaption>
                 </figure>
             </section>
@@ -188,8 +136,7 @@
             </p>
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_graphics_control/ps2_frame.png" alt="PS2 Frame Format"
-                        style="width: 400px;" />
+                    <img src="ps2_frame.png" alt="PS2 Frame Format" style="width: 400px;" />
                     <figcaption>Figure: PS2 protocol 11-bit transmission frame</figcaption>
                 </figure>
             </section>
@@ -203,8 +150,7 @@
             </p>
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_graphics_control/pwm_signal.png" alt="PWM Signal"
-                        style="width: 500px;" />
+                    <img src="pwm_signal.png" alt="PWM Signal" style="width: 500px;" />
                     <figcaption>Figure: PWM signal and corresponding analog voltage output</figcaption>
                 </figure>
             </section>
@@ -214,15 +160,13 @@
             </p>
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_graphics_control/lpf_circuit.png" alt="LPF Circuit"
-                        style="width: 500px;" />
+                    <img src="lpf_circuit.png" alt="LPF Circuit" style="width: 500px;" />
                     <figcaption>Figure: 4th-order Butterworth LPF implemented in hardware</figcaption>
                 </figure>
             </section>
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_graphics_control/lpf_response.png" alt="LPF Frequency Response"
-                        style="width: 500px;" />
+                    <img src="lpf_response.png" alt="LPF Frequency Response" style="width: 500px;" />
                     <figcaption>Figure: LPF response with -3dB cutoff near 20 kHz</figcaption>
                 </figure>
             </section>
@@ -234,8 +178,7 @@
             </p>
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_graphics_control/game_objects.png" alt="Game Objects"
-                        style="width: 600px;" />
+                    <img src="game_objects.png" alt="Game Objects" style="width: 600px;" />
                     <figcaption>Figure: Game objects</figcaption>
                     </figcaption>
                 </figure>
@@ -250,8 +193,7 @@
             </p>
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_graphics_control/flowchart.png" alt="Flowchart Algorithm"
-                        style="width: 450px;" />
+                    <img src="flowchart.png" alt="Flowchart Algorithm" style="width: 450px;" />
                     <figcaption>Figure: Game state flowchart controlling visual/audio behavior</figcaption>
                 </figure>
             </section>
@@ -278,8 +220,7 @@
             </p>
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_graphics_control/block_diagram.png" alt="Vivado Block Design"
-                        style="width: 800px;" />
+                    <img src="block_diagram.png" alt="Vivado Block Design" style="width: 800px;" />
                     <figcaption>Figure: Hierarchical block design</figcaption>
                     </figcaption>
                 </figure>
@@ -307,8 +248,7 @@
 
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_graphics_control/testbench.png" alt="Testbench Simulation"
-                        style="width: 1000px;" />
+                    <img src="testbench.png" alt="Testbench Simulation" style="width: 1000px;" />
                     <figcaption>Figure: HS counter functional verification.</figcaption>
                 </figure>
             </section>
@@ -333,8 +273,7 @@
 
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_graphics_control/start_page.png" alt="Start Page"
-                        style="width: 800px;" />
+                    <img src="start_page.png" alt="Start Page" style="width: 800px;" />
                     <figcaption>Figure: Start page prompting user to begin by pressing the Enter key</figcaption>
                 </figure>
             </section>
@@ -351,16 +290,14 @@
 
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_graphics_control/coin_drop.png" alt="Coin Drop Action"
-                        style="width: 800px;" />
+                    <img src="coin_drop.png" alt="Coin Drop Action" style="width: 800px;" />
                     <figcaption>Figure: Coin drops from correct key with concurrent audio output</figcaption>
                 </figure>
             </section>
 
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_graphics_control/score_increment.png" alt="Score Update"
-                        style="width: 300px;" />
+                    <img src="score_increment.png" alt="Score Update" style="width: 300px;" />
                     <figcaption>Figure: Seven-segment score display increments as coins are collected</figcaption>
                 </figure>
             </section>
@@ -377,16 +314,14 @@
 
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_graphics_control/bomb_drop.png" alt="Bomb Drop Action"
-                        style="width: 800px;" />
+                    <img src="bomb_drop.png" alt="Bomb Drop Action" style="width: 800px;" />
                     <figcaption>Figure: Bomb drops from incorrect key</figcaption>
                 </figure>
             </section>
 
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_graphics_control/bomb_explode.png" alt="Bomb Exploding"
-                        style="width: 800px;" />
+                    <img src="bomb_explode.png" alt="Bomb Exploding" style="width: 800px;" />
                     <figcaption>Figure: Bomb explodes if not avoided in time</figcaption>
                 </figure>
             </section>
@@ -398,16 +333,14 @@
 
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_graphics_control/gameover_page.png" alt="Gameover Screen"
-                        style="width: 800px;" />
+                    <img src="gameover_page.png" alt="Gameover Screen" style="width: 800px;" />
                     <figcaption>Figure: Gameover screen when Yoshi is hit by a bomb</figcaption>
                 </figure>
             </section>
 
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_graphics_control/win_page.png" alt="Win Page"
-                        style="width: 800px;" />
+                    <img src="win_page.png" alt="Win Page" style="width: 800px;" />
                     <figcaption>Figure: Win screen when all piano notes are completed</figcaption>
                 </figure>
             </section>
@@ -418,20 +351,15 @@
 
 
 
-
-
-
-
-
-
-
-
-
         </section>
     </main>
 
-    <script src="js/sidebar-toggle.js"></script>
 
+    <footer id="common-footer"></footer>
+    <script src="../../js/date.js"></script>
+    <script src="../../js/HTML_header.js"></script>
+    <script src="../../js/HTML_footer.js"></script>
 </body>
+
 
 </html>
