@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="WpzyAhc3YcZBRUftVh0ZAnBCio0hivIyIASDU_4T8wk" />
+    <meta name="description" content="Faster-Than-Nyquist" />
+    <title>Faster-Than-Nyquist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPEP808K2E"></script>
+
+    <!-- MathJax support for LaTeX -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #ffffff; color: #000000;">
+    <header id="common-header"></header>
+
+    <main class="main" style="padding: 20px; max-width: 900px; margin: 0 auto; line-height: 1.6;">
+
+        <h1 style="text-align: center;">
+            Faster-Than-Nyquist (FTN)
+        </h1>
+
+        <p style="text-align: justify;">
+            Communication systems transmit and receive data either directly using the source <a
+                href="https://en.wikipedia.org/wiki/Baseband">baseband</a> signal or by modulating and demodulating a <a
+                href="https://en.wikipedia.org/wiki/Passband">passband</a> carrier signal at higher frequencies.
+            Essentially, this depends on the application, the channel, and the available bandwidth.
+        </p>
+
+        <p style="text-align: justify;">
+            To avoid aliasing, a baseband signal with bandwidth \(B\) must be sampled at a sampling rate \(f_s\) that
+            satisfies the Nyquist criterion:
+            \[
+            f_s \geq 2B
+            \]
+            This is known as the Nyquist rate, not to be confused with the Nyquist frequency, which equals \(f_s/2\).
+            The Nyquist rate specifies the minimum sampling frequency required to reconstruct the signal without loss of
+            information at the receiver.
+        </p>
+
+        <p style="text-align: justify;">
+            Ideally, the sampling rate should be as high as possible to increase the information throughput.
+            However, any communication channel has a finite bandwidth and is susceptible to <a
+                href="https://en.wikipedia.org/wiki/Intersymbol_interference">intersymbol interference (ISI)</a>.
+            <!-- ISI can be mitigated through pulse shaping, equalization, and channel coding techniques. -->
+        </p>
+
+
+        <!-- <p style="text-align: justify;">
+            Faster-Than-Nyquist (FTN) signaling is an advanced modulation technique for better bandwidth utilization
+            that intentionally allow controlled inter-symbol interference (ISI) to transmit data at rates beyond
+            traditional Nyquist limits. FTN increases decoding complexity, but recent innovations have proposed better
+            coding and signal processing strategies to improve FTN performance.
+        </p> -->
+
+    </main>
+
+    <footer id="common-footer"></footer>
+    <script src="../js/date.js"></script>
+    <script src="../js/html_header.js"></script>
+    <script src="../js/html_footer.js"></script>
+</body>
+
+</html>
