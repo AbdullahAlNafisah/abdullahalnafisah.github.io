@@ -2,19 +2,15 @@
 <html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPEP808K2E"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-SPEP808K2E');
-    </script>
     <meta charset="UTF-8" />
-    <title>Abdullah - FPGA Indoor Localization</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="WpzyAhc3YcZBRUftVh0ZAnBCio0hivIyIASDU_4T8wk" />
+    <meta name="description" content="Homepage" />
+    <title>FPGA Indoor Localization</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPEP808K2E"></script>
+
+    <!-- MathJax support for LaTeX -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
@@ -32,39 +28,11 @@
             display: inline-block;
         }
     </style>
+
 </head>
 
 <body>
-    <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-        <button id="toggle-btn">&#9776;</button>
-        <div class="sidebar-content">
-            <img src="assets/profile/photo.jpg" class="profile" alt="Profile Photo" />
-            <div class="social-icons">
-                <a href="https://www.linkedin.com/in/abdullah-al-nafisah" target="_blank"><i
-                        class="fab fa-linkedin"></i></a>
-                <a href="https://www.facebook.com/abdullah.alnafisah0" target="_blank"><i
-                        class="fab fa-facebook"></i></a>
-                <a href="https://www.instagram.com/abdullah.alnafisah0" target="_blank"><i
-                        class="fab fa-instagram"></i></a>
-                <a href="https://x.com/abdullahn94568" target="_blank"><i class="fab fa-x-twitter"></i></a>
-            </div>
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="publications.html">Publications</a>
-                <div class="dropdown">
-                    <a>Projects</a>
-                    <div class="dropdown-content">
-                        <a href="fpga_localization.html">FPGA Indoor Localization</a>
-                        <a href="fpga_graphics_control.html">FPGA Graphics Control</a>
-                        <a href="seismic_acquisition.html">Seismic Acquisition</a>
-                        <a href="chaotic_oscillators.html">Chaotic Oscillators</a>
-                        <a href="tunable_comb_filter.html">Tunable Comb Filter</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </aside>
+    <header id="common-header"></header>
 
     <main class="content">
         <section>
@@ -92,8 +60,7 @@
             </p>
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_localization/system_block_diagram.png" alt="System Block Diagram"
-                        style="width: 500px;" />
+                    <img src="system_block_diagram.png" alt="System Block Diagram" style="width: 500px;" />
                     <figcaption>Figure: Overview of system components: Master, Transmitter, Receiver modules.
                     </figcaption>
                 </figure>
@@ -111,15 +78,15 @@
                 module, both
                 the acoustic transmitter and receiver are assumed to receive this trigger simultaneously. At this point,
                 the transmitter begins sending the acoustic signal, and the receiver starts its time counter with a
-                resolution of 100 ns (clock frequency = 100 MHz). This precise synchronization is crucial for accurately estimating the
+                resolution of 100 ns (clock frequency = 100 MHz). This precise synchronization is crucial for accurately
+                estimating the
                 Time-of-Flight (ToF) of the acoustic signal, which is then used to compute the distance between the
                 transmitter and receiver.
 
             </p>
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_localization/master_block.png" alt="Master Block"
-                        style="width: 300px;" />
+                    <img src="master_block.png" alt="Master Block" style="width: 300px;" />
                     <figcaption>Figure: Master module controlling synchronization and SPI.</figcaption>
                 </figure>
             </section>
@@ -134,8 +101,7 @@
             <h3>Transmitter Module</h3>
             <p>Generates and sends ZC sequences to DAC and transducer.</p>
             <figure>
-                <img src="assets/projects/fpga_localization/transmitter_block.png" alt="Transmitter Block"
-                    style="width: 600px;" />
+                <img src="transmitter_block.png" alt="Transmitter Block" style="width: 600px;" />
                 <figcaption>Figure: Transmitter module with DAC and SPI interface.</figcaption>
             </figure>
 
@@ -151,8 +117,7 @@
             </ul>
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/fpga_localization/zc_signal_design.png" alt="ZC Signal"
-                        style="width: 500px;" />
+                    <img src="zc_signal_design.png" alt="ZC Signal" style="width: 500px;" />
                     <figcaption>Figure: FPGA transmitter for ZC sequence generation and acoustic modulation.
                     </figcaption>
                 </figure>
@@ -171,8 +136,7 @@
             <h3>Receiver Module</h3>
             <p>Performs ADC sampling, demodulation, filtering, and correlation.</p>
             <figure>
-                <img src="assets/projects/fpga_localization/receiver_block.png" alt="Receiver Block"
-                    style="width: 650px;" />
+                <img src="receiver_block.png" alt="Receiver Block" style="width: 650px;" />
                 <figcaption>Figure: Receiver block with correlation and filtering chain.</figcaption>
             </figure>
 
@@ -182,8 +146,7 @@
                 amplification. This chain is critical to reduce ambient noise and prepare the signal for digitization.
             </p>
             <figure>
-                <img src="assets/projects/fpga_localization/analog_filter_amp.png" alt="Analog BPF and Amp"
-                    style="width: 600px;" />
+                <img src="analog_filter_amp.png" alt="Analog BPF and Amp" style="width: 600px;" />
                 <figcaption>Figure: 4th-order Butterworth band-pass filter and amplifier circuit.</figcaption>
             </figure>
 
@@ -194,8 +157,7 @@
                 signal arrival time.
             </p>
             <figure>
-                <img src="assets/projects/fpga_localization/correlation_process.png" alt="Demodulation and Correlation"
-                    style="width: 600px;" />
+                <img src="correlation_process.png" alt="Demodulation and Correlation" style="width: 600px;" />
                 <figcaption>Figure: Signal demodulation and peak detection via correlation.</figcaption>
             </figure>
 
@@ -225,8 +187,7 @@
                 signal was transmitted over air, and delay was captured for different distances.
             </p>
             <figure>
-                <img src="assets/projects/fpga_localization/experiment_setup.png" alt="Test Setup"
-                    style="width: 650px;" />
+                <img src="experiment_setup.png" alt="Test Setup" style="width: 650px;" />
                 <figcaption>Figure: Experimental hardware setup and components used.</figcaption>
             </figure>
 
@@ -236,8 +197,7 @@
                 achieved consistent range estimates with Mean Absolute Error (MAE) under 1 cm.
             </p>
             <figure>
-                <img src="assets/projects/fpga_localization/results_jitter.png" alt="Timing Results"
-                    style="width: 600px;" />
+                <img src="results_jitter.png" alt="Timing Results" style="width: 600px;" />
                 <figcaption>Figure: Receiver signal jitter and peak detection accuracy.</figcaption>
             </figure>
 
@@ -245,7 +205,10 @@
         </section>
     </main>
 
-    <script src="js/sidebar-toggle.js"></script>
+    <footer id="common-footer"></footer>
+    <script src="js/date.js"></script>
+    <script src="js/HTML_header.js"></script>
+    <script src="js/HTML_footer.js"></script>
 </body>
 
 </html>

@@ -2,32 +2,19 @@
 <html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPEP808K2E"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-SPEP808K2E');
-    </script>
     <meta charset="UTF-8" />
-    <title>Abdullah - Tunable Comb Filter</title>
-
-    <!-- Responsive design -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- FontAwesome icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-    <!-- Common site-wide styles -->
-    <link rel="stylesheet" href="css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="WpzyAhc3YcZBRUftVh0ZAnBCio0hivIyIASDU_4T8wk" />
+    <meta name="description" content="Homepage" />
+    <title>Tunable Comb Filter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPEP808K2E"></script>
 
     <!-- MathJax support for LaTeX -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-    <!-- 🔽 Page-specific styles -->
+    <!-- Page-specific styles -->
     <style>
         /* Caption styling for all figures */
         figure figcaption {
@@ -40,55 +27,10 @@
 
 </head>
 
+
 <body>
+    <header id="common-header"></header>
 
-
-
-    <!-- Sidebar navigation -->
-    <aside class="sidebar" id="sidebar">
-        <button id="toggle-btn">&#9776;</button>
-
-        <div class="sidebar-content">
-            <!-- Profile Photo -->
-            <img src="assets/profile/photo.jpg" class="profile" alt="Profile Photo" />
-
-            <!-- Social Media Icons -->
-            <div class="social-icons">
-                <a href="https://www.linkedin.com/in/abdullah-al-nafisah" target="_blank" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://www.facebook.com/abdullah.alnafisah0" target="_blank" aria-label="Facebook">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a href="https://www.instagram.com/abdullah.alnafisah0" target="_blank" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://x.com/abdullahn94568" target="_blank" aria-label="Twitter">
-                    <i class="fab fa-x-twitter"></i>
-                </a>
-            </div>
-
-            <!-- Sidebar Navigation -->
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="publications.html">Publications</a>
-                <div class="dropdown">
-                    <a>Projects</a>
-                    <div class="dropdown-content">
-                        <a href="fpga_localization.html">FPGA Indoor Localization</a>
-                        <a href="fpga_graphics_control.html">FPGA Graphics Control</a>
-                        <a href="seismic_acquisition.html">Seismic Acquisition</a>
-                        <a href="chaotic_oscillators.html">Chaotic Oscillators</a>
-                        <a href="tunable_comb_filter.html">Tunable Comb Filter</a>
-                        <!-- Add more project links here -->
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </aside>
-
-
-    <!-- Main content area -->
     <main class="content">
         <section>
             <div class="project-content">
@@ -115,8 +57,7 @@
             <!-- Block Diagram -->
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/tunable_comb_filter/block_diagram.png" alt="Notch Filter Block Diagram"
-                        style="width: 580px;" />
+                    <img src="block_diagram.png" alt="Notch Filter Block Diagram" style="width: 580px;" />
                     <figcaption>Figure: Block diagram showing cascaded notch filter architecture</figcaption>
                 </figure>
             </section>
@@ -146,8 +87,7 @@
             <!-- Notch Filter Schematic -->
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/tunable_comb_filter/notch_filter.png" alt="Notch Filter Circuit"
-                        style="width: 500px;" />
+                    <img src="notch_filter.png" alt="Notch Filter Circuit" style="width: 500px;" />
                     <figcaption>Figure: Schematic of a single tunable notch filter stage</figcaption>
                 </figure>
             </section>
@@ -168,8 +108,7 @@
             <!-- Experimental Results Graph -->
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/tunable_comb_filter/experimental_results.png" alt="Experimental Results"
-                        style="width: 620px;" />
+                    <img src="experimental_results.png" alt="Experimental Results" style="width: 620px;" />
                     <figcaption>Figure: Frequency response showing tuned bandwidths at multiple notch targets
                     </figcaption>
                 </figure>
@@ -179,8 +118,10 @@
     </main>
 
 
-    <script src="js/sidebar-toggle.js"></script>
-
+    <footer id="common-footer"></footer>
+    <script src="js/date.js"></script>
+    <script src="js/HTML_header.js"></script>
+    <script src="js/HTML_footer.js"></script>
 </body>
 
 
