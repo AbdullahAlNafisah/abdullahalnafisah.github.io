@@ -2,97 +2,35 @@
 <html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPEP808K2E"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-SPEP808K2E');
-    </script>
     <meta charset="UTF-8" />
-    <title>Abdullah - Chaotic Oscillators</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="WpzyAhc3YcZBRUftVh0ZAnBCio0hivIyIASDU_4T8wk" />
+    <meta name="description" content="Chaotic Oscillators" />
+    <title>Chaotic Oscillators</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPEP808K2E"></script>
 
-    <!-- Responsive viewport for all devices -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- FontAwesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-    <!-- Base website styles -->
-    <link rel="stylesheet" href="css/style.css" />
-
-    <!-- MathJax for rendering LaTeX -->
+    <!-- MathJax support for LaTeX -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <!-- Page-specific styles -->
     <style>
+        /* Caption styling for all figures */
         figure figcaption {
             font-size: 0.9em;
             color: #aaa;
             margin-top: 6px;
             text-align: center;
         }
-
-        .content p .math {
-            background-color: #1e1e1e;
-            padding: 6px;
-            border-radius: 4px;
-            display: inline-block;
-        }
     </style>
 
 </head>
 
 <body>
-
-    <!-- Sidebar navigation -->
-    <aside class="sidebar" id="sidebar">
-        <button id="toggle-btn">&#9776;</button>
-
-        <div class="sidebar-content">
-            <!-- Profile Photo -->
-            <img src="assets/profile/photo.jpg" class="profile" alt="Profile Photo" />
-
-            <!-- Social Media Icons -->
-            <div class="social-icons">
-                <a href="https://www.linkedin.com/in/abdullah-al-nafisah" target="_blank" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://www.facebook.com/abdullah.alnafisah0" target="_blank" aria-label="Facebook">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a href="https://www.instagram.com/abdullah.alnafisah0" target="_blank" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://x.com/abdullahn94568" target="_blank" aria-label="Twitter">
-                    <i class="fab fa-x-twitter"></i>
-                </a>
-            </div>
-
-            <!-- Sidebar Navigation -->
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="publications.html">Publications</a>
-                <div class="dropdown">
-                    <a>Projects</a>
-                    <div class="dropdown-content">
-                        <a href="fpga_localization.html">FPGA Indoor Localization</a>
-                        <a href="fpga_graphics_control.html">FPGA Graphics Control</a>
-                        <a href="seismic_acquisition.html">Seismic Acquisition</a>
-                        <a href="chaotic_oscillators.html">Chaotic Oscillators</a>
-                        <a href="tunable_comb_filter.html">Tunable Comb Filter</a>
-                        <!-- Add more project links here -->
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </aside>
+    <header id="common-header"></header>
 
 
-    <!-- Main content area -->
     <main class="content">
         <section>
             <div class="project-content">
@@ -132,8 +70,7 @@
             <h2>Memristor-Based Wien-Bridge Oscillator</h2>
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/chaotic_oscillators/memristor_circuit.png"
-                        alt="Memristor Wien-Bridge Oscillator" style="width: 300px;" />
+                    <img src="memristor_circuit.png" alt="Memristor Wien-Bridge Oscillator" style="width: 300px;" />
                     <figcaption>Figure: Memristor-based chaotic oscillator used for scrambling</figcaption>
                 </figure>
             </section>
@@ -172,8 +109,7 @@
             </p>
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/chaotic_oscillators/chaotic_phase_space.png"
-                        alt="Chaotic Oscillator Phase Space" style="width: 400px;" />
+                    <img src="chaotic_phase_space.png" alt="Chaotic Oscillator Phase Space" style="width: 400px;" />
                     <figcaption>Figure: Phase-space diagram showing the oscillator’s chaotic attractor</figcaption>
                 </figure>
             </section>
@@ -188,8 +124,8 @@
 
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/chaotic_oscillators/transistor_chaotic_circuit.png"
-                        alt="Transistor-Based Chaotic Oscillator Circuit" style="width: 300px;" />
+                    <img src="transistor_chaotic_circuit.png" alt="Transistor-Based Chaotic Oscillator Circuit"
+                        style="width: 300px;" />
                     <figcaption>Figure: Chaotic oscillator circuit based on two-transistor RC phase shift oscillator.
                     </figcaption>
                 </figure>
@@ -245,8 +181,8 @@
 
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/chaotic_oscillators/transistor_chaotic_phase_space.png"
-                        alt="Transistor-Based Chaotic Oscillator Phase Space" style="width: 400px;" />
+                    <img src="transistor_chaotic_phase_space.png" alt="Transistor-Based Chaotic Oscillator Phase Space"
+                        style="width: 400px;" />
                     <figcaption>Figure: Double scroll" attractor pattern of the transistor-based chaotic oscillator
                         circuit</figcaption>
                 </figure>
@@ -263,31 +199,30 @@
 
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/chaotic_oscillators/block_diagram.png"
-                        alt="Chaotic Oscillator Block Diagram" style="width: 800px;" />
+                    <img src="block_diagram.png" alt="Chaotic Oscillator Block Diagram" style="width: 800px;" />
                     <figcaption>Figure: System block diagram for synchronized chaotic communication</figcaption>
                 </figure>
             </section>
 
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/chaotic_oscillators/chaos_sync_results_time.png"
-                        alt="Synchronization of Chaotic Oscillators" style="width: 500px;" />
+                    <img src="chaos_sync_results_time.png" alt="Synchronization of Chaotic Oscillators"
+                        style="width: 500px;" />
                     <figcaption>Figure: Oscilloscope capture of synchronized chaotic signals (time domain)</figcaption>
                 </figure>
             </section>
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/chaotic_oscillators/chaos_sync_results_frequency.png"
-                        alt="Synchronization of Chaotic Oscillators" style="width: 500px;" />
+                    <img src="chaos_sync_results_frequency.png" alt="Synchronization of Chaotic Oscillators"
+                        style="width: 500px;" />
                     <figcaption>Figure: Oscilloscope capture of synchronized chaotic signals (frequency domain)
                     </figcaption>
                 </figure>
             </section>
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/chaotic_oscillators/chaos_sync_results_phase.png"
-                        alt="Synchronization of Chaotic Oscillators" style="width: 300px;" />
+                    <img src="chaos_sync_results_phase.png" alt="Synchronization of Chaotic Oscillators"
+                        style="width: 300px;" />
                     <figcaption>Figure: Oscilloscope capture of synchronized chaotic signals (phase domain)</figcaption>
                 </figure>
             </section>
@@ -328,8 +263,8 @@
             <!-- Time-Domain Masking -->
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/chaotic_oscillators/audio_time_masked.png"
-                        alt="Audio signal masked by chaos in time domain" style="width: 500px;" />
+                    <img src="audio_time_masked.png" alt="Audio signal masked by chaos in time domain"
+                        style="width: 500px;" />
                     <figcaption>Figure: Time-domain view of audio signal masked by chaotic carrier</figcaption>
                 </figure>
             </section>
@@ -337,8 +272,8 @@
             <!-- Frequency-Domain View -->
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/chaotic_oscillators/audio_frequency_masked.png"
-                        alt="Frequency domain of chaotic masking" style="width: 500px;" />
+                    <img src="audio_frequency_masked.png" alt="Frequency domain of chaotic masking"
+                        style="width: 500px;" />
                     <figcaption>Figure: Frequency-domain spectrum showing chaotic signal masking over the audio band
                     </figcaption>
                 </figure>
@@ -347,8 +282,8 @@
             <!-- Time-Domain Recovery -->
             <section class="project-section">
                 <figure>
-                    <img src="assets/projects/chaotic_oscillators/audio_time_recovery.png"
-                        alt="Recovered audio signal after synchronization" style="width: 500px;" />
+                    <img src="audio_time_recovery.png" alt="Recovered audio signal after synchronization"
+                        style="width: 500px;" />
                     <figcaption>Figure: Time-domain capture of the recovered audio signal at the synchronized receiver
                     </figcaption>
                 </figure>
@@ -360,8 +295,10 @@
         </section>
     </main>
 
-    <script src="js/sidebar-toggle.js"></script>
-
+    <footer id="common-footer"></footer>
+    <script src="js/date.js"></script>
+    <script src="js/html_header.js"></script>
+    <script src="js/html_footer.js"></script>
 </body>
 
 </html>
