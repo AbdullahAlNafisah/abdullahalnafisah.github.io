@@ -4,7 +4,7 @@ let commonHeader = `
     <ul style="list-style: none; padding: 0; margin: 0;">
         <li style="display: inline; margin: 0 10px;"><a href="/index.html">Home</a></li>
         <li style="display: inline; margin: 0 10px;"><a href="/publications.html">Publications</a></li>
-        <li style="display: inline; margin: 0 10px;"><a href="/faster-than-nyquist/faster-than-nyquist.html">FTN</a></li>
+        <li style="display: inline; margin: 0 10px;"><a href="/projects/faster-than-nyquist/faster-than-nyquist.html">FTN</a></li>
         <li style="display: inline; margin: 0 10px;"><a href="/archive.html">Archive</a></li>
     </ul>
 </nav>
