@@ -36,7 +36,7 @@
             To avoid aliasing, a baseband signal with bandwidth \(B\) must be sampled at a sampling rate \(f_s\) that
             satisfies the Nyquist criterion:
             \[
-            f_s \geq 2B
+            2B \leq f_s
             \]
             This is known as the Nyquist rate, not to be confused with the Nyquist frequency, which equals \(f_s/2\).
             The Nyquist rate specifies the minimum sampling frequency required to reconstruct the signal without loss of
@@ -44,10 +44,10 @@
         </p>
 
         <p style="text-align: justify;">
-            Ideally, the sampling rate should be as high as possible to increase the information throughput.
-            However, any communication channel has a finite bandwidth and is susceptible to <a
+            In digital communication, the sampling rate should be as high as possible to increase the information
+            throughput. However, communication channels have a finite bandwidth and are susceptible to <a
                 href="https://en.wikipedia.org/wiki/Intersymbol_interference">intersymbol interference (ISI)</a>.
-            <!-- ISI can be mitigated through pulse shaping, equalization, and channel coding techniques. -->
+            ISI is a problem that can be mitigated through pulse shaping, equalization, and channel coding techniques.
         </p>
 
 
@@ -57,6 +57,7 @@
             traditional Nyquist limits. FTN increases decoding complexity, but recent innovations have proposed better
             coding and signal processing strategies to improve FTN performance.
         </p> -->
+
 
     </main>
 
