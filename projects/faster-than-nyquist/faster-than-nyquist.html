@@ -23,45 +23,104 @@
                 href="https://en.wikipedia.org/wiki/Baseband">baseband</a> signal or by modulating and demodulating a <a
                 href="https://en.wikipedia.org/wiki/Passband">passband</a> carrier signal at higher frequencies.
             Essentially, this depends on the application, the channel, and the available bandwidth.
-        </p>
-
-        <p style="text-align: justify;">
-            To avoid aliasing, a baseband signal with bandwidth \(B\) must be sampled at a sampling rate \(f_s\) that
-            satisfies the Nyquist criterion:
-            \[
-            2B \leq f_s
-            \]
-            This is known as the Nyquist rate, not to be confused with the Nyquist frequency, which equals \(f_s/2\).
-            The Nyquist rate specifies the minimum sampling frequency required to reconstruct the signal without loss of
-            information at the receiver.
+            To avoid aliasing in the case of a baseband signal with bandwidth \(B\), the sampling rate \(f_s\) must
+            satisfies
+            \[ 2B < f_s \] This is known as the <a
+                href="https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem">Nyquist-Shannon sampling
+                theorem</a>, and the value of \(2B\) is called the <a
+                    href="https://en.wikipedia.org/wiki/Nyquist_rate">Nyquist rate</a>, not to be
+                confused with the <a href="https://en.wikipedia.org/wiki/Nyquist_frequency">Nyquist frequency</a>, which
+                equals \(f_s/2\).
+                The Nyquist rate specifies the minimum sampling rate required to reconstruct the signal without loss of
+                information at the receiver.
         </p>
 
         <p style="text-align: justify;">
             In digital communication, the sampling rate should be as high as possible to increase the information
             throughput. However, communication channels have a finite bandwidth and are susceptible to <a
                 href="https://en.wikipedia.org/wiki/Intersymbol_interference">intersymbol interference (ISI)</a>.
-            To mitigate ISI, the transmitted signal typically goes through a <a
-                href="https://en.wikipedia.org/wiki/Pulse_shaping">pulse shaping</a> filter before transmission.
-            <!-- TODO: pulse shaping js for rised cosine filter -->
+            To eliminate ISI, the signal passes through a <a href="https://en.wikipedia.org/wiki/Pulse_shaping">pulse
+                shaping</a> filter and a <a href="https://en.wikipedia.org/wiki/Matched_filter">matched filter</a>
+            before and after transmission, respectively. Combined with the channel, the net response \(h(t)\)
+            must satisfy the <a href="https://en.wikipedia.org/wiki/Nyquist_ISI_criterion">Nyquist ISI
+                criterion</a>, which is stated here in time and frequency domains
+            \[
+            \begin{aligned}
+            &\text{Time domain (}T_s=\frac{1}{f_s}\text{):} & h(nT_s) =
+            \begin{cases}
+            1, & n = 0 \\
+            0, & n \neq 0
+            \end{cases}
+            \\[1em]
+            &\text{Frequency domain:} & f_s \sum_{k=-\infty}^{+\infty} H\left(f - k f_s \right) &= 1,
+            \quad \forall f
+            \end{aligned}
+            \]
+            The <a href="https://en.wikipedia.org/wiki/Raised-cosine_filter">raised-cosine filter</a> is typically used
+            to satisfy this condition, where the actual response is limited to the channel bandwidth and divided between
+            the transmit and receive filters by means of two <a
+                href="https://en.wikipedia.org/wiki/Root-raised-cosine_filter">root-raised-cosine filters</a>.
+
+
+
+            The following demo, is an illustration of the complete behavior
+            <!-- the odd (vestigial) symmetry about \(f_s/2\) -->
         </p>
 
-        <!-- Canvas for waveform -->
-        <canvas id="scope" width="800" height="200"
-            style="background:#111;display:block;margin:auto;border-radius:6px"></canvas>
 
-        <!-- Controls -->
-        <div style="max-width:800px;margin:1em auto;">
-            <label>
-                Frequency (Hz):
-                <input id="freq" type="number" value="50" step="0.1" min="0.1">
-            </label>
-            <label style="margin-left:1em">
-                Duty (%):
-                <input id="duty" type="number" value="10" step="0.1" min="1" max="99">
-            </label>
+
+        <!-- Transmitter controls -->
+        <div id="tx-controls" style="max-width:860px;margin:1em auto;text-align:center;">
+            <strong>Transmitter (RRC)</strong>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.5em;margin-top:0.5em;">
+                <label>\(f_s=\)
+                    <input id="Rs" type="number" value="1000" step="10" min="10">
+                </label>
+                <label>Tx roll-off factor \(\beta_{tx}=\)
+                    <input id="betaTx" type="number" value="0.25" min="0" max="1" step="0.01">
+                </label>
+                <label>Window (±symbols)=
+                    <input id="win" type="number" value="8" min="3" max="30" step="1">
+                </label>
+                <label>Oversample (samples/ \(T_s=\))
+                    <input id="os" type="number" value="32" min="8" max="128" step="1">
+                </label>
+            </div>
         </div>
+        <canvas id="scope-tx" width="860" height="260"
+            style="background:#000;border-radius:8px;display:block;margin:auto"></canvas>
 
-        <!-- <p style="text-align: justify;">
+        <!-- Channel controls -->
+        <div id="ch-controls" style="max-width:860px;margin:1em auto;text-align:center;">
+            <strong>Channel</strong>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.5em;margin-top:0.5em;">
+                <label> \(B=\)
+                    <input id="BW" type="number" value="1500" min="50" step="10">
+                </label>
+            </div>
+        </div>
+        <canvas id="scope-ch" width="860" height="260"
+            style="background:#000;border-radius:8px;display:block;margin:auto"></canvas>
+
+        <!-- Receiver controls -->
+        <div id="rx-controls" style="max-width:860px;margin:1em auto;text-align:center;">
+            <strong>Receiver (Matched Filter)</strong>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.5em;margin-top:0.5em;">
+                <label>Rx roll-off factor \(\beta_{rx}=\)
+                    <input id="betaRx" type="number" value="0.25" min="0" max="1" step="0.01">
+                </label>
+            </div>
+        </div>
+        <canvas id="scope-rx" width="860" height="260"
+            style="background:#000;border-radius:8px;display:block;margin:auto"></canvas>
+
+
+
+
+
+
+
+        <!-- <p style="text-align: justify;"> 
             Faster-Than-Nyquist (FTN) signaling is an advanced modulation technique for better bandwidth utilization
             that intentionally allow controlled inter-symbol interference (ISI) to transmit data at rates beyond
             traditional Nyquist limits. FTN increases decoding complexity, but recent innovations have proposed better
@@ -74,8 +133,18 @@
     <footer id="common-footer"></footer>
     <script src="/html_header.js"></script>
     <script src="/html_footer.js"></script>
-    <script src="/projects/faster-than-nyquist/pulse.js"></script>
-    <script defer id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script src="/projects/faster-than-nyquist/js/transmitter_response.js"></script>
+    <script src="/projects/faster-than-nyquist/js/channel_response.js"></script>
+    <script src="/projects/faster-than-nyquist/js/receiver_response.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                tags: 'all',
+                packages: { '[+]': ['ams'] }
+            }
+        };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
     <script defer src="https://www.googletagmanager.com/gtag/js?id=G-SPEP808K2E"></script>
 </body>
 
