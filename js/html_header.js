@@ -10,3 +10,4 @@ let commonHeader = `
   </nav>
 </header>
 `;
+document.getElementById("common-header").innerHTML = commonHeader;
