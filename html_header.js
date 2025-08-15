@@ -3,9 +3,11 @@ let commonHeader = `
 <nav class="nav" style="text-align: center; margin-top: 20px;">
     <ul style="list-style: none; padding: 0; margin: 0;">
         <li style="display: inline; margin: 0 10px;"><a href="/index.html">Home</a></li>
+        <li style="display: inline; margin: 0 10px;"><a href="/projects/nuclear-magnetic-resonance/nuclear-magnetic-resonance.html">NMR</a></li>
+        <li style="display: inline; margin: 0 10px;"><a href="/projects/quantum-error-correction/quantum-error-correction.html">QEC</a></li>
         <li style="display: inline; margin: 0 10px;"><a href="/projects/faster-than-nyquist/faster-than-nyquist.html">FTN</a></li>
-        <li style="display: inline; margin: 0 10px;"><a href="/publications.html">Publications</a></li>
         <li style="display: inline; margin: 0 10px;"><a href="/archive.html">Archive</a></li>
+        <li style="display: inline; margin: 0 10px;"><a href="/publications.html">Publications</a></li>
     </ul>
 </nav>
 </header>

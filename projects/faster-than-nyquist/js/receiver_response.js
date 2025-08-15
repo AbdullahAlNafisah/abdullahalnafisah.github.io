@@ -49,13 +49,13 @@
       // Left: TX time
       drawAxes(ctx, 0, 0, halfW, fullH, "t (s)", "amp");
       const [y0t, y1t] = yRange(htx);
-      plotLine(ctx, 0, 0, halfW, fullH, t, htx, t[0], t[t.length - 1], y0t, y1t, "#fff", 1.5);
+      plotLine(ctx, 0, 0, halfW, fullH, t, htx, t[0], t[t.length - 1], y0t, y1t, "#0f0", 1.5);
 
       // Right: TX freq
       drawAxes(ctx, halfW, 0, halfW, fullH, "f (Hz)", "|H|");
       const [y0f, y1f] = yRange(txSpec.mag);
       plotLine(ctx, halfW, 0, halfW, fullH, txSpec.freq, txSpec.mag,
-               txSpec.freq[0], txSpec.freq[txSpec.freq.length - 1], y0f, y1f, "#fff", 1.5);
+               txSpec.freq[0], txSpec.freq[txSpec.freq.length - 1], y0f, y1f, "#0f0", 1.5);
     }
 
     // ===== Canvas 2: CH =====
@@ -68,13 +68,13 @@
       // Left: CH time
       drawAxes(ctx, 0, 0, halfW, fullH, "t (s)", "amp");
       const [y0t, y1t] = yRange(hch);
-      plotLine(ctx, 0, 0, halfW, fullH, t, hch, t[0], t[t.length - 1], y0t, y1t, "#fff", 1.5);
+      plotLine(ctx, 0, 0, halfW, fullH, t, hch, t[0], t[t.length - 1], y0t, y1t, "#0f0", 1.5);
 
       // Right: CH freq + overlay TX
       drawAxes(ctx, halfW, 0, halfW, fullH, "f (Hz)", "|H|");
       const [y0f, y1f] = yRange(chSpec.mag.concat(txSpec.mag));
       plotLine(ctx, halfW, 0, halfW, fullH, chSpec.freq, chSpec.mag,
-               chSpec.freq[0], chSpec.freq[chSpec.freq.length - 1], y0f, y1f, "#fff", 1.5);
+               chSpec.freq[0], chSpec.freq[chSpec.freq.length - 1], y0f, y1f, "#0f0", 1.5);
       plotLine(ctx, halfW, 0, halfW, fullH, txSpec.freq, txSpec.mag,
                txSpec.freq[0], txSpec.freq[txSpec.freq.length - 1], y0f, y1f, "#0ff", 1.0);
     }
@@ -89,13 +89,13 @@
       // Left: RX time
       drawAxes(ctx, 0, 0, halfW, fullH, "t (s)", "amp");
       const [y0t, y1t] = yRange(htot);
-      plotLine(ctx, 0, 0, halfW, fullH, tTot, htot, tTot[0], tTot[tTot.length - 1], y0t, y1t, "#fff", 1.5);
+      plotLine(ctx, 0, 0, halfW, fullH, tTot, htot, tTot[0], tTot[tTot.length - 1], y0t, y1t, "#0f0", 1.5);
 
       // Right: RX freq
       drawAxes(ctx, halfW, 0, halfW, fullH, "f (Hz)", "|H|");
       const [y0f, y1f] = yRange(rxSpec.mag);
       plotLine(ctx, halfW, 0, halfW, fullH, rxSpec.freq, rxSpec.mag,
-               rxSpec.freq[0], rxSpec.freq[rxSpec.freq.length - 1], y0f, y1f, "#fff", 1.5);
+               rxSpec.freq[0], rxSpec.freq[rxSpec.freq.length - 1], y0f, y1f, "#0f0", 1.5);
     }
   }
 

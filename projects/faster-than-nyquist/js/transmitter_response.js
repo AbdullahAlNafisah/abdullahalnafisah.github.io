@@ -122,11 +122,12 @@ FTN.el = {
     os: document.getElementById("os")
 };
 
-})();
-
 if (!FTN.el.canvasTx || !FTN.el.canvasCh || !FTN.el.canvasRx) {
   console.error("One or more canvases not found. Check IDs: scope-tx, scope-ch, scope-rx.");
 }
 ["Rs","betaTx","betaRx","BW","win","os"].forEach(id=>{
   if(!FTN.el[id]) console.error("Missing input element #"+id);
 });
+
+})();
+
