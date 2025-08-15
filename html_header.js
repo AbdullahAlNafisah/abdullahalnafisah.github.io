@@ -7,7 +7,6 @@ let commonHeader = `
         <li style="display: inline; margin: 0 10px;"><a href="/projects/quantum-error-correction/quantum-error-correction.html">QEC</a></li>
         <li style="display: inline; margin: 0 10px;"><a href="/projects/faster-than-nyquist/faster-than-nyquist.html">FTN</a></li>
         <li style="display: inline; margin: 0 10px;"><a href="/archive.html">Archive</a></li>
-        <li style="display: inline; margin: 0 10px;"><a href="/publications.html">Publications</a></li>
     </ul>
 </nav>
 </header>
