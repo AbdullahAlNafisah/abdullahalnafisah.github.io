@@ -45,6 +45,21 @@
             <!-- TODO: pulse shaping js for rised cosine filter -->
         </p>
 
+        <!-- Canvas for waveform -->
+        <canvas id="scope" width="800" height="200"
+            style="background:#111;display:block;margin:auto;border-radius:6px"></canvas>
+
+        <!-- Controls -->
+        <div style="max-width:800px;margin:1em auto;">
+            <label>
+                Frequency (Hz):
+                <input id="freq" type="number" value="50" step="0.1" min="0.1">
+            </label>
+            <label style="margin-left:1em">
+                Duty (%):
+                <input id="duty" type="number" value="10" step="0.1" min="1" max="99">
+            </label>
+        </div>
 
         <!-- <p style="text-align: justify;">
             Faster-Than-Nyquist (FTN) signaling is an advanced modulation technique for better bandwidth utilization
@@ -59,7 +74,7 @@
     <footer id="common-footer"></footer>
     <script src="/html_header.js"></script>
     <script src="/html_footer.js"></script>
-
+    <script src="/projects/faster-than-nyquist/pulse.js"></script>
     <script defer id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
     <script defer src="https://www.googletagmanager.com/gtag/js?id=G-SPEP808K2E"></script>
 </body>
