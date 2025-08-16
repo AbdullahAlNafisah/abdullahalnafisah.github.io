@@ -60,9 +60,9 @@
             to satisfy this condition, where the actual response is limited to the channel bandwidth and divided between
             the transmit and receive filters by means of two <a
                 href="https://en.wikipedia.org/wiki/Root-raised-cosine_filter">root-raised-cosine (RRC)</a> filters.
-            The following plot illustrates the impulse response of the RRC and shows how the roll-off factor can be
-            tuned to minimize ISI while keeping ripples to a minimum.
-            <!-- the odd (vestigial) symmetry about \(f_s/2\) -->
+            The following demo plots the impulse response of a sequence of symbols using RRC pulses with a variable
+            roll-off factor \(\beta\) which is the design parameter used to optimize ISI while keeping ripples to a
+            minimum.
         </p>
 
         <div style="text-align: center;">
@@ -71,8 +71,10 @@
         </div>
         <div id="rrc-pulse-plot"></div>
 
-
+        <p>To be continued...</p>
         <!-- <p style="text-align: justify;"> 
+            the odd (vestigial) symmetry about \(f_s/2\)
+
             Faster-Than-Nyquist (FTN) signaling is an advanced modulation technique for better bandwidth utilization
             that intentionally allow controlled inter-symbol interference (ISI) to transmit data at rates beyond
             traditional Nyquist limits. FTN increases decoding complexity, but recent innovations have proposed better
@@ -98,7 +100,6 @@
     <script src="/html_header.js"></script>
     <script src="/html_footer.js"></script>
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-    <script src="js/rrc-pulse.js"></script>
     <!-- <script src="js/eyeDiagram.js"></script> -->
     <script>
         window.MathJax = {
@@ -110,6 +111,8 @@
     </script>
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
     <script defer src="https://www.googletagmanager.com/gtag/js?id=G-SPEP808K2E"></script>
+
+    <script src="js/rrc-pulse.js"></script>
 </body>
 
 </html>
