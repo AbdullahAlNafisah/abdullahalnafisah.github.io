@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="WpzyAhc3YcZBRUftVh0ZAnBCio0hivIyIASDU_4T8wk" />
+    <meta name="description" content="Template" />
+    <title>Electric Circuits – Interactive Refresher</title>
+</head>
+
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #ffffff; color: #000000;">
+    <header id="common-header"></header>
+
+    <main class="main" style="padding: 20px; max-width: 900px; margin: 0 auto; line-height: 1.6;">
+
+        <h1 style="text-align: center;">
+            Circuit Theory
+        </h1>
+
+        <p style="text-align: center;">
+            This is a summary to refresh circuit theory topics.
+        </p>
+
+        <section id="controls" style="text-align: center; margin: 1em 0;">
+            <input id="search" type="search" placeholder="Search topics or formulas..." aria-label="Search" />
+            <button id="expandAll">Expand all</button>
+            <button id="collapseAll">Collapse all</button>
+        </section>
+
+
+        <fieldset>
+            <legend><strong>Highlights</strong></legend>
+            <ul>
+                <li><a href="https://en.wikipedia.org/wiki/Ohm%27s_law">Ohm's law</a>: \(V = IR\)</li>
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws">Kirchhoff's circuit laws</a>
+                    <ul>
+                        <li><strong>KCL:</strong> algebraic sum of currents at a node is zero ( \( \sum_{i=0}^n I_i = 0
+                            \) ).</li>
+                        <li><strong>KVL:</strong> algebraic sum of voltages around a loop is zero ( \( \sum_{i=0}^n V_i
+                            = 0 \) ).</li>
+                    </ul>
+                </li>
+                <li><a href="https://en.wikipedia.org/wiki/Th%C3%A9venin%27s_theorem">Thevenin</a> & <a
+                        href="https://en.wikipedia.org/wiki/Th%C3%A9venin%27s_theorem">Norton</a> Theorems:
+                    Linear electrical network containing only voltage sources, current sources and resistances can
+                    be replaced by an equivalent combination of a voltage source V<sub>th</sub> or current source
+                    I<sub>no</sub> in a series or parallel
+                    connection with a resistance R<sub>th</sub>= R<sub>no</sub> repectively."
+                </li>
+
+
+                <div style="display: flex;">
+                    <!-- Thevenin parameters (left) -->
+                    <div style="flex: 1;">
+                        <div style="text-align: center; margin: 0;">
+                            <strong>Thevenin</strong>
+                            <br>
+                            <img src="images/theveninEquivalent.png" style="width: 300px;" />
+                            <br>
+                            <label>V<sub>th</sub> = <input id="thV" type="number" step="any"></label><br>
+                        </div>
+                    </div>
+                    <!-- Norton parameters (right) -->
+                    <div style="flex: 1;">
+                        <div style="text-align: center; margin: 0;">
+                            <strong>Norton</strong>
+                            <br>
+                            <img src="images/nortonEquivalent.png" style="width: 300px;" />
+                            <br>
+                            <label>I<sub>no</sub> = <input id="noI" type="number" step="any"></label><br>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <label>R<sub>th</sub> = <label>R<sub>no</sub>= <input id="thR" type="number" step="any"></label>
+                        <br>
+                        <button onclick="convertThNo()">Convert</button>
+                        <div id="thnoOut" style="margin-top: 0.5em; text-align: center;"></div>
+                </div>
+
+
+                <li>Reactances: \(Z_R = R\), \(Z_L = j\omega L\), \(Z_C = \dfrac{1}{j\omega C}\)</li>
+            </ul>
+
+
+
+        </fieldset>
+        <details id="cve">
+            <summary><strong>Circuit Variables and Elements</strong></summary>
+            <ul>
+                <li><strong>Variables:</strong> voltage \(v(t)\), current \(i(t)\); power \(p(t) = v(t)i(t)\), energy
+                    \(w(t) = \int p\,dt\).</li>
+                <li><strong>Passive sign convention;</strong> dependent vs independent sources (V/I, controlled by V/I).
+                </li>
+                <li><strong>Elements:</strong> R, L, C with \(v=iR\), \(v=L\,di/dt\), \(i=C\,dv/dt\).</li>
+            </ul>
+        </details>
+
+        <details id="res">
+            <summary><strong>Resistive Circuits</strong></summary>
+            <ul>
+                <li><strong>Series/parallel combinations,</strong> voltage/current dividers.</li>
+                <li><strong>Source transformations:</strong> (V<sub>th</sub> ↔ I<sub>n</sub>).</li>
+                <li><strong>Maximum power transfer:</strong> \(R_L = R_{th}\) (DC resistive).</li>
+            </ul>
+            <details>
+                <summary><strong>Divider quick check</strong></summary>
+                <label><strong>V<sub>in</sub> (V):</strong> <input id="divVin" type="number" step="any"></label>
+                <label><strong>R1 (Ω):</strong> <input id="divR1" type="number" step="any"></label>
+                <label><strong>R2 (Ω):</strong> <input id="divR2" type="number" step="any"></label>
+                <button onclick="dividerCalc()">Compute V<sub>out</sub></button>
+                <div id="divOut"></div>
+            </details>
+        </details>
+
+        <details id="ana">
+            <summary><strong>Circuit Analysis</strong></summary>
+            <ul>
+                <li><strong>Methods:</strong> Nodal (KCL) and mesh (KVL) analysis; superposition; Thevenin/Norton.</li>
+                <li><strong>Guideline:</strong> many voltage sources → mesh; many current sources → nodal.</li>
+            </ul>
+            <details>
+                <summary><strong>KCL/KVL sanity check</strong></summary>
+                <label><strong>Sum of currents at node (A):</strong> <input id="kclSum" type="number"
+                        step="any"></label>
+                <button onclick="kclCheck()">Check KCL</button>
+                <div id="kclOut"></div>
+                <label><strong>Sum of loop voltages (V):</strong> <input id="kvlSum" type="number" step="any"></label>
+                <button onclick="kvlCheck()">Check KVL</button>
+                <div id="kvlOut"></div>
+            </details>
+        </details>
+
+        <details id="opamp">
+            <summary><strong>Op-amp</strong></summary>
+            <ul>
+                <li><strong>Ideal rules:</strong> \(v_+ \approx v_-\) (with negative feedback), input currents ≈ 0,
+                    finite output swing.</li>
+                <li><strong>Common circuits:</strong> Inverting/non-inverting/summing; integrator/differentiator (with
+                    practical stabilization).</li>
+                <li><strong>VFA vs CFA:</strong> bandwidth depends on \(R_f\) for CFAs.</li>
+            </ul>
+            <details>
+                <summary><strong>Op-amp gain quick calc</strong></summary>
+                <label><strong>Mode:</strong>
+                    <select id="opMode">
+                        <option value="inv">Inverting</option>
+                        <option value="noninv">Non-inverting</option>
+                    </select>
+                </label>
+                <label><strong>R<sub>in</sub> (Ω):</strong> <input id="opRin" type="number" step="any"></label>
+                <label><strong>R<sub>f</sub> (Ω):</strong> <input id="opRf" type="number" step="any"></label>
+                <button onclick="opampGain()">Compute gain</button>
+                <div id="opOut"></div>
+            </details>
+        </details>
+
+        <details id="lc">
+            <summary><strong>Inductance, Capacitance, and Mutual Inductance</strong></summary>
+            <ul>
+                <li><strong>Energy:</strong> \(w_L=\tfrac12 L i^2\), \(w_C=\tfrac12 C v^2\).</li>
+                <li><strong>Impedances:</strong> \(Z_L=j\omega L\), \(Z_C=1/(j\omega C)\). Reactance magnitudes
+                    \(|X_L|=\omega L\), \(|X_C|=1/(\omega C)\).</li>
+                <li><strong>Mutual inductance:</strong> \(v_1=L_1\,di_1/dt + M\,di_2/dt\), dot convention.</li>
+            </ul>
+        </details>
+
+        <details id="first">
+            <summary><strong>1st-order RL and RC Circuits (Responses)</strong></summary>
+            <ul>
+                <li><strong>Time constants:</strong> \(\tau_{RC}=RC\), \(\tau_{RL}=L/R\).</li>
+                <li><strong>Step responses:</strong> \(v_C(t)=V_f+(V_i-V_f)e^{-t/RC}\);
+                    \(i_L(t)=I_f+(I_i-I_f)e^{-tR/L}\).</li>
+            </ul>
+            <details>
+                <summary><strong>Time constant & step value</strong></summary>
+                <label><strong>Type:</strong>
+                    <select id="tauType">
+                        <option value="rc">RC</option>
+                        <option value="rl">RL</option>
+                    </select>
+                </label>
+                <label><strong>R (Ω):</strong> <input id="tauR" type="number" step="any"></label>
+                <label><strong>C (F) / L (H):</strong> <input id="tauX" type="number" step="any"></label>
+                <label><strong>t (s):</strong> <input id="tauT" type="number" step="any" value="0"></label>
+                <label><strong>Initial value:</strong> <input id="tauInit" type="number" step="any" value="0"></label>
+                <label><strong>Final value:</strong> <input id="tauFinal" type="number" step="any" value="1"></label>
+                <button onclick="tauCalc()">Compute</button>
+                <div id="tauOut"></div>
+            </details>
+        </details>
+
+        <details id="rlc">
+            <summary><strong>Natural and Step Responses of RLC Circuits</strong></summary>
+            <ul>
+                <li><strong>Parameters:</strong> Series RLC: \(\alpha=R/(2L)\), \(\omega_0=1/\sqrt{LC}\),
+                    \(\zeta=\alpha/\omega_0\).</li>
+                <li><strong>Classification:</strong> underdamped (\(\zeta<1\)), critically damped (\(\zeta=1\)),
+                        overdamped (\(\zeta>1\)).</li>
+            </ul>
+            <details>
+                <summary><strong>RLC classifier</strong></summary>
+                <label><strong>R (Ω):</strong> <input id="rlcR" type="number" step="any"></label>
+                <label><strong>L (H):</strong> <input id="rlcL" type="number" step="any"></label>
+                <label><strong>C (F):</strong> <input id="rlcC" type="number" step="any"></label>
+                <button onclick="rlcClassify()">Classify</button>
+                <div id="rlcOut"></div>
+            </details>
+        </details>
+
+        <details id="sss">
+            <summary><strong>Sinusoidal Steady-State Analysis and Power Calculations</strong></summary>
+            <ul>
+                <li><strong>Phasors:</strong> \(v(t)=\Re\{\tilde V e^{j\omega t}\}\), Ohm in phasor domain \(\tilde
+                    V=\tilde I Z\).</li>
+                <li><strong>Complex power:</strong> \(S=VI^* = P + jQ\); power factor \(\cos\varphi=P/|S|\).</li>
+            </ul>
+            <details>
+                <summary><strong>AC power calculator</strong></summary>
+                <label><strong>V<sub>rms</sub> (V):</strong> <input id="acV" type="number" step="any"></label>
+                <label><strong>I<sub>rms</sub> (A):</strong> <input id="acI" type="number" step="any"></label>
+                <label><strong>pf = cosφ (0–1):</strong> <input id="acPF" type="number" step="any"></label>
+                <label><strong>Reactive sign:</strong>
+                    <select id="acSign">
+                        <option value="lag">lagging (+Q)</option>
+                        <option value="lead">leading (-Q)</option>
+                    </select>
+                </label>
+                <button onclick="acPower()">Compute P, Q, |S|</button>
+                <div id="acOut"></div>
+            </details>
+        </details>
+
+        <details id="three">
+            <summary><strong>Balanced Three-Phase Circuits</strong></summary>
+            <ul>
+                <li><strong>Y connection:</strong> \(V_{ph}=V_L/\sqrt{3}\), \(I_L=I_{ph}\).</li>
+                <li><strong>Δ connection:</strong> \(V_{ph}=V_L\), \(I_L=\sqrt{3}I_{ph}\).</li>
+                <li><strong>Total power:</strong> \(P=\sqrt{3}V_L I_L\cos\varphi\); \(Q=\sqrt{3}V_L I_L\sin\varphi\).
+                </li>
+            </ul>
+            <details>
+                <summary><strong>3ϕ quick calculator</strong></summary>
+                <label><strong>Connection:</strong>
+                    <select id="tConn">
+                        <option value="Y">Y (star)</option>
+                        <option value="D">Δ (delta)</option>
+                    </select>
+                </label>
+                <label><strong>V<sub>L</sub> (V):</strong> <input id="tVL" type="number" step="any"></label>
+                <label><strong>|Z<sub>ph</sub>| (Ω):</strong> <input id="tZ" type="number" step="any"></label>
+                <label><strong>φ (deg):</strong> <input id="tPhi" type="number" step="any" value="0"></label>
+                <button onclick="threePhase()">Compute I<sub>L</sub>, P, Q</button>
+                <div id="tOut"></div>
+            </details>
+        </details>
+
+        <details id="laplace">
+            <summary><strong>Laplace Transform Circuit Analysis</strong></summary>
+            <ul>
+                <li><strong>Impedances:</strong> \(Z_R=R\), \(Z_L = sL\), \(Z_C = 1/(sC)\).</li>
+                <li><strong>Method:</strong> initial conditions become sources; solve in \(s\)-domain, then inverse
+                    Laplace.</li>
+            </ul>
+            <details>
+                <summary><strong>Common transforms</strong></summary>
+                <label><strong>Signal:</strong>
+                    <select id="lapSel">
+                        <option value="step">u(t)</option>
+                        <option value="impulse">δ(t)</option>
+                        <option value="exp">e^{-at}u(t)</option>
+                        <option value="sin">sin(ωt)u(t)</option>
+                        <option value="cos">cos(ωt)u(t)</option>
+                        <option value="t">t·u(t)</option>
+                    </select>
+                </label>
+                <label><strong>a:</strong> <input id="lapA" type="number" step="any" value="1"></label>
+                <label><strong>ω:</strong> <input id="lapW" type="number" step="any" value="1"></label>
+                <button onclick="laplaceShow()">Show F(s)</button>
+                <div id="lapOut"></div>
+            </details>
+        </details>
+
+        <details id="fs">
+            <summary><strong>Frequency Selective Circuits</strong></summary>
+            <ul>
+                <li><strong>RC low/high-pass:</strong> \(f_c=\dfrac{1}{2\pi RC}\).</li>
+                <li><strong>RLC resonance:</strong> \(f_0=\dfrac{1}{2\pi\sqrt{LC}}\),
+                    \(Q=\dfrac{1}{R}\sqrt{\dfrac{L}{C}}\).</li>
+            </ul>
+            <details>
+                <summary><strong>Corner / resonance calculator</strong></summary>
+                <label><strong>Mode:</strong>
+                    <select id="fsMode">
+                        <option value="rc">RC corner f<sub>c</sub></option>
+                        <option value="rlc">RLC resonance f<sub>0</sub> & Q (series)</option>
+                    </select>
+                </label>
+                <div id="fsRC">
+                    <label><strong>R (Ω):</strong> <input id="fsR" type="number" step="any"></label>
+                    <label><strong>C (F):</strong> <input id="fsC" type="number" step="any"></label>
+                </div>
+                <div id="fsRLC" style="display:none">
+                    <label><strong>R (Ω):</strong> <input id="fsRR" type="number" step="any"></label>
+                    <label><strong>L (H):</strong> <input id="fsL" type="number" step="any"></label>
+                    <label><strong>C (F):</strong> <input id="fsCC" type="number" step="any"></label>
+                </div>
+                <button onclick="fsCalc()">Compute</button>
+                <div id="fsOut"></div>
+            </details>
+        </details>
+
+        <details id="af">
+            <summary><strong>Active Filter Circuits</strong></summary>
+            <ul>
+                <li><strong>Sallen–Key (unity-gain, equal parts):</strong> \(f_c=\dfrac{1}{2\pi RC}\), \(Q=1/2\).</li>
+                <li><strong>Multiple-feedback:</strong> used for higher Q and band-pass designs.</li>
+            </ul>
+            <details>
+                <summary><strong>Sallen–Key (unity, equal parts) helper</strong></summary>
+                <label><strong>Known:</strong>
+                    <select id="skKnown">
+                        <option value="R">R & f<sub>c</sub> → C</option>
+                        <option value="C">C & f<sub>c</sub> → R</option>
+                    </select>
+                </label>
+                <label><strong>f<sub>c</sub> (Hz):</strong> <input id="skFc" type="number" step="any"></label>
+                <label><strong>R (Ω):</strong> <input id="skR" type="number" step="any"></label>
+                <label><strong>C (F):</strong> <input id="skC" type="number" step="any"></label>
+                <button onclick="skCalc()">Compute</button>
+                <div id="skOut"></div>
+            </details>
+        </details>
+
+        <details id="fourier">
+            <summary><strong>Fourier Series & Transform</strong></summary>
+            <ul>
+                <li><strong>Square wave (±A, 50% duty):</strong> odd harmonics only, \(b_n=\dfrac{4A}{n\pi}\) for odd
+                    \(n\).</li>
+                <li><strong>Properties:</strong> linearity, time/frequency shift, convolution.</li>
+            </ul>
+            <details>
+                <summary><strong>Square-wave coefficients</strong></summary>
+                <label><strong>A (amplitude):</strong> <input id="sqA" type="number" step="any" value="1"></label>
+                <label><strong>Harmonics (odd count):</strong> <input id="sqN" type="number" step="1" value="5"></label>
+                <button onclick="squareCoeffs()">List b<sub>n</sub></button>
+                <div id="sqOut"></div>
+            </details>
+        </details>
+
+        <details id="twoport">
+            <summary><strong>Two-Port Circuits</strong></summary>
+            <ul>
+                <li><strong>Parameter sets:</strong> Z, Y, h, g, ABCD. Conversions via matrix algebra.</li>
+            </ul>
+            <details>
+                <summary><strong>Z → Y conversion (complex)</strong></summary>
+                <p><strong>Enter Z-parameters</strong> as real and imaginary parts (Ω). <strong>Y = Z⁻¹ (S).</strong>
+                </p>
+                <div>\n <div><strong>Z<sub>11</sub>:</strong> <input id=\"z11r\" type=\"number\" step=\"any\"
+                            placeholder=\"Re\"> + j<input id=\"z11i\" type=\"number\" step=\"any\" placeholder=\"Im\">
+                    </div>\n <div><strong>Z<sub>12</sub>:</strong> <input id=\"z12r\" type=\"number\" step=\"any\"
+                            placeholder=\"Re\"> + j<input id=\"z12i\" type=\"number\" step=\"any\" placeholder=\"Im\">
+                    </div>\n <div><strong>Z<sub>21</sub>:</strong> <input id=\"z21r\" type=\"number\" step=\"any\"
+                            placeholder=\"Re\"> + j<input id=\"z21i\" type=\"number\" step=\"any\" placeholder=\"Im\">
+                    </div>\n <div><strong>Z<sub>22</sub>:</strong> <input id=\"z22r\" type=\"number\" step=\"any\"
+                            placeholder=\"Re\"> + j<input id=\"z22i\" type=\"number\" step=\"any\" placeholder=\"Im\">
+                    </div>\n </div>
+                <button onclick="z2y()">Convert</button>
+                <div id="z2yOut"></div>
+            </details>
+        </details>
+
+    </main>
+
+    <footer id="common-footer"></footer>
+    <script src="/html_header.js"></script>
+    <script src="/html_footer.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                tags: 'all',
+                packages: { '[+]': ['ams'] }
+            }
+        };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-SPEP808K2E"></script>
+
+    <script>
+        // ——— Generic helpers ———
+        function fmt(n, digits = 6) {
+            if (!isFinite(n)) return 'NaN';
+            return Number(n).toPrecision(digits);
+        }
+        function val(id) { return parseFloat(document.getElementById(id).value); }
+        function set(id, html) { document.getElementById(id).innerHTML = html; if (window.MathJax) MathJax.typesetPromise && MathJax.typesetPromise(); }
+
+        // Search / expand-collapse
+        const searchBox = document.getElementById('search');
+        searchBox.addEventListener('input', () => {
+            const q = searchBox.value.toLowerCase();
+            document.querySelectorAll('details').forEach(d => {
+                const text = d.textContent.toLowerCase();
+                d.style.display = text.includes(q) ? '' : 'none';
+            });
+        });
+        document.getElementById('expandAll').onclick = () => document.querySelectorAll('details').forEach(d => d.open = true);
+        document.getElementById('collapseAll').onclick = () => document.querySelectorAll('details').forEach(d => d.open = false);
+
+        // ——— Calculators ———
+        function ohmsLawSolve() {
+            const V = document.getElementById('olmV');
+            const I = document.getElementById('olmI');
+            const R = document.getElementById('olmR');
+            const filled = [V, I, R].filter(x => x.value !== '');
+            if (filled.length !== 2) { set('olmOut', 'Enter exactly two values.'); return; }
+            const v = parseFloat(V.value), i = parseFloat(I.value), r = parseFloat(R.value);
+            if (V.value === '') { V.value = i * r; }
+            else if (I.value === '') { I.value = v / r; }
+            else if (R.value === '') { R.value = v / i; }
+            set('olmOut', `Computed: V=${fmt(parseFloat(V.value))} V, I=${fmt(parseFloat(I.value))} A, R=${fmt(parseFloat(R.value))} Ω`);
+        }
+
+        function convertThNo() {
+            const Vth = document.getElementById('thV').value;
+            const In = document.getElementById('noI').value;
+            const Rth = document.getElementById('thR').value;
+            let out = '';
+            if (Vth !== '' && Rth !== '') {
+                const v = parseFloat(Vth), r = parseFloat(Rth);
+                const i = v / r;
+                out = `Norton: I_n = ${fmt(i)} A, thR = ${fmt(r)} Ω`;
+                document.getElementById('noI').value = fmt(i);
+                document.getElementById('noR').value = fmt(r);
+            } else if (In !== '' && Rn !== '') {
+                const i = parseFloat(In), r = parseFloat(Rn);
+                const v = i * r;
+                out = `Thevenin: V_th = ${fmt(v)} V, R_th = ${fmt(r)} Ω`;
+                document.getElementById('thV').value = fmt(v);
+                document.getElementById('thR').value = fmt(r);
+            } else {
+                out = 'Provide values!';
+                set('thnoOut', out);
+            }
+        }
+
+        function dividerCalc() {
+            const Vin = val('divVin');
+            const R1 = val('divR1');
+            const R2 = val('divR2');
+            if (!isFinite(Vin + R1 + R2) || R1 + R2 === 0) { set('divOut', 'Check inputs.'); return; }
+            const Vout = Vin * R2 / (R1 + R2);
+            set('divOut', `V_out = ${fmt(Vout)} V`);
+        }
+
+        function kclCheck() {
+            const s = val('kclSum');
+            set('kclOut', Math.abs(s) < 1e-9 ? '✓ KCL satisfied (≈0 A)' : `⚠ Not zero: ${fmt(s)} A`);
+        }
+        function kvlCheck() {
+            const s = val('kvlSum');
+            set('kvlOut', Math.abs(s) < 1e-9 ? '✓ KVL satisfied (≈0 V)' : `⚠ Not zero: ${fmt(s)} V`);
+        }
+
+        function opampGain() {
+            const mode = document.getElementById('opMode').value;
+            const Rin = val('opRin');
+            const Rf = val('opRf');
+            if (!isFinite(Rin + Rf) || Rin === 0) { set('opOut', 'Check R values.'); return; }
+            const gain = mode === 'inv' ? -Rf / Rin : 1 + Rf / Rin;
+            set('opOut', `Ideal closed-loop gain ≈ ${fmt(gain, 4)}`);
+        }
+
+        function tauCalc() {
+            const type = document.getElementById('tauType').value;
+            const R = val('tauR');
+            const X = val('tauX');
+            const t = val('tauT');
+            const x0 = val('tauInit');
+            const xf = val('tauFinal');
+            if (!isFinite(R + X) || R <= 0 || X <= 0) { set('tauOut', 'R and C/L must be > 0.'); return; }
+            const tau = (type === 'rc') ? R * X : X / R;
+            const x = xf + (x0 - xf) * Math.exp(-t / tau);
+            const label = (type === 'rc') ? 'τ = RC' : 'τ = L/R';
+            set('tauOut', `${label} = ${fmt(tau)} s<br>Value at t=${fmt(t)} s ⇒ ${fmt(x)}`);
+        }
+
+        function rlcClassify() {
+            const R = val('rlcR');
+            const L = val('rlcL');
+            const C = val('rlcC');
+            if (!(R > 0 && L > 0 && C > 0)) { set('rlcOut', 'R, L, C must be > 0.'); return; }
+            const alpha = R / (2 * L);
+            const w0 = 1 / Math.sqrt(L * C);
+            const zeta = alpha / w0;
+            let type = zeta < 1 ? 'Underdamped' : (Math.abs(zeta - 1) < 1e-6 ? 'Critically damped' : 'Overdamped');
+            set('rlcOut', `α = ${fmt(alpha)} s⁻¹, ω₀ = ${fmt(w0)} rad/s, ζ = ${fmt(zeta, 4)} → <strong>${type}</strong>`);
+        }
+
+        function acPower() {
+            const V = val('acV');
+            const I = val('acI');
+            const pf = val('acPF');
+            const sign = document.getElementById('acSign').value === 'lag' ? 1 : -1;
+            if (!(V > 0 && I > 0 && pf >= 0 && pf <= 1)) { set('acOut', 'Check V, I, pf (0–1).'); return; }
+            const S = V * I;
+            const P = S * pf;
+            const Q = sign * Math.sqrt(Math.max(S * S - P * P, 0));
+            set('acOut', `|S| = ${fmt(S)} VA, P = ${fmt(P)} W, Q = ${fmt(Q)} var`);
+        }
+
+        function threePhase() {
+            const conn = document.getElementById('tConn').value;
+            const VL = val('tVL');
+            const Z = val('tZ');
+            const phi = (val('tPhi') || 0) * Math.PI / 180;
+            if (!(VL > 0 && Z > 0)) { set('tOut', 'Enter V_L and |Z_ph|.'); return; }
+            let Vph = (conn === 'Y') ? VL / Math.sqrt(3) : VL;
+            let Iph = Vph / Z;
+            let IL = (conn === 'Y') ? Iph : Math.sqrt(3) * Iph;
+            const P = Math.sqrt(3) * VL * IL * Math.cos(phi);
+            const Q = Math.sqrt(3) * VL * IL * Math.sin(phi);
+            set('tOut', `I_L = ${fmt(IL)} A, P = ${fmt(P)} W, Q = ${fmt(Q)} var`);
+        }
+
+        function laplaceShow() {
+            const sel = document.getElementById('lapSel').value;
+            const a = val('lapA');
+            const w = val('lapW');
+            let out = '';
+            if (sel === 'step') out = 'F(s) = 1/s';
+            else if (sel === 'impulse') out = 'F(s) = 1';
+            else if (sel === 'exp') out = `F(s) = 1/(s+${fmt(a)})`;
+            else if (sel === 'sin') out = `F(s) = ${fmt(w)}/(s^2+${fmt(w)}^2)`;
+            else if (sel === 'cos') out = `F(s) = s/(s^2+${fmt(w)}^2)`;
+            else if (sel === 't') out = 'F(s) = 1/s^2';
+            set('lapOut', out);
+        }
+
+        document.getElementById('fsMode').addEventListener('change', (e) => {
+            const mode = e.target.value;
+            document.getElementById('fsRC').style.display = mode === 'rc' ? '' : 'none';
+            document.getElementById('fsRLC').style.display = mode === 'rlc' ? '' : 'none';
+        });
+        function fsCalc() {
+            const mode = document.getElementById('fsMode').value;
+            if (mode === 'rc') {
+                const R = val('fsR');
+                const C = val('fsC');
+                if (!(R > 0 && C > 0)) { set('fsOut', 'Enter R and C.'); return; }
+                const fc = 1 / (2 * Math.PI * R * C);
+                set('fsOut', `f_c = ${fmt(fc)} Hz`);
+            } else {
+                const R = val('fsRR');
+                const L = val('fsL');
+                const C = val('fsCC');
+                if (!(R > 0 && L > 0 && C > 0)) { set('fsOut', 'Enter R, L, C.'); return; }
+                const f0 = 1 / (2 * Math.PI * Math.sqrt(L * C));
+                const Q = (1 / R) * Math.sqrt(L / C);
+                set('fsOut', `f_0 = ${fmt(f0)} Hz, Q = ${fmt(Q)}`);
+            }
+        }
+
+        function skCalc() {
+            const known = document.getElementById('skKnown').value;
+            const fc = val('skFc');
+            if (!(fc > 0)) { set('skOut', 'Enter f_c.'); return; }
+            const w0 = 2 * Math.PI * fc;
+            if (known === 'R') {
+                const R = val('skR');
+                if (!(R > 0)) { set('skOut', 'Enter R.'); return; }
+                const C = 1 / (w0 * R);
+                set('skOut', `Equal parts: choose C1=C2≈${fmt(C)} F (Q≈0.5)`);
+            } else {
+                const C = val('skC');
+                if (!(C > 0)) { set('skOut', 'Enter C.'); return; }
+                const R = 1 / (w0 * C);
+                set('skOut', `Equal parts: choose R1=R2≈${fmt(R)} Ω (Q≈0.5)`);
+            }
+        }
+
+        function squareCoeffs() {
+            const A = val('sqA');
+            let N = parseInt(document.getElementById('sqN').value, 10);
+            if (!(A > 0) || !(N > 0)) { set('sqOut', 'Enter A>0 and N>0.'); return; }
+            if (N % 2 === 0) N = N - 1; // ensure odd count
+            let rows = ['<table border="1" cellpadding="4"><tr><th>n</th><th>b_n</th></tr>'];
+            let count = 0; let n = 1;
+            while (count < N) {
+                const bn = 4 * A / (n * Math.PI);
+                rows.push(`<tr><td>${n}</td><td>${fmt(bn)}</td></tr>`);
+                n += 2; count++;
+            }
+            rows.push('</table>');
+            set('sqOut', rows.join(''));
+        }
+
+        function z2y() {
+            function c(re, im) { return { re: re, im: im }; }
+            function add(a, b) { return c(a.re + b.re, a.im + b.im); }
+            function sub(a, b) { return c(a.re - b.re, a.im - b.im); }
+            function mul(a, b) { return c(a.re * b.re - a.im * b.im, a.re * b.im + a.im * b.re); }
+            function inv(a) { const d = a.re * a.re + a.im * a.im; return c(a.re / d, -a.im / d); }
+            function div(a, b) { return mul(a, inv(b)); }
+            const z11 = c(val('z11r') || 0, val('z11i') || 0);
+            const z12 = c(val('z12r') || 0, val('z12i') || 0);
+            const z21 = c(val('z21r') || 0, val('z21i') || 0);
+            const z22 = c(val('z22r') || 0, val('z22i') || 0);
+            // detZ = z11*z22 - z12*z21
+            const det = sub(mul(z11, z22), mul(z12, z21));
+            const y11 = div(z22, det);
+            const y12 = c(-1, 0); Object.assign(y12, mul(c(-1, 0), div(z12, det)));
+            const y21 = c(-1, 0); Object.assign(y21, mul(c(-1, 0), div(z21, det)));
+            const y22 = div(z11, det);
+            function s(a) { return `${fmt(a.re)} ${a.im >= 0 ? '+' : '−'} j${fmt(Math.abs(a.im))}`; }
+            set('yOut', `<pre>Y11 = ${s(y11)} S\nY12 = ${s(y12)} S\nY21 = ${s(y21)} S\nY22 = ${s(y22)} S</pre>`);
+        }
+
+    </script>
+</body>
+
+</html>
