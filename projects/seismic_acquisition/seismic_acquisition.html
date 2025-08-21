@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Seismic Acquisition</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="WpzyAhc3YcZBRUftVh0ZAnBCio0hivIyIASDU_4T8wk" />
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <header id="common-header"></header>
+    <br>
+
+    <h1 style="text-align: center;">Wireless Seismic Data Acquisition System</h1>
+
+    <p style="text-align: center;">
+        <strong>Best Senior Project Award, Senior Expo Day, KFUPM, 2019</strong>
+    </p>
+
+    <h2 style="text-align: center;">Overview</h2>
+    <p style="text-align: center;">
+        This project presents a wireless seismic data acquisition system designed for geophysical surveys.
+        Traditional surveys deploy thousands of cabled sensors, which are costly and cumbersome; here, we replace
+        them with compact wireless nodes built around coil-based <a
+            href="https://en.wikipedia.org/wiki/Geophone">geophone</a> sensors.
+        Each node integrates a low-noise signal-conditioning chain (programmable gain and anti-aliasing filter),
+        a 24-bit <em>sigma-delta</em> ADC sampled every 2&nbsp;ms, and a microcontroller
+        (ATmega328P on Arduino Nano) that configures the converter and handles framing.
+        Data packets are transmitted over a Zigbee link (XBee&nbsp;S2C), enabling distributed deployment without
+        long analog cables. This architecture provides high resolution, low power, and robust digital transport suitable
+        for low-frequency seismic acquisition.
+    </p>
+
+    <div align="center">
+        <figure>
+            <img src="images/seismic_survey.png" alt="Seismic Survey" style="width: 500px;" />
+            <figcaption>Figure 1. Schematic of a typical seismic survey showing sensor grid layout</figcaption>
+        </figure>
+    </div>
+
+    <h2 style="text-align: center;">Sensor Model</h2>
+    <p style="text-align: center;">
+        The analog front-end uses a geophone to capture ground motion: a stationary magnet and a moving coil produce an
+        induced voltage proportional to relative velocity by
+        <a href="https://en.wikipedia.org/wiki/Faraday%27s_law_of_induction">Faraday’s Law</a>.
+    </p>
+
+    <p style="text-align: center;">
+        \[
+        v_g(t) \propto \frac{dx(t)}{dt}
+        \]
+    </p>
+
+    <p style="text-align: center;">
+        Modeling the mechanics as a damped harmonic oscillator with coil displacement \(x(t)\) and ground displacement
+        \(u(t)\):
+    </p>
+
+    <p style="text-align: center;">
+        \[
+        \frac{d^2x}{dt^2} + 2\lambda \omega_0 \frac{dx}{dt} + \omega_0^2 x = \frac{d^2u}{dt^2}
+        \]
+    </p>
+
+    <p style="text-align: center;">
+        The transfer functions for displacement-, velocity-, and acceleration-proportional outputs are:
+    </p>
+
+    <p style="text-align: center;">
+        \[
+        H_{\text{displacement}}(s) = A \cdot \frac{s^3}{s^2 + 2\lambda \omega_0 s + \omega_0^2}
+        \]
+        \[
+        H_{\text{velocity}}(s) = A \cdot \frac{s^2}{s^2 + 2\lambda \omega_0 s + \omega_0^2}
+        \]
+        \[
+        H_{\text{acceleration}}(s) = A \cdot \frac{s}{s^2 + 2\lambda \omega_0 s + \omega_0^2}
+        \]
+    </p>
+
+    <p style="text-align: center;">
+        The velocity transfer function’s equal numerator/denominator orders yield a flat high-frequency response, so the
+        sensor effectively acts as a velocity transducer for seismic signals.
+    </p>
+
+    <h2 style="text-align: center;">Signal Conditioning & 24-Bit Σ-Δ ADC</h2>
+    <p style="text-align: center;">
+        The analog signal is digitized by the <a href="https://www.analog.com/en/products/ad7714.html"
+            target="_blank">AD7714</a>:
+        a 24-bit sigma-delta ADC with integrated PGA and digital filtering, low standby power (~15&nbsp;μW), and fully
+        differential inputs. The Arduino Nano configures the ADC over SPI (register setup, gain, rate, and
+        self-calibration)
+        and relays framed samples to the Zigbee radio. For this prototype, we used a 2&nbsp;ms sampling interval
+        (500&nbsp;Hz),
+        differential input mapping (AIN1–AIN6), and startup self-calibration.
+    </p>
+
+    <div align="center">
+        <figure>
+            <img src="images/ad7714_pinout.png" alt="AD7714 Pinout" style="width: 200px;" />
+            <figcaption>Figure 2. AD7714 pin configuration</figcaption>
+        </figure>
+        <figure>
+            <img src="images/ad7714_block.png" alt="AD7714 Functional Block" style="width: 500px;" />
+            <figcaption>Figure 3. Functional block diagram of the AD7714</figcaption>
+        </figure>
+        <figure>
+            <img src="images/ad7714_circuit.png" alt="AD7714 Circuit" style="width: 400px;" />
+            <figcaption>Figure 4. Implemented ADC circuit with external reference (AD780)</figcaption>
+        </figure>
+    </div>
+
+    <h2 style="text-align: center;">Verification Results</h2>
+    <p style="text-align: center;">
+        A hammer impulse was applied and captured by both a benchmark system and this prototype. Results show successful
+        acquisition and reliable wireless transmission up to 50&nbsp;m.
+    </p>
+
+    <div align="center">
+        <figure>
+            <img src="images/impulse_response_benchmark.png" alt="Impulse Response - Benchmark" style="width: 500px;" />
+            <figcaption>Figure 5. Impulse response of the benchmark system</figcaption>
+        </figure>
+    </div>
+
+    <div align="center">
+        <figure>
+            <img src="images/impulse_response_geophone.png" alt="Impulse Response - Prototype" style="width: 500px;" />
+            <figcaption>Figure 6. Impulse response of the wireless seismic acquisition prototype</figcaption>
+        </figure>
+    </div>
+
+    <br>
+    <footer id="common-footer"></footer>
+    <script src="/html_header.js"></script>
+    <script src="/html_footer.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <script>
+        window.MathJax = {
+            tex: { tags: 'all', packages: { '[+]': ['ams'] } }
+        };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-SPEP808K2E"></script>
+</body>
+
+</html>

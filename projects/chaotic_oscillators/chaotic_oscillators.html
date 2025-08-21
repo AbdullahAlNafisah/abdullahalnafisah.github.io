@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Chaotic Oscillators for Secure Communication</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="WpzyAhc3YcZBRUftVh0ZAnBCio0hivIyIASDU_4T8wk" />
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <header id="common-header"></header>
+    <br>
+
+    <h1 style="text-align:center;">
+        Chaotic Oscillators for Secure Communication
+    </h1>
+
+    <p style="text-align:center;">
+        <strong>Publications:</strong>
+        <a href="https://ieeexplore.ieee.org/document/9859376" target="_blank">MWSCAS 2022</a> •
+        <a href="https://www.oldcitypublishing.com/journals/japed-home/japed-issue-contents/japed-volume-15-number-1-2-2020/japed-15-1-2-p-21-28/"
+            target="_blank">JAPED 2020</a> •
+        <a href="https://ijeecs.iaescore.com/index.php/IJEECS/article/view/16847" target="_blank">IJEECS 2019</a>
+    </p>
+
+    <p style="text-align:center;">
+        Leveraging <a href="https://en.wikipedia.org/wiki/Chaos_theory" target="_blank">chaos theory</a> and circuits
+        such as
+        <a href="https://en.wikipedia.org/wiki/Chua's_circuit" target="_blank">Chua’s circuit</a>, this project
+        implements
+        chaotic oscillators using memristor-based Wien-bridge and two-transistor RC designs. Their aperiodic yet
+        deterministic
+        dynamics, sensitivity to initial conditions, broad frequency content (natural spread spectrum), and ability to
+        synchronize via capacitive coupling make them attractive for analog scrambling/masking and recovery in secure
+        links.
+        We experimentally demonstrate synchronization (time/frequency/phase) and audio masking with successful recovery
+        under
+        proper gain tuning.
+    </p>
+
+    <h2 style="text-align:center;">Memristor-Based Wien-Bridge Oscillator</h2>
+    <div align="center">
+        <figure>
+            <img src="images/memristor_circuit.png" alt="Memristor Wien-Bridge Oscillator" style="width:300px;" />
+            <figcaption>Figure 1. Memristor-based chaotic oscillator</figcaption>
+        </figure>
+    </div>
+    <p style="text-align:center;">
+        A standard Wien-bridge is modified by replacing a resistor with a memristor emulator to induce nonlinearity for
+        chaos.
+        The oscillation frequency and sustainability follow the relations in the model; the time-varying memristor
+        resistance
+        \(R_M(t)\) drives the chaotic regime.
+    </p>
+
+    <div align="center">
+        <figure>
+            <img src="images/chaotic_phase_space.png" alt="Chaotic Oscillator Phase Space" style="width:400px;" />
+            <figcaption>Figure 2. Phase-space attractor</figcaption>
+        </figure>
+    </div>
+
+    <h2 style="text-align:center;">Two-Transistor Chaotic Oscillator</h2>
+    <p style="text-align:center;">
+        A compact RC oscillator using two NPN transistors (e.g., 2N4401) achieves chaos without inductors. Biasing and
+        RC
+        feedback shape a new equilibrium; tuning a variable resistor adjusts the base frequency in the chaotic regime.
+    </p>
+    <div align="center">
+        <figure>
+            <img src="images/transistor_chaotic_circuit.png" alt="Transistor-Based Chaotic Oscillator Circuit"
+                style="width:300px;" />
+            <figcaption>Figure 3. Two-transistor chaotic RC oscillator</figcaption>
+        </figure>
+    </div>
+
+    <div align="center">
+        <figure>
+            <img src="images/transistor_chaotic_phase_space.png" alt="Transistor-Based Chaotic Oscillator Phase Space"
+                style="width:400px;" />
+            <figcaption>Figure 4. “Double scroll” attractor</figcaption>
+        </figure>
+    </div>
+
+    <h2 style="text-align:center;">Synchronization & Secure Analog Masking</h2>
+    <p style="text-align:center;">
+        Master and slave oscillators are capacitively coupled (\(C_{\text{Syn}}\)) so the slave tracks the master. An
+        input
+        \(V_{\text{IN}}\) is masked by summing with the chaotic carrier; at the receiver, subtraction with the
+        synchronized
+        chaotic signal recovers the message when gains are matched.
+    </p>
+
+    <div align="center">
+        <figure>
+            <img src="images/block_diagram.png" alt="Chaotic Oscillator Block Diagram" style="width:800px;" />
+            <figcaption>Figure 5. Block diagram for synchronized chaotic communication</figcaption>
+        </figure>
+    </div>
+
+    <div align="center">
+        <figure>
+            <img src="images/chaos_sync_results_time.png" alt="Synchronization - Time" style="width:500px;" />
+            <figcaption>Figure 6. Time-domain synchronization</figcaption>
+        </figure>
+    </div>
+
+    <div align="center">
+        <figure>
+            <img src="images/chaos_sync_results_frequency.png" alt="Synchronization - Frequency" style="width:500px;" />
+            <figcaption>Figure 7. Frequency-domain synchronization</figcaption>
+        </figure>
+    </div>
+
+    <div align="center">
+        <figure>
+            <img src="images/chaos_sync_results_phase.png" alt="Synchronization - Phase" style="width:300px;" />
+            <figcaption>Figure 8. Phase-domain synchronization</figcaption>
+        </figure>
+    </div>
+
+    <h2 style="text-align:center;">Audio Masking & Recovery</h2>
+    <div align="center">
+        <figure>
+            <img src="images/audio_time_masked.png" alt="Masked audio - time" style="width:500px;" />
+            <figcaption>Figure 9. Audio masked by chaotic carrier (time)</figcaption>
+        </figure>
+    </div>
+
+    <div align="center">
+        <figure>
+            <img src="images/audio_frequency_masked.png" alt="Masked audio - frequency" style="width:500px;" />
+            <figcaption>Figure 10. Spectrum with chaotic masking</figcaption>
+        </figure>
+    </div>
+
+    <div align="center">
+        <figure>
+            <img src="images/audio_time_recovery.png" alt="Recovered audio - time" style="width:500px;" />
+            <figcaption>Figure 11. Recovered audio at synchronized receiver</figcaption>
+        </figure>
+    </div>
+
+    <br>
+    <footer id="common-footer"></footer>
+    <script src="/html_header.js"></script>
+    <script src="/html_footer.js"></script>
+
+    <script>
+        window.MathJax = { tex: { tags: 'all', packages: { '[+]': ['ams'] } } };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-SPEP808K2E"></script>
+</body>
+
+</html>

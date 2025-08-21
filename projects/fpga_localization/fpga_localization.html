@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Real-Time FPGA-Based Indoor Localization</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="WpzyAhc3YcZBRUftVh0ZAnBCio0hivIyIASDU_4T8wk" />
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <header id="common-header"></header>
+  <br>
+
+  <h1 style="text-align:center;">
+    Real-Time FPGA-Based Indoor Localization
+  </h1>
+
+  <p style="text-align:center;">
+    This project implements low-cost, real-time indoor localization using precise
+    <a href="https://en.wikipedia.org/wiki/Time_of_flight" target="_blank">time-of-flight (ToF)</a> of acoustic pulses,
+    synchronized FPGAs, and hardware-level processing. A master FPGA wirelessly synchronizes two slave FPGAs
+    (transmitter/receiver). The transmitter emits an ultrasonic waveform based on a
+    <a href="https://en.wikipedia.org/wiki/Zadoff%E2%80%93Chu_sequence" target="_blank">Zadoff-Chu (ZC)</a> sequence,
+    while the receiver performs ADC sampling, demodulation, filtering, and correlation to estimate ToF with 100 MHz
+    timing resolution. With an analog front-end (BPF + gain), the system achieves stable ranging with sub-centimeter
+    MAE and synchronization jitter within ±1.2 µs.
+  </p>
+
+  <div align="center">
+    <figure>
+      <img src="images/system_block_diagram.png" alt="System Block Diagram" style="width:500px;" />
+      <figcaption>Figure 1. Master/Transmitter/Receiver modules and signal flow</figcaption>
+    </figure>
+  </div>
+
+  <h2 style="text-align:center;">Master FPGA Module</h2>
+  <p style="text-align:center;">
+    A wireless trigger (NRF24L01) simultaneously starts the transmitter and receiver time bases (100 MHz clock),
+    enabling accurate ToF measurement between emission and detection.
+  </p>
+  <div align="center">
+    <figure>
+      <img src="images/master_block.png" alt="Master Block" style="width:300px;" />
+      <figcaption>Figure 2. Master synchronization & SPI control</figcaption>
+    </figure>
+  </div>
+
+  <h2 style="text-align:center;">Acoustic Transmitter</h2>
+  <p style="text-align:center;">
+    ZC sequence (N=16, root=1) is modulated on a 40 kHz carrier and sent to an ultrasonic transducer.
+    Typical parameters: upsampling = 256, window = 4096, sampling = 320 ksps.
+  </p>
+  <div align="center">
+    <figure>
+      <img src="images/transmitter_block.png" alt="Transmitter Block" style="width:600px;" />
+      <figcaption>Figure 3. DAC & SPI interfaces for ZC waveform generation</figcaption>
+    </figure>
+  </div>
+
+  <div align="center">
+    <figure>
+      <img src="images/zc_signal_design.png" alt="ZC Signal" style="width:500px;" />
+      <figcaption>Figure 4. ZC sequence design and carrier modulation</figcaption>
+    </figure>
+  </div>
+
+  <h2 style="text-align:center;">Acoustic Receiver & AFE</h2>
+  <p style="text-align:center;">
+    The receiver demodulates I/Q, low-pass filters, then cross-correlates with the stored ZC reference to detect
+    arrival time. The analog chain uses a 40.6 kHz-centered BPF (BW≈24 kHz) and amplification before digitization.
+  </p>
+  <div align="center">
+    <figure>
+      <img src="images/receiver_block.png" alt="Receiver Block" style="width:650px;" />
+      <figcaption>Figure 5. Receiver demodulation, filtering, and correlation pipeline</figcaption>
+    </figure>
+  </div>
+
+  <div align="center">
+    <figure>
+      <img src="images/analog_filter_amp.png" alt="Analog BPF and Amp" style="width:600px;" />
+      <figcaption>Figure 6. 4th-order Butterworth BPF and amplifier</figcaption>
+    </figure>
+  </div>
+
+  <div align="center">
+    <figure>
+      <img src="images/correlation_process.png" alt="Demodulation and Correlation" style="width:600px;" />
+      <figcaption>Figure 7. Correlation peak detection for ToF estimation</figcaption>
+    </figure>
+  </div>
+
+  <h2 style="text-align:center;">Experimental Setup & Results</h2>
+  <p style="text-align:center;">
+    Tests on Nexys A7 & Basys3 with NRF24L01 synchronization and ultrasonic transducers showed consistent range
+    estimates; timing jitter was within ±1.2 µs and MAE &lt; 1 cm.
+  </p>
+
+  <div align="center">
+    <figure>
+      <img src="images/experiment_setup.png" alt="Test Setup" style="width:650px;" />
+      <figcaption>Figure 8. Hardware setup</figcaption>
+    </figure>
+  </div>
+
+  <div align="center">
+    <figure>
+      <img src="images/results_jitter.png" alt="Timing Results" style="width:600px;" />
+      <figcaption>Figure 9. Jitter and peak detection performance</figcaption>
+    </figure>
+  </div>
+
+  <br>
+  <footer id="common-footer"></footer>
+  <script src="/html_header.js"></script>
+  <script src="/html_footer.js"></script>
+
+  <script>
+    window.MathJax = { tex: { tags: 'all', packages: { '[+]': ['ams'] } } };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script defer src="https://www.googletagmanager.com/gtag/js?id=G-SPEP808K2E"></script>
+</body>
+
+</html>

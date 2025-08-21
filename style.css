@@ -1,0 +1,253 @@
+/* ===============================
+   Global Variables
+   =============================== */
+:root {
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ===============================
+   Global styles
+   =============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-sans);
+    /* apply globally */
+}
+
+/* Base type */
+html {
+    font-size: 100%;
+}
+
+/* Content width & padding */
+main {
+    max-width: 720px;
+    margin: 8vh auto;
+    padding: 0 clamp(12px, 4vw, 24px);
+}
+
+body {
+    font: 1rem/1.6 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* ===============================
+   Headings
+   =============================== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+/* Headings scale with viewport but stay sensible */
+/* h1 {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    line-height: 1.2;
+    margin: 0.6em 0 0.3em;
+}
+
+h2 {
+    font-size: clamp(1.1rem, 3.2vw, 1.4rem);
+    line-height: 1.25;
+    margin: 1.2em 0 0.5em;
+} */
+
+
+/* ===============================
+   Paragraphs
+   =============================== */
+p {
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+/* ===============================
+   Links
+   =============================== */
+a {
+    color: #1e90ff;
+    /* Dodger blue for links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ===============================
+   Header & Footer
+   =============================== */
+header {
+    background: #111;
+    text-align: center;
+    padding: 20px;
+}
+
+footer {
+    background: #111;
+    text-align: center;
+    color: #aaa;
+    padding: 20px;
+}
+
+/* ===============================
+   Lists
+   =============================== */
+ul,
+ol {
+    margin: 1em 0;
+    padding-left: 1.5em;
+}
+
+li {
+    margin: 0.6em 0;
+    padding: 0.6em 0.8em;
+    background: #222;
+    /* dark background */
+    color: #eaeaea;
+    /* light text for readability */
+    list-style-position: inside;
+    border-radius: 6px;
+    /* slightly softer corners */
+    border: 1px solid #333;
+    /* subtle border to define edges */
+    line-height: 1.5;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+li+li {
+    margin-top: 0.8em;
+}
+
+/* Hover interaction */
+li:hover {
+    background: #f7f7f7;
+    color: #111;
+    border-color: #ccc;
+}
+
+/* Links inside list items */
+li a {
+    display: inline-block;
+    margin-top: 0.3em;
+    /* spacing above “Link:” line */
+    font-size: 0.9em;
+    color: #3b82f6;
+    /* nicer blue */
+    text-decoration: none;
+    word-break: break-word;
+    /* prevent long URLs breaking layout */
+    transition: color 0.25s ease;
+}
+
+li a:hover {
+    text-decoration: underline;
+    color: #1d4ed8;
+    /* darker hover blue */
+}
+
+/* Optional: style the “Link:” label */
+li::marker {
+    color: #888;
+    /* muted bullet/number color */
+}
+
+.link-label {
+    font-weight: 500;
+    margin-right: 0.3em;
+    color: #aaa;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+
+/* ===============================
+   Buttons
+   =============================== */
+/* button {
+    background: #1e90ff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0f66c2;
+} */
+
+/* ===============================
+   Inputs & Forms
+   =============================== */
+/* input,
+textarea,
+select {
+    background: #111;
+    color: #fff;
+    border: 1px solid #444;
+    padding: 8px;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #888;
+} */
+
+/* ===============================
+   Images
+   =============================== */
+/* img {
+    max-width: 100%;
+    border-radius: 8px;
+} */
+
+/* ===============================
+   Containers
+   =============================== */
+/* div,
+section,
+article {
+    margin-bottom: 20px;
+    padding: 10px;
+} */
+
+
+/* ===============================
+   Tables
+   =============================== */
+/* table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th,
+td {
+    border: 1px solid #444;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: #222;
+}
+
+tr:nth-child(even) {
+    background: #111;
+} */

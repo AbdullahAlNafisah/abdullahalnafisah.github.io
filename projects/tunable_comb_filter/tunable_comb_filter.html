@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Tunable Comb Filter</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="WpzyAhc3YcZBRUftVh0ZAnBCio0hivIyIASDU_4T8wk" />
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+
+<body>
+    <header id="common-header"></header>
+    <br>
+
+    <h1 style="text-align: center;">
+        Tunable Comb Filter
+    </h1>
+
+    <p style="text-align: center;">
+        <strong>Publication:</strong>
+        <a href="https://www.oldcitypublishing.com/journals/japed-home/japed-issue-contents/japed-volume-15-number-1-2-2020/japed-15-1-2-p-1-8/"
+            target="_blank">
+            A New CFOA-Based Shadow Analog Comb Filter (JAPED, 2020)
+        </a>
+    </p>
+
+    <p style="text-align: center;">
+        This project introduces a novel shadow comb filter based on the concept of <a
+            href="https://en.wikipedia.org/wiki/Current-feedback_operational_amplifier">current feedback operational
+            amplifier (CFOA)</a>. It combines multiple notch filters with different center frequencies. The
+        bandwidth and quality factor of each filter is controlled via the gain of the amplifier using a single
+        variable resistor.
+        This design enables independent electronic tuning of each notch's bandwidth without affecting the center
+        frequency or the overall gain. The notch filters are centered around 1 kHz, 10 kHz, 100 kHz, and
+        1 MHz and implemented using the commercially available
+        <a href="https://www.analog.com/en/products/ad844.html" target="_blank">AD844</a> ICs.
+    </p>
+
+    <div align="center">
+        <figure>
+            <img src="images/block_diagram.png" alt="Notch Filter Block Diagram" style="width: 580px;" />
+            <figcaption>Figure 1. Block diagram showing cascaded notch filter architecture</figcaption>
+        </figure>
+    </div>
+
+    <h2 style="text-align: center;">
+        Notch Filter Design
+    </h2>
+
+    <p style="text-align: center;">
+        <strong>Core equations governing the design:</strong>
+    </p>
+
+    <p style="text-align: center;">
+        <strong>Center frequency:</strong><br>
+        \[ f₀ = \frac{1}{2\pi\sqrt{R_1 R_3 C_1 C_2}} \]
+    </p>
+
+    <p style="text-align: center;">
+        <strong>Bandwidth:</strong> (when \( R_a = R_1 = R \))<br>
+        \[
+        BW = \frac{1}{C_2 R_2} - \frac{R_b}{R_a C_2 R_1}
+        = \frac{1}{R C_2} \left(\frac{R}{R_2} - \frac{R_b}{R}\right)
+        \]
+    </p>
+
+    <div align="center">
+        <figure>
+            <img src="images/notch_filter.png" alt="Notch Filter Circuit" style="width: 500px;" />
+            <figcaption>Figure 2. Schematic of a single tunable notch filter stage</figcaption>
+        </figure>
+    </div>
+
+    <h2 style="text-align: center;">
+        Experimental Results
+    </h2>
+
+    <p style="text-align: center;">
+        Experiments validated smooth electronic bandwidth tuning without affecting the notch frequency.
+        Adjusting a single variable resistor (with inverse control over R2 and Rb) effectively modified
+        the bandwidth. The measured notch depths at different frequencies were:
+    </p>
+
+    <p style="text-align: center;">
+        1 kHz → -56 dB<br>
+        10 kHz → -55 dB<br>
+        100 kHz → -46 dB<br>
+        1 MHz → -36 dB
+    </p>
+
+    <div align="center">
+        <figure>
+            <img src="images/experimental_results.png" alt="Experimental Results" style="width: 620px;" />
+            <figcaption>
+                Figure 3. Frequency response showing tuned bandwidths at multiple notch targets
+            </figcaption>
+        </figure>
+    </div>
+
+
+    <br>
+    <footer id="common-footer"></footer>
+    <script src="/html_header.js"></script>
+    <script src="/html_footer.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                tags: 'all',
+                packages: { '[+]': ['ams'] }
+            }
+        };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-SPEP808K2E"></script>
+</body>
+
+</html>

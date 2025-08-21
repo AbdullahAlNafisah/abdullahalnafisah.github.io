@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>FPGA Graphics Control</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="WpzyAhc3YcZBRUftVh0ZAnBCio0hivIyIASDU_4T8wk" />
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <header id="common-header"></header>
+    <br>
+
+    <h1 style="text-align:center;">
+        FPGA Graphics Control
+    </h1>
+
+    <p style="text-align:center;">
+        This system is built on the
+        <a href="https://digilent.com/reference/programmable-logic/nexys-a7/start" target="_blank">Nexys A7</a> FPGA
+        board which performs real-time
+        <a href="https://en.wikipedia.org/wiki/Video_Graphics_Array" target="_blank">VGA</a> video output,
+        <a href="https://www.burtonsys.com/ps2_chapweske.htm" target="_blank">PS/2</a> keyboard decoding, and
+        <a href="https://en.wikipedia.org/wiki/Pulse-width_modulation" target="_blank">PWM</a>-based audio signaling.
+        The
+        interactive demo is a music-driven arcade game that highlights deterministic hardware control of graphics,
+        input, and sound. A custom VGA timing generator (sync + porch), a full 11-bit PS/2 frame handler (make/break),
+        PWM audio with analog low-pass filtering, and a ROM-based sprite engine are orchestrated by a centralized <a
+            href="https://en.wikipedia.org/wiki/Finite-state_machine">finite state machine (FSM)</a> to manage layered
+        sprites, collisions, screen transitions, and event sequencing—all
+        operating under precise clock management to ensure stable, low-latency performance.
+    </p>
+
+    <div align="center">
+        <figure>
+            <img src="images/play_page.png" alt="Game Play Page" style="width:800px;" />
+            <figcaption>Figure 1. Play state with ROM-backed sprites</figcaption>
+        </figure>
+    </div>
+
+    <h2 style="text-align:center;">VGA Protocol</h2>
+    <p style="text-align:center;">
+        VGA scanning is driven by horizontal/vertical sync pulses and porch intervals. For 1280×800@60 Hz, the pixel
+        clock is
+    </p>
+    <p style="text-align:center;">
+        \[
+        \text{Pixel Clock} = 60 \times (1280 + 336) \times (800 + 27) \approx 83.33\ \text{MHz}
+        \]
+    </p>
+
+    <div align="center">
+        <figure>
+            <img src="images/vga_connector.png" alt="VGA Connector" style="width:300px;" />
+            <figcaption>Figure 2. VGA connector & RGB wiring</figcaption>
+        </figure>
+    </div>
+
+    <div align="center">
+        <figure>
+            <img src="images/vga_matrix.png" alt="Display Matrix" style="width:400px;" />
+            <figcaption>Figure 3. Raster scan from top-left to bottom-right</figcaption>
+        </figure>
+    </div>
+
+    <h2 style="text-align:center;">Horizontal Retrace & Addressable Pixels</h2>
+    <p style="text-align:center;">
+        Sync + porch intervals create idle windows for retrace. Visible pixels are those outside these intervals.
+    </p>
+
+    <div align="center">
+        <figure>
+            <img src="images/hs_delay.png" alt="HS Delay" style="width:500px;" />
+            <figcaption>Figure 4. Retrace-induced delay in HS signal</figcaption>
+        </figure>
+    </div>
+
+    <div align="center">
+        <figure>
+            <img src="images/addressable_pixels.png" alt="Addressable Pixels Timing" style="width:600px;" />
+            <figcaption>Figure 5. Timing diagram for 1280×800 addressable region</figcaption>
+        </figure>
+    </div>
+
+    <h2 style="text-align:center;">PS/2 Keyboard & PWM Audio</h2>
+    <p style="text-align:center;">
+        PS/2 uses start, 8 data, parity, and stop bits; “F0” precedes release codes. Audio is generated via PWM and
+        smoothed
+        by a 4th-order Sallen-Key Butterworth LPF.
+    </p>
+
+    <div align="center">
+        <figure>
+            <img src="images/ps2_frame.png" alt="PS2 Frame Format" style="width:400px;" />
+            <figcaption>Figure 6. 11-bit PS/2 frame</figcaption>
+        </figure>
+    </div>
+
+    <div align="center">
+        <figure>
+            <img src="images/pwm_signal.png" alt="PWM Signal" style="width:500px;" />
+            <figcaption>Figure 7. PWM duty cycle vs analog output</figcaption>
+        </figure>
+    </div>
+
+    <div align="center">
+        <figure>
+            <img src="images/lpf_circuit.png" alt="LPF Circuit" style="width:500px;" />
+            <figcaption>Figure 8. 4th-order Butterworth LPF</figcaption>
+        </figure>
+    </div>
+
+    <div align="center">
+        <figure>
+            <img src="images/lpf_response.png" alt="LPF Frequency Response" style="width:500px;" />
+            <figcaption>Figure 9. LPF magnitude response</figcaption>
+        </figure>
+    </div>
+
+    <h2 style="text-align:center;">Sprites, FSM & System Design</h2>
+    <p style="text-align:center;">
+        Objects (player, coins, bombs, text) are drawn from ROMs with unique pixel codes and overlaid via priority
+        rules.
+        An FSM manages states (Start, Play, Gameover, Win), input handling, and rendering order.
+    </p>
+
+    <div align="center">
+        <figure>
+            <img src="images/game_objects.png" alt="Game Objects" style="width:600px;" />
+            <figcaption>Figure 10. Sprite assets</figcaption>
+        </figure>
+    </div>
+
+    <div align="center">
+        <figure>
+            <img src="images/flowchart.png" alt="Flowchart Algorithm" style="width:450px;" />
+            <figcaption>Figure 11. State flow</figcaption>
+        </figure>
+    </div>
+
+    <h2 style="text-align:center;">Vivado Block Design & Verification</h2>
+    <p style="text-align:center;">
+        The final design integrates clocking, controller, VGA, position logic, ROMs, and I/O.
+        Testbenches validated VGA counters, PS/2 decode, PWM, ROM reads, and FSM before hardware integration.
+    </p>
+
+    <div align="center">
+        <figure>
+            <img src="images/block_diagram.png" alt="Vivado Block Design" style="width:800px;" />
+            <figcaption>Figure 12. Hierarchical block diagram</figcaption>
+        </figure>
+    </div>
+
+    <div align="center">
+        <figure>
+            <img src="images/testbench.png" alt="Testbench Simulation" style="width:1000px;" />
+            <figcaption>Figure 13. HS counter verification</figcaption>
+        </figure>
+    </div>
+
+    <h2 style="text-align:center;">Gameplay Highlights</h2>
+    <p style="text-align:center;">
+        On Play, pressing the correct key (A–L) drops a coin and plays the note via PWM; wrong keys drop a bomb that can
+        explode after a timer. Score is tracked on seven-segment display; the FSM advances to Win/Gameover accordingly.
+    </p>
+
+    <div align="center">
+        <figure>
+            <img src="images/start_page.png" alt="Start Page" style="width:800px;" />
+            <figcaption>Figure 14. Start page</figcaption>
+        </figure>
+    </div>
+
+    <div align="center">
+        <figure>
+            <img src="images/coin_drop.png" alt="Coin Drop Action" style="width:800px;" />
+            <figcaption>Figure 15. Coin drop with audio</figcaption>
+        </figure>
+    </div>
+
+    <div align="center">
+        <figure>
+            <img src="images/score_increment.png" alt="Score Update" style="width:300px;" />
+            <figcaption>Figure 16. Seven-segment score</figcaption>
+        </figure>
+    </div>
+
+    <div align="center">
+        <figure>
+            <img src="images/bomb_drop.png" alt="Bomb Drop" style="width:800px;" />
+            <figcaption>Figure 17. Bomb drop on incorrect key</figcaption>
+        </figure>
+    </div>
+
+    <div align="center">
+        <figure>
+            <img src="images/bomb_explode.png" alt="Bomb Explode" style="width:800px;" />
+            <figcaption>Figure 18. Explosion & hazard</figcaption>
+        </figure>
+    </div>
+
+    <div align="center">
+        <figure>
+            <img src="images/gameover_page.png" alt="Gameover Screen" style="width:800px;" />
+            <figcaption>Figure 19. Gameover</figcaption>
+        </figure>
+    </div>
+
+    <div align="center">
+        <figure>
+            <img src="images/win_page.png" alt="Win Page" style="width:800px;" />
+            <figcaption>Figure 20. Win</figcaption>
+        </figure>
+    </div>
+
+    <br>
+    <footer id="common-footer"></footer>
+    <script src="/html_header.js"></script>
+    <script src="/html_footer.js"></script>
+
+    <script>
+        window.MathJax = { tex: { tags: 'all', packages: { '[+]': ['ams'] } } };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-SPEP808K2E"></script>
+</body>
+
+</html>
