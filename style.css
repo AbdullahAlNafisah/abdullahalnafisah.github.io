@@ -1,83 +1,160 @@
 /* ===============================
-   Global Variables
+   Design tokens
    =============================== */
 :root {
-    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+    --text:        #1a1a1a;
+    --text-muted:  #6b7280;
+    --accent:      #2563eb;
+    --bg:          #ffffff;
+    --border:      #e5e7eb;
+    --font:        system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-arabic: 'Amiri', 'Scheherazade New', serif;
 }
 
 /* ===============================
-   Global styles
+   Reset
    =============================== */
-* {
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: var(--font-sans);
-    /* apply globally */
 }
 
-/* Base type */
+/* ===============================
+   Base
+   =============================== */
 html {
     font-size: 100%;
-}
-
-/* Content width & padding */
-main {
-    max-width: 720px;
-    margin: 8vh auto;
-    padding: 0 clamp(12px, 4vw, 24px);
+    scroll-behavior: smooth;
 }
 
 body {
-    font: 1rem/1.6 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-    background-color: #000;
-    color: #fff;
-    padding: 20px;
-    line-height: 1.6;
+    font-family: var(--font);
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text);
+    background: var(--bg);
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* ===============================
+   Basmala banner
+   =============================== */
+.basmala {
+    font-family: var(--font-arabic);
+    font-size: 1.35rem;
+    line-height: 2;
+    direction: rtl;
+    text-align: center;
+    background: #1a1a1a;
+    color: #ffffff;
+    padding: 0.6rem 1.5rem;
+    margin: 0 -1.5rem;
+}
+
+/* ===============================
+   Header / Nav
+   =============================== */
+header {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+    background: none;
+    text-align: left;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+nav li {
+    display: inline;
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+    transition: none;
+    line-height: inherit;
+}
+
+nav li:hover {
+    background: none;
+    color: inherit;
+    border-color: transparent;
+}
+
+nav a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+nav a:hover {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+/* ===============================
+   Footer
+   =============================== */
+footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 0;
+    margin-top: 4rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    background: none;
 }
 
 /* ===============================
    Headings
    =============================== */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: #fff;
-    margin-bottom: 10px;
-}
-
-/* Headings scale with viewport but stay sensible */
-/* h1 {
-    font-size: clamp(1.4rem, 4vw, 2rem);
+h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
     line-height: 1.2;
-    margin: 0.6em 0 0.3em;
+    color: var(--text);
+    margin-bottom: 0.25rem;
 }
 
 h2 {
-    font-size: clamp(1.1rem, 3.2vw, 1.4rem);
-    line-height: 1.25;
-    margin: 1.2em 0 0.5em;
-} */
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 2.75rem 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+}
 
-
-/* ===============================
-   Paragraphs
-   =============================== */
-p {
-    text-align: justify;
-    margin-bottom: 15px;
+h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.2rem;
 }
 
 /* ===============================
-   Links
+   Paragraphs & text
    =============================== */
+p {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
 a {
-    color: #1e90ff;
-    /* Dodger blue for links */
+    color: var(--accent);
     text-decoration: none;
 }
 
@@ -85,169 +162,203 @@ a:hover {
     text-decoration: underline;
 }
 
-/* ===============================
-   Header & Footer
-   =============================== */
-header {
-    background: #111;
-    text-align: center;
-    padding: 20px;
+em {
+    font-style: italic;
 }
 
-footer {
-    background: #111;
-    text-align: center;
-    color: #aaa;
-    padding: 20px;
+strong {
+    font-weight: 600;
 }
 
 /* ===============================
-   Lists
+   Profile block
    =============================== */
-ul,
-ol {
-    margin: 1em 0;
-    padding-left: 1.5em;
+.profile {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 0.5rem;
 }
 
-li {
-    margin: 0.6em 0;
-    padding: 0.6em 0.8em;
-    background: #222;
-    /* dark background */
-    color: #eaeaea;
-    /* light text for readability */
-    list-style-position: inside;
-    border-radius: 6px;
-    /* slightly softer corners */
-    border: 1px solid #333;
-    /* subtle border to define edges */
-    line-height: 1.5;
-    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+.profile img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 3px solid var(--border);
 }
 
-li+li {
-    margin-top: 0.8em;
+.profile-info h1 {
+    margin-bottom: 0.15rem;
 }
 
-/* Hover interaction */
-li:hover {
-    background: #f7f7f7;
-    color: #111;
-    border-color: #ccc;
+.profile-info .subtitle {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
 }
 
-/* Links inside list items */
-li a {
-    display: inline-block;
-    margin-top: 0.3em;
-    /* spacing above “Link:” line */
-    font-size: 0.9em;
-    color: #3b82f6;
-    /* nicer blue */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+.social-links a {
     text-decoration: none;
-    word-break: break-word;
-    /* prevent long URLs breaking layout */
-    transition: color 0.25s ease;
 }
 
-li a:hover {
-    text-decoration: underline;
-    color: #1d4ed8;
-    /* darker hover blue */
+.social-links a:hover {
+    opacity: 0.75;
 }
 
-/* Optional: style the “Link:” label */
-li::marker {
-    color: #888;
-    /* muted bullet/number color */
+/* ===============================
+   Publication list
+   =============================== */
+.pub-list {
+    list-style: none;
+    padding: 0;
 }
 
-.link-label {
+.pub-list li {
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--border);
+    background: none;
+    border-radius: 0;
+    color: var(--text);
+    transition: none;
+    margin: 0;
+}
+
+.pub-list li:first-child {
+    border-top: 1px solid var(--border);
+}
+
+.pub-list li:hover {
+    background: none;
+    color: var(--text);
+}
+
+.pub-title {
     font-weight: 500;
-    margin-right: 0.3em;
-    color: #aaa;
-    font-size: 0.85em;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    color: var(--text);
+    margin-bottom: 0.2rem;
 }
 
+.pub-meta {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.pub-venue {
+    font-style: italic;
+}
 
 /* ===============================
-   Buttons
+   Project / poster list
    =============================== */
-/* button {
-    background: #1e90ff;
-    color: #fff;
+.item-list {
+    list-style: none;
+    padding: 0;
+}
+
+.item-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+    background: none;
+    border-radius: 0;
+    color: var(--text);
+    transition: none;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.item-list li:first-child {
+    border-top: 1px solid var(--border);
+}
+
+.item-list li:hover {
+    background: none;
+    color: var(--text);
+}
+
+/* ===============================
+   Research interests list
+   =============================== */
+.interests-list {
+    list-style: disc;
+    padding-left: 1.4rem;
+}
+
+.interests-list li {
+    padding: 0.2rem 0;
+    background: none;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+    border-radius: 0;
+    color: var(--text);
+    transition: none;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
 }
 
-button:hover {
-    background: #0f66c2;
-} */
-
-/* ===============================
-   Inputs & Forms
-   =============================== */
-/* input,
-textarea,
-select {
-    background: #111;
-    color: #fff;
-    border: 1px solid #444;
-    padding: 8px;
-    border-radius: 4px;
-    width: 100%;
-    margin-bottom: 10px;
+.interests-list li:hover {
+    background: none;
+    color: var(--text);
 }
 
-input::placeholder,
-textarea::placeholder {
-    color: #888;
-} */
+/* ===============================
+   CV / note callout
+   =============================== */
+.cv-note {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+}
 
 /* ===============================
-   Images
+   Generic section spacing
    =============================== */
-/* img {
+section {
+    margin-bottom: 0.5rem;
+}
+
+/* ===============================
+   Figures (project pages)
+   =============================== */
+figure {
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+figcaption {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+}
+
+figure img {
     max-width: 100%;
-    border-radius: 8px;
-} */
+    height: auto;
+}
 
 /* ===============================
-   Containers
+   Responsive
    =============================== */
-/* div,
-section,
-article {
-    margin-bottom: 20px;
-    padding: 10px;
-} */
+@media (max-width: 600px) {
+    .profile {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
 
+    .social-links {
+        justify-content: center;
+    }
 
-/* ===============================
-   Tables
-   =============================== */
-/* table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+    nav ul {
+        gap: 1.25rem;
+    }
 }
-
-th,
-td {
-    border: 1px solid #444;
-    padding: 10px;
-    text-align: left;
-}
-
-th {
-    background: #222;
-}
-
-tr:nth-child(even) {
-    background: #111;
-} */

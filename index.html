@@ -2,80 +2,204 @@
 <html lang="en">
 
 <head>
-  <title>Homepage</title>
+  <title>Abdullah Al-Nafisah</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="WpzyAhc3YcZBRUftVh0ZAnBCio0hivIyIASDU_4T8wk" />
+  <meta name="description" content="Abdullah Al-Nafisah — ECE researcher specializing in digital communications, turbo equalization, and nonlinear circuits. KAUST M.Sc., KFUPM B.Sc." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Edu+NSW+ACT+Cursive:wght@400..700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
-
 <body>
-  <div dir="rtl" lang="ar"
-    style="text-align:center; background:#111; color:#fff; font-family: 'Amiri Quran', 'Amiri', 'Scheherazade', serif; font-size:2em;">
+
+  <div class="basmala" dir="rtl" lang="ar">
     بسم الله الرحمن الرحيم
     <br>
     السلام عليكم ورحمة الله وبركاته
   </div>
+
   <header id="common-header"></header>
-  <br>
 
-  <h1 style="text-align: center; font-family: Edu NSW ACT Cursive, cursive;">
-    &#x2728; Welcome &#x2728
-  </h1>
+  <main>
 
-  <p style="text-align: center; font-size: 24px;">
-    <img src="profile.jpg" ;
-      style="border-radius: 50%;display: block; margin: 0 auto; width: 200px; height: 200px; border: 4px solid #ffffff;" />
-    <br>
-    <a href="https://www.linkedin.com/in/abdullah-al-nafisah"
-      style="color: #0A66C2; margin: 0 10px; text-decoration: none;">
-      <i class="fa-brands fa-linkedin"></i>
-    </a>
-    <a href="https://www.facebook.com/abdullah.alnafisah0"
-      style="color: #1877F2; margin: 0 10px; text-decoration: none;">
-      <i class="fa-brands fa-facebook"></i>
-    </a>
-    <a href="https://x.com/abdullahn94568" style="color: #ffffff; margin: 0 10px; text-decoration: none;">
-      <i class="fa-brands fa-x-twitter"></i>
-    </a>
-    <a href="https://www.instagram.com/abdullah.alnafisah0"
-      style="color: #E4405F; margin: 0 10px; text-decoration: none;">
-      <i class="fa-brands fa-instagram"></i>
-    </a>
+    <!-- ── Profile ─────────────────────────────── -->
+    <section class="profile">
+      <img src="profile.jpg" alt="Abdullah Al-Nafisah" />
+      <div class="profile-info">
+        <h1>Abdullah Al-Nafisah</h1>
+        <p class="subtitle">
+          R&amp;D Engineer, NTIS &nbsp;&middot;&nbsp; M.Sc. ECE, KAUST &nbsp;&middot;&nbsp; Saudi Arabia
+        </p>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/abdullah-al-nafisah" aria-label="LinkedIn" style="color:#0A66C2;">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="https://x.com/abdullahn94568" aria-label="X / Twitter" style="color:#1a1a1a;">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+          <a href="https://www.facebook.com/abdullah.alnafisah0" aria-label="Facebook" style="color:#1877F2;">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a href="https://www.instagram.com/abdullah.alnafisah0" aria-label="Instagram" style="color:#E4405F;">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+    </section>
 
-  </p>
+    <!-- ── About ──────────────────────────────── -->
+    <section id="about">
+      <h2>About</h2>
+      <p>
+        I am an R&amp;D engineer at <a href="https://ntis.com.sa/en/">The National Company of Telecommunications
+        and Information Security (NTIS)</a> in Saudi Arabia. I hold an M.Sc. in Electrical and Computer Engineering
+        from <a href="https://www.kaust.edu.sa/en/">King Abdullah University of Science and Technology (KAUST)</a>
+        (GPA: 3.83/4.0, June 2024), where my thesis &mdash;
+        <a href="http://hdl.handle.net/10754/698372"><em>Turbo-Equalized FTN-Inspired Modulations</em></a> &mdash;
+        developed iterative equalization frameworks for bandwidth-efficient signaling beyond the Nyquist rate.
+        I received a B.Sc. with Double Major in Electrical Engineering and Physics from
+        <a href="https://kfupm.edu.sa/">King Fahd University of Petroleum and Minerals (KFUPM)</a>
+        (1st Honors, May 2019, Capstone: Wireless Seismic Data Acquisition System), and completed an exchange
+        semester at the <a href="https://www.gatech.edu/">Georgia Institute of Technology</a> (Fall 2016).
+      </p>
+    </section>
 
-  <h1 style="text-align: center; font-family: Edu NSW ACT Cursive, cursive;">
-    Hi &#x1F44B, I am Abdullah Al-Nafisah
-  </h1>
+    <!-- ── Research Interests ─────────────────── -->
+    <section id="research">
+      <h2>Research Interests</h2>
+      <ul class="interests-list">
+        <li>Faster-than-Nyquist (FTN) signaling and spectrally efficient modulation</li>
+        <li>Turbo equalization and iterative detection/decoding (EXIT chart analysis, BCJR/SISO algorithms)</li>
+        <li>Channel coding, coded modulation, and information theory</li>
+        <li>Nonlinear circuit dynamics: chaotic oscillators, memristive systems, and physical-layer security</li>
+        <li>Analog and mixed-signal circuit design: active filters, CFOA-based topologies</li>
+        <li>FPGA-based signal processing and embedded systems</li>
+      </ul>
+    </section>
 
-  <p style="text-align: justify;">
-    I am currently working at <a href="https://ntis.com.sa/en/">The National Company of Telecommunications and
-      Information Security (NTIS)</a> as an R&D
-    engineer in Saudi Arabia &#x1F1F8;&#x1F1E6;. I hold an M.Sc. degree in Electrical and
-    Computer Engineering from <a href="https://www.kaust.edu.sa/en/">King Abdullah University of Science and
-      Technology (KAUST)</a> (Thesis: <a href="http://hdl.handle.net/10754/698372">Turbo-Equalized FTN-Inspired
-      Modulations</a>, June 20, 2024,
-    GPA: 3.83/4.0), a B.Sc. (Double Major) degree in Electrical Engineering and Physics from <a
-      href="https://kfupm.edu.sa/">King
-      Fahd University of Petroleum and Minerals (KFUPM)</a>
-    (Capstone Project: Wireless Seismic Data Acquisition System, May 2, 2019, 1st Honors), and I completed an
-    Exchange Student Program at <a href="https://www.gatech.edu/">Georgia
-      Institute of Technology</a> (Fall 2016).
-  </p>
+    <!-- ── Publications ───────────────────────── -->
+    <section id="publications">
+      <h2>Publications</h2>
+      <ul class="pub-list">
 
-  <br>
+        <li>
+          <div class="pub-title">
+            Synchronization of Two Transistor-Based Chaotic Oscillators
+          </div>
+          <div class="pub-meta">
+            <span class="pub-venue">IEEE Midwest Symposium on Circuits and Systems (MWSCAS)</span>, 2022
+            &mdash;
+            <a href="https://ieeexplore.ieee.org/document/9859376" target="_blank">IEEE Xplore</a>
+          </div>
+        </li>
+
+        <li>
+          <div class="pub-title">
+            A New CFOA-Based Shadow Analog Comb Filter
+          </div>
+          <div class="pub-meta">
+            <span class="pub-venue">Journal of Active and Passive Electronic Devices (JAPED)</span>,
+            vol. 15, no. 1&ndash;2, pp. 1&ndash;8, 2020
+            &mdash;
+            <a href="https://www.oldcitypublishing.com/journals/japed-home/japed-issue-contents/japed-volume-15-number-1-2-2020/japed-15-1-2-p-1-8/"
+              target="_blank">Old City Publishing</a>
+          </div>
+        </li>
+
+        <li>
+          <div class="pub-title">
+            Synchronization of Memristor-Based Chaotic Oscillator
+          </div>
+          <div class="pub-meta">
+            <span class="pub-venue">Journal of Active and Passive Electronic Devices (JAPED)</span>,
+            vol. 15, no. 1&ndash;2, pp. 21&ndash;28, 2020
+            &mdash;
+            <a href="https://www.oldcitypublishing.com/journals/japed-home/japed-issue-contents/japed-volume-15-number-1-2-2020/japed-15-1-2-p-21-28/"
+              target="_blank">Old City Publishing</a>
+          </div>
+        </li>
+
+        <li>
+          <div class="pub-title">
+            A Memristor-Based Chaotic Masking Scheme for Secure Communications
+          </div>
+          <div class="pub-meta">
+            <span class="pub-venue">Indonesian Journal of Electrical Engineering and Computer Science
+            (IJEECS)</span>, 2019
+            &mdash;
+            <a href="https://ijeecs.iaescore.com/index.php/IJEECS/article/view/16847"
+              target="_blank">IJEECS</a>
+          </div>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- ── Selected Projects ──────────────────── -->
+    <section id="projects">
+      <h2>Selected Projects</h2>
+      <ul class="item-list">
+        <li>
+          <a href="/projects/fpga_localization/fpga_localization.html">
+            Real-Time FPGA-Based Indoor Localization
+          </a>
+        </li>
+        <li>
+          <a href="/projects/fpga_graphics_control/fpga_graphics_control.html">
+            FPGA-Based Graphics Control System
+          </a>
+        </li>
+        <li>
+          <a href="/projects/seismic_acquisition/seismic_acquisition.html">
+            Low-Cost Wireless Seismic Data Acquisition System
+          </a>
+        </li>
+        <li>
+          <a href="/projects/chaotic_oscillators/chaotic_oscillators.html">
+            Chaotic Oscillators for Secure Analog Communications
+          </a>
+        </li>
+        <li>
+          <a href="/projects/tunable_comb_filter/tunable_comb_filter.html">
+            Tunable CFOA-Based Shadow Comb Filter
+          </a>
+        </li>
+      </ul>
+      <p style="margin-top:1rem; font-size:0.875rem; color:var(--text-muted);">
+        Conference posters and full publication archive are on the
+        <a href="/archive.html">Archive</a> page.
+      </p>
+    </section>
+
+    <!-- ── Curriculum Vitae ───────────────────── -->
+    <section id="cv">
+      <h2>Curriculum Vitae</h2>
+      <p>
+        <a href="/cv.pdf" target="_blank">Download CV (PDF)</a>
+      </p>
+      <p class="cv-note">
+        CV file not yet in the repository. Upload <code>cv.pdf</code> to the repo root to activate the link above.
+      </p>
+    </section>
+
+    <!-- ── Contact ────────────────────────────── -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>
+        <a href="mailto:abdullah.y.alnafisah@gmail.com">abdullah.y.alnafisah@gmail.com</a>
+      </p>
+    </section>
+
+  </main>
+
   <footer id="common-footer"></footer>
   <script src="html_header.js"></script>
   <script src="html_footer.js"></script>
   <script defer src="https://www.googletagmanager.com/gtag/js?id=G-SPEP808K2E"></script>
-</body>
 
+</body>
 </html>

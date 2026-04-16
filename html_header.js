@@ -1,17 +1,4 @@
-let commonHeader = `
-<style>
-  nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  nav li {
-    display: inline;
-    margin: 0 10px;
-    font-size: 1.5em;
-  }
-</style>
-
+document.getElementById("common-header").innerHTML = `
 <nav>
   <ul>
     <li><a href="/index.html">Home</a></li>
@@ -19,4 +6,3 @@ let commonHeader = `
   </ul>
 </nav>
 `;
-document.getElementById("common-header").innerHTML = commonHeader;
